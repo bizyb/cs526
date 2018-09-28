@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 //TODO: the shift speed of all prefabs should speed up or slow down uniformly
 // TODO: if a reward zone encountered and reset back to its original once the reward is over
+// TODO: how do we fix the height so that the bird cannot go outside the screen
 public class Parallaxer : MonoBehaviour
 {
 
@@ -83,6 +84,7 @@ public class Parallaxer : MonoBehaviour
 
     void Update()
     {
+        // TODO: avoid obstacles and rewards from spawning on top of each other
         if (game.GameOver) { return; }
         Shift();
         spawnTimer += Time.deltaTime;
