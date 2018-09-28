@@ -136,7 +136,6 @@ public class Parallaxer : MonoBehaviour
                 pos.y = defaultSpawnPos.y;
                 break; 
             case "Eagle":
-                Debug.Log("getting position for eagle...");
                 pos.x = defaultSpawnPos.x;
                 pos.y = Random.Range(ySpawnRange.minY, ySpawnRange.maxY);
                 break;
