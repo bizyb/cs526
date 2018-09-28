@@ -5,7 +5,12 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class Tap : MonoBehaviour {
 
-	public float upForce = 200f;
+    public delegate void PlayerDelegate();
+    public static event PlayerDelegate OnPlayerDied;
+    public static event PlayerDelegate OnPlayerScored;
+
+
+    public float upForce = 200f;
     private bool isDead = false;
     //public float tiltSmooth = 5;
 	public Vector2 startLoc;
@@ -18,11 +23,29 @@ public class Tap : MonoBehaviour {
     //Quaternion forwardRotation;
 
 
+    void OnEnable()
+    {
+        GameManager.OnGameStarted += OnGameStarted;
+        GameManager.OnGameOverConfirmed += OnGameOverConfirmed;
+    }
 
-	
+    void OnDisable()
+    {
+        GameManager.OnGameStarted -= OnGameStarted;
+        GameManager.OnGameOverConfirmed -= OnGameOverConfirmed;
+    }
 
-	// Use this for initialization
-	void Start () {
+    void OnGameStarted() {
+        rigidbod.velocity = Vector2.zero;
+        rigidbod.simulated = true;
+    }
+
+    void OnGameOverConfirmed() {
+        transform.localPosition = startLoc;
+    }
+
+    // Use this for initialization
+    void Start () {
 
 		rigidbod = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
@@ -53,9 +76,11 @@ public class Tap : MonoBehaviour {
             rigidbod.simulated = false;
             rigidbod.velocity = Vector2.zero;
             anim.SetTrigger("Die");
+
+            OnPlayerDied(); //event sent to GameManager
         }
         if (col.gameObject.tag == "ScoreZone") {
-
+            OnPlayerScored(); // event sent to GameManager
 
         }
     }
