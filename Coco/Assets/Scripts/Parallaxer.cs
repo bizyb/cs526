@@ -130,18 +130,15 @@ public class Parallaxer : MonoBehaviour
     private Vector3 GetPosition() {
 
         Vector3 pos = Vector3.zero;
+
+        // default position for dead zones and reward zones
+        pos.x = defaultSpawnPos.x;
+        pos.y = Random.Range(ySpawnRange.minY, ySpawnRange.maxY);
+
         switch (Prefab.name) {
             case "Cactus":
                 pos.x = Random.Range(xSpawnRange.maxX, xSpawnRange.maxX);
                 pos.y = defaultSpawnPos.y;
-                break; 
-            case "Eagle":
-                pos.x = defaultSpawnPos.x;
-                pos.y = Random.Range(ySpawnRange.minY, ySpawnRange.maxY);
-                break;
-            case "Albatross":
-                pos.x = defaultSpawnPos.x;
-                pos.y = Random.Range(ySpawnRange.minY, ySpawnRange.maxY);
                 break;
         }
         return pos;
