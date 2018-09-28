@@ -1283,7 +1283,7 @@ GameObject:
   - component: {fileID: 1389746128}
   m_Layer: 0
   m_Name: Cactus_Parallax
-  m_TagString: Untagged
+  m_TagString: Cactus
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1314,11 +1314,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Prefab: {fileID: 1082471691078058, guid: 27d9275c1cc2749db8a904c08d895b79, type: 2}
   poolSize: 10
-  shiftSpeed: 4
-  spawnRate: 1
+  shiftSpeed: 2
+  spawnRate: 2
   ySpawnRange:
     minY: 0
     maxY: 0
+  xSpawnRange:
+    minX: -2.5
+    maxX: 3
   defaultSpawnPos: {x: 6, y: -3.5, z: 0}
   spawnImmediate: 0
   immediateSpawnPos: {x: 0, y: 0, z: 0}
@@ -1524,7 +1527,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4223022257851684, guid: 27d9275c1cc2749db8a904c08d895b79, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 5.69
+      value: 4.69
       objectReference: {fileID: 0}
     - target: {fileID: 4223022257851684, guid: 27d9275c1cc2749db8a904c08d895b79, type: 2}
       propertyPath: m_LocalPosition.y
@@ -1553,6 +1556,10 @@ Prefab:
     - target: {fileID: 4223022257851684, guid: 27d9275c1cc2749db8a904c08d895b79, type: 2}
       propertyPath: m_RootOrder
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1082471691078058, guid: 27d9275c1cc2749db8a904c08d895b79, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 27d9275c1cc2749db8a904c08d895b79, type: 2}
@@ -1673,9 +1680,9 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.00000047683716, y: 0.25}
+  m_Offset: {x: -0.21, y: -0.02}
   serializedVersion: 2
-  m_Radius: 1.12
+  m_Radius: 0.85
 --- !u!114 &1892697269
 MonoBehaviour:
   m_ObjectHideFlags: 0

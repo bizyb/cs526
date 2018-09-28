@@ -24,9 +24,10 @@ public class GameManager : MonoBehaviour
     }
 
     int score = 0;
-    bool gameOver = true;
+    bool gameOver;
 
     public bool GameOver { get { return gameOver; } }
+    public int Score { get { return score; }}
 
     void Awake()
     {
@@ -67,10 +68,6 @@ public class GameManager : MonoBehaviour
     {
         score++;
         scoreText.text = score.ToString();
-
-        // Save current score to display at the end of the game
-        PlayerPrefs.SetInt("CurrentScore", score);
-
     }
 
     void OnPlayerDied()

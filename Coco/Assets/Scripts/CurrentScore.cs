@@ -11,6 +11,6 @@ public class CurrentScore : MonoBehaviour
     void OnEnable()
     {
         score = GetComponent<Text>();
-        score.text = "Score: " + PlayerPrefs.GetInt("CurrentScore").ToString();
+        score.text = "Score: " + GameManager.Instance.Score.ToString();
     }
 }

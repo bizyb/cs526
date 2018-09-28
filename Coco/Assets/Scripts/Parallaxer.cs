@@ -1,7 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
+
+//TODO: the shift speed of all prefabs should speed up or slow down uniformly
+// TODO: if a reward zone encountered and reset back to its original once the reward is over
 public class Parallaxer : MonoBehaviour
 {
 
@@ -14,11 +18,19 @@ public class Parallaxer : MonoBehaviour
         public void Dispose() { inUse = false; }
     }
 
+ 
     [System.Serializable]
     public struct YSpawnRange
     {
         public float minY;
         public float maxY;
+    }
+
+    [System.Serializable]
+    public struct XSpawnRange
+    {
+        public float minX;
+        public float maxX;
     }
 
     public GameObject Prefab;
@@ -27,6 +39,7 @@ public class Parallaxer : MonoBehaviour
     public float spawnRate;
 
     public YSpawnRange ySpawnRange;
+    public XSpawnRange xSpawnRange;
     public Vector3 defaultSpawnPos;
     public bool spawnImmediate;
     public Vector3 immediateSpawnPos;
@@ -37,13 +50,6 @@ public class Parallaxer : MonoBehaviour
     float targetAspect;
     GameManager game;
 
-    //enum PageState
-    //{
-    //    None,
-    //    Start,
-    //    Countdown,
-    //    GameOver
-    //}
 
     void Awake()
     {
@@ -77,14 +83,11 @@ public class Parallaxer : MonoBehaviour
 
     void Update()
     {
-        //Debug.Log("update called.....");
-        //if (game.GameOver) return;
-        //Debug.Log("update called....calling shift().");
+        if (game.GameOver) { return; }
         Shift();
         spawnTimer += Time.deltaTime;
         if (spawnTimer > spawnRate)
         {
-            Debug.Log("update called....calling spawn().");
             Spawn();
             spawnTimer = 0;
         }
@@ -102,7 +105,6 @@ public class Parallaxer : MonoBehaviour
             t.SetParent(transform);
             t.position = Vector3.one * 1000;
             poolObjects[i] = new PoolObject(t);
-            Debug.Log("in configure....spawning for the first time....");
         }
 
         if (spawnImmediate)
@@ -116,22 +118,24 @@ public class Parallaxer : MonoBehaviour
         //moving pool objects into place
         Transform t = GetPoolObject();
         if (t == null) return;
-        //Vector3 pos = Vector3.zero;
-        //pos.y = Random.Range(ySpawnRange.minY, ySpawnRange.maxY);
-        //pos.x = (defaultSpawnPos.x * Camera.main.aspect) / targetAspect;
-        //pos.y = -3.5f;
-        //Debug.Log("spawning " + t.tag);
-        //pos.x = Random.Range(-3.5f, 3.5f);
-
         t.position = GetPosition();
-        //t.position = pos;
     }
 
+    /*
+     * Return the a Vector3 position object to transform the current prefab. 
+     * Generate the new position based on the following constraints: the cactus
+     * must be fixed to the ground. Obstacles can appear anywhere but must appear
+     * above a cactus. Same with rewards.
+     */
     private Vector3 GetPosition() {
 
         Vector3 pos = Vector3.zero;
-        pos.y = 0.5f;
-        pos.x = Random.Range(-3.5f, 3.5f);
+        switch (Prefab.name) {
+            case "Cactus":
+                pos.x = Random.Range(xSpawnRange.maxX, xSpawnRange.maxX);
+                pos.y = defaultSpawnPos.y;
+                break;
+        }
         return pos;
     } 
 
