@@ -37,6 +37,14 @@ public class Parallaxer : MonoBehaviour
     float targetAspect;
     GameManager game;
 
+    //enum PageState
+    //{
+    //    None,
+    //    Start,
+    //    Countdown,
+    //    GameOver
+    //}
+
     void Awake()
     {
         Configure();
@@ -69,9 +77,9 @@ public class Parallaxer : MonoBehaviour
 
     void Update()
     {
-        Debug.Log("update called.....");
+        //Debug.Log("update called.....");
         //if (game.GameOver) return;
-        Debug.Log("update called....calling shift().");
+        //Debug.Log("update called....calling shift().");
         Shift();
         spawnTimer += Time.deltaTime;
         if (spawnTimer > spawnRate)
@@ -108,12 +116,24 @@ public class Parallaxer : MonoBehaviour
         //moving pool objects into place
         Transform t = GetPoolObject();
         if (t == null) return;
-        Vector3 pos = Vector3.zero;
-        pos.y = Random.Range(ySpawnRange.minY, ySpawnRange.maxY);
-        pos.x = (defaultSpawnPos.x * Camera.main.aspect) / targetAspect;
-       
-        t.position = pos;
+        //Vector3 pos = Vector3.zero;
+        //pos.y = Random.Range(ySpawnRange.minY, ySpawnRange.maxY);
+        //pos.x = (defaultSpawnPos.x * Camera.main.aspect) / targetAspect;
+        //pos.y = -3.5f;
+        //Debug.Log("spawning " + t.tag);
+        //pos.x = Random.Range(-3.5f, 3.5f);
+
+        t.position = GetPosition();
+        //t.position = pos;
     }
+
+    private Vector3 GetPosition() {
+
+        Vector3 pos = Vector3.zero;
+        pos.y = 0.5f;
+        pos.x = Random.Range(-3.5f, 3.5f);
+        return pos;
+    } 
 
     void SpawnImmediate()
     {
@@ -133,7 +153,7 @@ public class Parallaxer : MonoBehaviour
         //discarding them as they go off screen
         for (int i = 0; i < poolObjects.Length; i++)
         {
-            poolObjects[i].transform.position += Vector3.right * shiftSpeed * Time.deltaTime;
+            poolObjects[i].transform.position += Vector3.left * shiftSpeed * Time.deltaTime;
             CheckDisposeObject(poolObjects[i]);
         }
     }

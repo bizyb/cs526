@@ -1317,9 +1317,9 @@ MonoBehaviour:
   shiftSpeed: 4
   spawnRate: 1
   ySpawnRange:
-    minY: -3.5
-    maxY: 3
-  defaultSpawnPos: {x: 1, y: 0, z: 0}
+    minY: 0
+    maxY: 0
+  defaultSpawnPos: {x: 6, y: -3.5, z: 0}
   spawnImmediate: 0
   immediateSpawnPos: {x: 0, y: 0, z: 0}
   targetAspectRatio: {x: 10, y: 16}
@@ -1553,10 +1553,6 @@ Prefab:
     - target: {fileID: 4223022257851684, guid: 27d9275c1cc2749db8a904c08d895b79, type: 2}
       propertyPath: m_RootOrder
       value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 1082471691078058, guid: 27d9275c1cc2749db8a904c08d895b79, type: 2}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 27d9275c1cc2749db8a904c08d895b79, type: 2}
