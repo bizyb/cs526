@@ -8,9 +8,12 @@ public class Tap : MonoBehaviour {
 	public float upForce = 200f;
     private bool isDead = false;
     //public float tiltSmooth = 5;
-	public Vector3 startLoc;
+	public Vector2 startLoc;
+    private Animator anim;
+
 
 	Rigidbody2D rigidbod;
+
     //Quaternion downRotation;
     //Quaternion forwardRotation;
 
@@ -22,6 +25,7 @@ public class Tap : MonoBehaviour {
 	void Start () {
 
 		rigidbod = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
         //downRotation = Quaternion.Euler(0, 0, -90);
         //forwardRotation = Quaternion.Euler(0, 0, 45);
 
@@ -37,6 +41,7 @@ public class Tap : MonoBehaviour {
                 //transform.rotation = forwardRotation;
                 rigidbod.velocity = Vector2.zero;
                 rigidbod.AddForce(new Vector2(0, upForce));
+                anim.SetTrigger("Flap");
             }
         }
         //transform.rotation = Quaternion.Lerp(transform.rotation, downRotation, tiltSmooth * Time.deltaTime);
@@ -47,6 +52,7 @@ public class Tap : MonoBehaviour {
             isDead = true;
             rigidbod.simulated = false;
             rigidbod.velocity = Vector2.zero;
+            anim.SetTrigger("Die");
         }
         if (col.gameObject.tag == "ScoreZone") {
 
