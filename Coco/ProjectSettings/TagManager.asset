@@ -9,6 +9,7 @@ TagManager:
   - ScoreZone
   - Cactus
   - Eagle
+  - Albatross
   layers:
   - Default
   - TransparentFX

@@ -139,6 +139,10 @@ public class Parallaxer : MonoBehaviour
                 pos.x = defaultSpawnPos.x;
                 pos.y = Random.Range(ySpawnRange.minY, ySpawnRange.maxY);
                 break;
+            case "Albatross":
+                pos.x = defaultSpawnPos.x;
+                pos.y = Random.Range(ySpawnRange.minY, ySpawnRange.maxY);
+                break;
         }
         return pos;
     } 
