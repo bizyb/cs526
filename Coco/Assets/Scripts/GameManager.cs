@@ -67,6 +67,10 @@ public class GameManager : MonoBehaviour
     {
         score++;
         scoreText.text = score.ToString();
+
+        // Save current score to display at the end of the game
+        PlayerPrefs.SetInt("CurrentScore", score);
+
     }
 
     void OnPlayerDied()
@@ -109,6 +113,7 @@ public class GameManager : MonoBehaviour
 
     public void ConfirmGameOver()
     {
+
         SetPageState(PageState.Start);
         scoreText.text = "0";
         OnGameOverConfirmed();

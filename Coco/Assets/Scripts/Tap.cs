@@ -17,7 +17,10 @@ public class Tap : MonoBehaviour {
     private Animator anim;
 
 
+
 	Rigidbody2D rigidbod;
+
+    GameManager game;
 
     //Quaternion downRotation;
     //Quaternion forwardRotation;
@@ -36,8 +39,12 @@ public class Tap : MonoBehaviour {
     }
 
     void OnGameStarted() {
+
         rigidbod.velocity = Vector2.zero;
         rigidbod.simulated = true;
+        isDead = false;
+        anim.speed = 1;
+        anim.SetTrigger("Flap");
     }
 
     void OnGameOverConfirmed() {
@@ -49,14 +56,14 @@ public class Tap : MonoBehaviour {
 
 		rigidbod = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
-        //downRotation = Quaternion.Euler(0, 0, -90);
-        //forwardRotation = Quaternion.Euler(0, 0, 45);
+        game = GameManager.Instance;
 
 		
 	}
 	
 	// Update is called once per frame
 	void Update () {
+        //if (game.Gam)
         if (!isDead)
         {
             if (Input.GetMouseButtonDown(0))
@@ -75,11 +82,13 @@ public class Tap : MonoBehaviour {
             isDead = true;
             rigidbod.simulated = false;
             rigidbod.velocity = Vector2.zero;
-            anim.SetTrigger("Die");
+            //rigidbod.AddForce(new Vector2(0, upForce));
+            anim.SetTrigger("Idle");
+            anim.speed = 0;
 
             OnPlayerDied(); //event sent to GameManager
         }
-        if (col.gameObject.tag == "ScoreZone") {
+        if (col.gameObject.tag == "RewardZone") {
             OnPlayerScored(); // event sent to GameManager
 
         }
