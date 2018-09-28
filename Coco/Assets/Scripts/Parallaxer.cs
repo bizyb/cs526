@@ -100,6 +100,7 @@ public class Parallaxer : MonoBehaviour
         poolObjects = new PoolObject[poolSize];
         for (int i = 0; i < poolObjects.Length; i++)
         {
+            Prefab.SetActive(true);
             GameObject go = Instantiate(Prefab) as GameObject;
             Transform t = go.transform;
             t.SetParent(transform);
