@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
 
 
 // TODO: score refers to distance travel; final text should say distance travelled
@@ -17,6 +18,11 @@ public class GameManager : MonoBehaviour
     public GameObject gameOverPage;
     public GameObject countdownPage;
     public Text scoreText;
+
+
+    // Coco travels at 3 miles per second for 
+    // 25 minutes to cover 4500 miles, the distance between Ghana and the UK
+    public int MILES_PER_SEC = 3; 
 
     enum PageState
     {
@@ -42,6 +48,9 @@ public class GameManager : MonoBehaviour
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
+
+            // update distance travelled, i.e. the score, every 1 second
+            InvokeRepeating("OnPlayerScored", 1f, 1f);
         }
     }
 
@@ -69,7 +78,7 @@ public class GameManager : MonoBehaviour
 
     void OnPlayerScored()
     {
-        score++;
+        score += MILES_PER_SEC;
         scoreText.text = score.ToString();
     }
 

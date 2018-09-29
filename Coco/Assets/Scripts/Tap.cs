@@ -63,9 +63,11 @@ public class Tap : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        //if (game.Gam)
+        if (game.GameOver) { return; }
         if (!isDead)
         {
+            //InvokeRepeating("UpdateDistance", 1f, 1f);
+            //StartCoroutine("UpdateDistance");
             if (Input.GetMouseButtonDown(0))
             {
                 //transform.rotation = forwardRotation;
@@ -88,9 +90,6 @@ public class Tap : MonoBehaviour {
 
             OnPlayerDied(); //event sent to GameManager
         }
-        if (col.gameObject.tag == "RewardZone") {
-            OnPlayerScored(); // event sent to GameManager
 
-        }
     }
 }
