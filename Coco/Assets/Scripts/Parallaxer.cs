@@ -9,6 +9,38 @@ using UnityEngine.UI;
 // TODO: how do we fix the height so that the bird cannot go outside the screen
 // TODO: spawn the objects at a spefic time without conflicting their arrival; 
 //      that way, no need to speficy spawn rate
+/*
+ * Coco's Odyssey is a game that recounts the journey of an African swallow named
+ * Coco travelling from the Gold Cost to Great Britain (modern day Ghana to UK). 
+ * Coco is carrying two coconuts at the request of King Arthur, who desperately
+ * needs the coconuts so he can imitate the sound of horse hoofs by hitting them
+ * againt one another on his campaign to recruit the Knights of the Round Table.
+ * Horses are hard to come by in the wintry isles of Britain.
+ * 
+ * Along his journey, Coco encounters birds endemic to the region he's flying 
+ * through. He comes across birds that are common to Africa as he flies over 
+ * Africa. And likewise, other birds and areal creatures (flying worms and such)
+ * as he flies over the sea and enters Europe. 
+ * 
+ * In order to reach his destination, Coco must avoid running into the birds and
+ * other objects in the sky that he encounters, unless of course they're worms.
+ * If he hits an obstacles, he'll journey will be cut short and he'll have to 
+ * start over. But in order to continue with his journey even if he doesn't run 
+ * into any obstacles, he still needs to eat and rest. But he can't land. That 
+ * means he has to somehow fly five thousand miles without landing. Thankfully,
+ * there are flying worms he can feed off of and occasional hot air balloons
+ * and other objects where he can take a respite for a while. Accomplishing any 
+ * of those would increase his energy and he'll have a better chance of getting 
+ * to Europe.
+ * 
+ * The game is designed to be fair. There won't be a situation where Coco is low
+ * on energy but there is no place to rest or no food nearby. Although the 
+ * appearance of food and rest stops are random, they are tied to how much he has 
+ * left. If he's full, it' less likely that he'll find food or a rest stop. If 
+ * he's hungry, they'll be within reach. 
+ * 
+ * # TODO: add more explanation/game logic details 
+*/
 public class Parallaxer : MonoBehaviour
 {
 
