@@ -19,25 +19,28 @@ using UnityEngine.UI;
  * 
  * Along his journey, Coco encounters birds endemic to the region he's flying 
  * through. He comes across birds that are common to Africa as he flies over 
- * Africa. And likewise, other birds and areal creatures (flying worms and such)
- * as he flies over the sea and enters Europe. 
+ * Africa. And likewise, other birds and areal objects common to the European
+ * airspace.
  * 
  * In order to reach his destination, Coco must avoid running into the birds and
- * other objects in the sky that he encounters, unless of course they're worms.
- * If he hits an obstacles, he'll journey will be cut short and he'll have to 
+ * obstacles in the sky that he encounters, unless of course they're insects.
+ * If he hits an obstacle, his journey will be cut short and he'll have to 
  * start over. But in order to continue with his journey even if he doesn't run 
- * into any obstacles, he still needs to eat and rest. But he can't land. That 
- * means he has to somehow fly five thousand miles without landing. Thankfully,
- * there are flying worms he can feed off of and occasional hot air balloons
- * and other objects where he can take a respite for a while. Accomplishing any 
- * of those would increase his energy and he'll have a better chance of getting 
- * to Europe.
+ * into any obstacles, he still needs to eat. Thankfully,
+ * there are flying insects that he can feed off of.
  * 
- * The game is designed to be fair. There won't be a situation where Coco is low
- * on energy but there is no place to rest or no food nearby. Although the 
- * appearance of food and rest stops are random, they are tied to how much he has 
- * left. If he's full, it' less likely that he'll find food or a rest stop. If 
- * he's hungry, they'll be within reach. 
+ * The appearance of obstacles is time-based and changes every five minutes as 
+ * follows:
+ *  0-5:    Eagle
+ *  5-10:   Albatross
+ *  10-15:  Hot Air Balloons
+ *  15-20:  Paratroopers
+ *  20-25:  Poop from Plane
+ *  25-30:  Landmarks (European landmarks, e.g. Eiffel, London Clock Tower, etc.)
+ * 
+ *  Near the end of the game, a castle will be shown at a distance to indicate 
+ *  that the bird has reached its destination. 
+ * 
  * 
  * # TODO: add more explanation/game logic details 
 */
