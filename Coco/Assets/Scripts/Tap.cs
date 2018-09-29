@@ -91,5 +91,11 @@ public class Tap : MonoBehaviour {
             OnPlayerDied(); //event sent to GameManager
         }
 
+        if (col.gameObject.tag == "RewardZone") {
+            // make the reward object/food disappear after 
+            // collision and update the fuel meter accordingly
+            col.gameObject.SetActive(false);
+        }
+
     }
 }

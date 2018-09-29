@@ -192,6 +192,7 @@ public class Parallaxer : MonoBehaviour
     void Spawn()
     {
         //moving pool objects into place
+        Prefab.SetActive(true);
         Transform t = GetPoolObject();
         if (t == null) {  return; }
         t.position = GetPosition();
