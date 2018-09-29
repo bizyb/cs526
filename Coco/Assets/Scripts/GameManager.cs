@@ -22,7 +22,7 @@ public class GameManager : MonoBehaviour
 
     // Coco travels at 3 miles per second for 
     // 25 minutes to cover 4500 miles, the distance between Ghana and the UK
-    public int MILES_PER_SEC = 3; 
+    public int MILES_PER_SEC = 2; 
 
     enum PageState
     {
@@ -40,6 +40,7 @@ public class GameManager : MonoBehaviour
 
     void Awake()
     {
+
         if (Instance != null)
         {
             Destroy(gameObject);
@@ -49,13 +50,12 @@ public class GameManager : MonoBehaviour
             Instance = this;
             DontDestroyOnLoad(gameObject);
 
-            // update distance travelled, i.e. the score, every 1 second
-            InvokeRepeating("OnPlayerScored", 1f, 1f);
         }
     }
 
     void OnEnable()
     {
+       
         Tap.OnPlayerDied += OnPlayerDied;
         Tap.OnPlayerScored += OnPlayerScored;
         CountdownText.OnCountdownFinished += OnCountdownFinished;
@@ -74,10 +74,14 @@ public class GameManager : MonoBehaviour
         OnGameStarted();
         score = 0;
         gameOver = false;
+
+        // update distance travelled, i.e. the score, every 1 second
+        InvokeRepeating("OnPlayerScored", 1f, 1f);
     }
 
     void OnPlayerScored()
     {
+       
         score += MILES_PER_SEC;
         scoreText.text = score.ToString();
     }
@@ -130,6 +134,7 @@ public class GameManager : MonoBehaviour
 
     public void StartGame()
     {
+
         SetPageState(PageState.Countdown);
     }
 

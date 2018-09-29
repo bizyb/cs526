@@ -11,6 +11,6 @@ public class CurrentScore : MonoBehaviour
     void OnEnable()
     {
         score = GetComponent<Text>();
-        score.text = "Score: " + GameManager.Instance.Score.ToString();
+        score.text = "Travelled: " + GameManager.Instance.Score.ToString() + " miles";
     }
 }

@@ -11,7 +11,7 @@ public class Tap : MonoBehaviour {
 
 
     public float upForce = 200f;
-    private bool isDead = false;
+    public bool isDead = false;
     //public float tiltSmooth = 5;
 	public Vector2 startLoc;
     private Animator anim;
