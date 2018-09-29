@@ -158,7 +158,8 @@ public class Parallaxer : MonoBehaviour
             Prefab.name == "Paratrooper" && elapsed > 9 && elapsed < 12 ||
             Prefab.name == "Poop" && elapsed > 12 && elapsed < 15 ||
             Prefab.name == "Landmark" && elapsed > 15 && elapsed < 18 ||
-            Prefab.name == "Cactus" && elapsed > 0 && elapsed < 9) {
+            Prefab.name == "Cactus" && elapsed > 0 && elapsed < 9 ||
+            Prefab.name == "Cricket") {
             return true;
         }
         return false;
@@ -201,12 +202,18 @@ public class Parallaxer : MonoBehaviour
      * Generate the new position based on the following constraints: the cactus
      * must be fixed to the ground. Obstacles can appear anywhere but must appear
      * above a cactus. Same with rewards.
+     * 
+     * TODO: call a unity function of some kind to figure out if a given x,y positin
+     * already has an object there; if so, keep looping until a random position is 
+     * found that's empty; this should help us avoid rewards and obstacles showing 
+     * up on top of each other
      */
     private Vector3 GetPosition() {
 
         Vector3 pos = Vector3.zero;
 
         // default position for dead zones and reward zones
+
         pos.x = defaultSpawnPos.x;
         pos.y = UnityEngine.Random.Range(ySpawnRange.minY, ySpawnRange.maxY);
 
