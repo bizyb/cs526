@@ -1,13 +1,13 @@
 ﻿<Properties StartupConfiguration="{DEC9D723-7386-76F2-7997-CDF01FCA234B}|">
   <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="Unity.Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/CurrentScore.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/GameManager.cs">
     <Files>
-      <File FileName="Assets/Scripts/GameManager.cs" Line="73" Column="38" />
-      <File FileName="Assets/Scripts/Parallaxer.cs" Line="48" Column="6" />
-      <File FileName="Assets/Scripts/Tap.cs" Line="53" Column="5" />
+      <File FileName="Assets/Scripts/GameManager.cs" Line="31" Column="14" />
+      <File FileName="Assets/Scripts/Parallaxer.cs" Line="272" Column="14" />
+      <File FileName="Assets/Scripts/Tap.cs" Line="99" Column="9" />
       <File FileName="Assets/Scripts/CountdownText.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Score.cs" Line="15" Column="6" />
-      <File FileName="Assets/Scripts/CurrentScore.cs" Line="14" Column="39" />
+      <File FileName="Assets/Scripts/Score.cs" Line="16" Column="2" />
+      <File FileName="Assets/Scripts/CurrentScore.cs" Line="16" Column="2" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
