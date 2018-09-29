@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
+
+// TODO: score refers to distance travel; final text should say distance travelled
+// instead of 'Score' and Highest Score should change to Longest Journey
 public class GameManager : MonoBehaviour
 {
 

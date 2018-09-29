@@ -53,6 +53,7 @@ public class Parallaxer : MonoBehaviour
     float targetAspect;
     GameManager game;
 
+  
 
     void Awake()
     {
