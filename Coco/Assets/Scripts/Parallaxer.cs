@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+using System;
 
 //TODO: the shift speed of all prefabs should speed up or slow down uniformly
 // TODO: if a reward zone encountered and reset back to its original once the reward is over
@@ -37,6 +37,10 @@ using UnityEngine.UI;
  *  15-20:  Paratroopers
  *  20-25:  Poop from Plane
  *  25-30:  Landmarks (European landmarks, e.g. Eiffel, London Clock Tower, etc.)
+ * 
+ *  Although the obstacles will show up according ot the timeline, food will 
+ *  appear randomly mulitple times in any given 5-minute window. In order to 
+ *  continue flying, the bird must eat at least once in that window. 
  * 
  *  Near the end of the game, a castle will be shown at a distance to indicate 
  *  that the bird has reached its destination. 
@@ -87,6 +91,8 @@ public class Parallaxer : MonoBehaviour
     PoolObject[] poolObjects;
     float targetAspect;
     GameManager game;
+    private int SECONDS = 60;
+    private int timeNow;
 
   
 
@@ -120,17 +126,45 @@ public class Parallaxer : MonoBehaviour
         Configure();
     }
 
+    /*
+     * Spawn new objects according to the timeline indicated above in the comments.
+    */
     void Update()
     {
         // TODO: avoid obstacles and rewards from spawning on top of each other
         if (game.GameOver) { return; }
         Shift();
-        spawnTimer += Time.deltaTime;
-        if (spawnTimer > spawnRate)
-        {
-            Spawn();
-            spawnTimer = 0;
+        if (constraintSatisfied()) {
+            spawnTimer += Time.deltaTime;
+            if (spawnTimer > spawnRate)
+            {
+                Spawn();
+                spawnTimer = 0;
+            }
+
         }
+
+       
+    }
+
+        bool constraintSatisfied() {
+        timeNow = (Int32)(DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
+        int elapsed = timeNow - game.startTime;
+       
+       
+        if (Prefab.name == "Eagle" && elapsed > 0 && elapsed < 10 ||
+            Prefab.name == "Albatross" && elapsed > 10  && elapsed < 20 ||
+            Prefab.name == "Balloon" && elapsed > 6 && elapsed < 9 ||
+            Prefab.name == "Paratrooper" && elapsed > 9 && elapsed < 12 ||
+            Prefab.name == "Poop" && elapsed > 12 && elapsed < 15 ||
+            Prefab.name == "Landmark" && elapsed > 15 && elapsed < 18 ||
+            Prefab.name == "Cactus" && elapsed > 0 && elapsed < 9) {
+            return true;
+        }
+        return false;
+
+
+
     }
 
     void Configure()
@@ -174,11 +208,11 @@ public class Parallaxer : MonoBehaviour
 
         // default position for dead zones and reward zones
         pos.x = defaultSpawnPos.x;
-        pos.y = Random.Range(ySpawnRange.minY, ySpawnRange.maxY);
+        pos.y = UnityEngine.Random.Range(ySpawnRange.minY, ySpawnRange.maxY);
 
         switch (Prefab.name) {
             case "Cactus":
-                pos.x = Random.Range(xSpawnRange.maxX, xSpawnRange.maxX);
+                pos.x = UnityEngine.Random.Range(xSpawnRange.maxX, xSpawnRange.maxX);
                 pos.y = defaultSpawnPos.y;
                 break;
         }
@@ -190,7 +224,7 @@ public class Parallaxer : MonoBehaviour
         Transform t = GetPoolObject();
         if (t == null) return;
         Vector3 pos = Vector3.zero;
-        pos.y = Random.Range(ySpawnRange.minY, ySpawnRange.maxY);
+        pos.y = UnityEngine.Random.Range(ySpawnRange.minY, ySpawnRange.maxY);
         pos.x = (immediateSpawnPos.x * Camera.main.aspect) / targetAspect;
         t.position = pos;
         Spawn();

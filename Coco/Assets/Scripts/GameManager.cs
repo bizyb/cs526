@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using System.Collections;
+using System;
+
 
 
 // TODO: score refers to distance travel; final text should say distance travelled
@@ -17,6 +18,7 @@ public class GameManager : MonoBehaviour
     public GameObject startPage;
     public GameObject gameOverPage;
     public GameObject countdownPage;
+    public int startTime;
     public Text scoreText;
 
 
@@ -50,6 +52,8 @@ public class GameManager : MonoBehaviour
             Instance = this;
             DontDestroyOnLoad(gameObject);
 
+            //OnCountdownFinished();
+
         }
     }
 
@@ -74,6 +78,9 @@ public class GameManager : MonoBehaviour
         OnGameStarted();
         score = 0;
         gameOver = false;
+        startTime = (Int32)(DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
+
+
 
         // update distance travelled, i.e. the score, every 1 second
         InvokeRepeating("OnPlayerScored", 1f, 1f);
