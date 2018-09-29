@@ -7,6 +7,8 @@ using UnityEngine.UI;
 //TODO: the shift speed of all prefabs should speed up or slow down uniformly
 // TODO: if a reward zone encountered and reset back to its original once the reward is over
 // TODO: how do we fix the height so that the bird cannot go outside the screen
+// TODO: spawn the objects at a spefic time without conflicting their arrival; 
+//      that way, no need to speficy spawn rate
 public class Parallaxer : MonoBehaviour
 {
 
@@ -120,7 +122,7 @@ public class Parallaxer : MonoBehaviour
     {
         //moving pool objects into place
         Transform t = GetPoolObject();
-        if (t == null) return;
+        if (t == null) {  return; }
         t.position = GetPosition();
     }
 
@@ -173,7 +175,7 @@ public class Parallaxer : MonoBehaviour
     void CheckDisposeObject(PoolObject poolObject)
     {
         //place objects off screen
-        if (poolObject.transform.position.x < (-defaultSpawnPos.x * Camera.main.aspect) / targetAspect)
+        if (poolObject.transform.position.x < xSpawnRange.minX*2)
         {
             poolObject.Dispose();
             poolObject.transform.position = Vector3.one * 1000;
