@@ -30,7 +30,7 @@ public class GameManager : MonoBehaviour
 
     // Coco travels at 3 miles per second for 
     // 25 minutes to cover 4500 miles, the distance between Ghana and the UK
-    public int MILES_PER_SEC = 2; 
+    public int MILES_PER_SEC = 1; 
 
     enum PageState
     {
