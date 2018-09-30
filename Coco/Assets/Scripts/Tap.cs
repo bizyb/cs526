@@ -14,7 +14,7 @@ public class Tap : MonoBehaviour
     public float upForce = 200f;
     public bool isDead = false;
     float reward = 20f;
-    float decay = -5.666f; // player health decay rate per second
+    float decay = -0.0666f; // player health decay rate per second
     public Vector2 startLoc;
     private Animator anim;
 
@@ -102,13 +102,15 @@ public class Tap : MonoBehaviour
 
     public void Dead()
     {
+        // TODO: make sure the bird is restored to its idle state when the start 
+        // page loads
 
         // play sound, update score, etc
         isDead = true;
         rigidbod.simulated = false;
         rigidbod.velocity = Vector2.zero;
         //rigidbod.AddForce(new Vector2(0, upForce));
-        //anim.SetTrigger("Idle");
+        anim.SetTrigger("Idle");
         anim.speed = 0;
         health.UpdateHealth(100f, this); //restore the health for next time
         OnPlayerDied(); //event sent to GameManager

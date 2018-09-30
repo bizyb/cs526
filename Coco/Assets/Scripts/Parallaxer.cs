@@ -159,7 +159,8 @@ public class Parallaxer : MonoBehaviour
             Prefab.name == "Landmark" && elapsed > 15 && elapsed < 18 ||
             Prefab.name == "Cactus" && elapsed > 0 && elapsed < 9 ||
             Prefab.name == "Cricket" ||
-            Prefab.name == "Blimp") {
+            Prefab.name == "Blimp" ||
+            Prefab.name == "Balloon") {
             return true;
         }
         return false;

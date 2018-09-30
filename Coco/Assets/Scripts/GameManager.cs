@@ -25,6 +25,7 @@ public class GameManager : MonoBehaviour
     public GameObject currentScore;
     public int startTime;
     public Text scoreText;
+    //private Animator anim;
 
 
     // Coco travels at 3 miles per second for 
@@ -64,6 +65,7 @@ public class GameManager : MonoBehaviour
     void OnEnable()
     {
 
+        //anim = GetComponent<Animator>();
         Tap.OnPlayerDied += OnPlayerDied;
         Tap.OnPlayerScored += OnPlayerScored;
         CountdownText.OnCountdownFinished += OnCountdownFinished;
@@ -161,6 +163,7 @@ public class GameManager : MonoBehaviour
 
         SetPageState(PageState.Start);
         scoreText.text = "0";
+        //anim.SetTrigger("Idle");
         OnGameOverConfirmed();
     }
 
