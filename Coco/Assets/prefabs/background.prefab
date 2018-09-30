@@ -21,9 +21,8 @@ GameObject:
   - component: {fileID: 4964848092952968}
   - component: {fileID: 212396449446942072}
   - component: {fileID: 95781180009315714}
-  - component: {fileID: 61597019897540140}
   m_Layer: 0
-  m_Name: background
+  m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -42,31 +41,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: -0.54, z: 0}
---- !u!61 &61597019897540140
-BoxCollider2D:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1701776172737952}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -3.1}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 13.14, y: 6.77}
-    newSize: {x: 19.199999, y: 10.799999}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 19.2, y: 0.39}
-  m_EdgeRadius: 0
 --- !u!95 &95781180009315714
 Animator:
   serializedVersion: 3
@@ -117,8 +91,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -425464917
-  m_SortingLayer: 2
+  m_SortingLayerID: 1658126963
+  m_SortingLayer: 1
   m_SortingOrder: -999
   m_Sprite: {fileID: 21300000, guid: 6bee6ae2391564d57ab9a83cd2604618, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
