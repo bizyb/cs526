@@ -108,7 +108,7 @@ public class Tap : MonoBehaviour
         rigidbod.simulated = false;
         rigidbod.velocity = Vector2.zero;
         //rigidbod.AddForce(new Vector2(0, upForce));
-        anim.SetTrigger("Idle");
+        //anim.SetTrigger("Idle");
         anim.speed = 0;
         health.UpdateHealth(100f, this); //restore the health for next time
         OnPlayerDied(); //event sent to GameManager

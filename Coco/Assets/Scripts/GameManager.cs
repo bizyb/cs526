@@ -25,7 +25,6 @@ public class GameManager : MonoBehaviour
     public GameObject currentScore;
     public int startTime;
     public Text scoreText;
-    PlayerHealth health;
 
 
     // Coco travels at 3 miles per second for 
@@ -68,7 +67,6 @@ public class GameManager : MonoBehaviour
         Tap.OnPlayerDied += OnPlayerDied;
         Tap.OnPlayerScored += OnPlayerScored;
         CountdownText.OnCountdownFinished += OnCountdownFinished;
-        health = PlayerHealth.Instance;
 
         // update distance travelled, i.e. the score, every 1 second
         InvokeRepeating("OnPlayerScored", 1f, 1f);
@@ -92,8 +90,6 @@ public class GameManager : MonoBehaviour
         healthBar.SetActive(true);
         currentScore.SetActive(true);
         startTime = (Int32)(DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
-
-       
 
     }
 
