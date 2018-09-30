@@ -152,9 +152,9 @@ public class Parallaxer : MonoBehaviour
         int elapsed = timeNow - game.startTime;
        
        
-        if (Prefab.name == "Eagle" && elapsed > 0 && elapsed < 10 ||
+        if (Prefab.name == "Blimp" && elapsed > 0 && elapsed < 10 ||
             Prefab.name == "Albatross" && elapsed > 10  && elapsed < 20 ||
-            Prefab.name == "Balloon" && elapsed > 6 && elapsed < 9 ||
+            Prefab.name == "Blimp" && elapsed > 6 && elapsed < 9 ||
             Prefab.name == "Paratrooper" && elapsed > 9 && elapsed < 12 ||
             Prefab.name == "Poop" && elapsed > 12 && elapsed < 15 ||
             Prefab.name == "Landmark" && elapsed > 15 && elapsed < 18 ||

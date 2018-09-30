@@ -115,6 +115,7 @@ public class Tap : MonoBehaviour
 
     void HealthDecay()
     {
+        if (game.GameOver) { return; }
         health.UpdateHealth(decay, this);
     }
 }

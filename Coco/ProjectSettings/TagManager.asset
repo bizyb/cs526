@@ -11,6 +11,7 @@ TagManager:
   - Eagle
   - Albatross
   - Cricket
+  - Blimp
   layers:
   - Default
   - TransparentFX
