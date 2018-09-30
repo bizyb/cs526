@@ -83,6 +83,7 @@ public class Tap : MonoBehaviour
     }
     void OnTriggerEnter2D(Collider2D col)
     {
+        // TODO: blimp collision area is too wide
         if (col.gameObject.tag == "DeadZone")
         {
             Dead();

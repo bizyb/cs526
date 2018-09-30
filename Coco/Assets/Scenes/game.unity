@@ -1807,10 +1807,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 12
       objectReference: {fileID: 0}
-    - target: {fileID: 1474758490960682, guid: ea617941d152c4884837d7b433f85c99, type: 2}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ea617941d152c4884837d7b433f85c99, type: 2}
   m_IsPrefabAsset: 0
@@ -1895,7 +1891,7 @@ GameObject:
   - component: {fileID: 1892697270}
   m_Layer: 0
   m_Name: bird
-  m_TagString: RewardZone
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
