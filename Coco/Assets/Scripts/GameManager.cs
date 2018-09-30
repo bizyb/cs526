@@ -33,12 +33,14 @@ public class GameManager : MonoBehaviour
     public GameObject groundThree;
     public GameObject groundFour;
     public GameObject groundFive;
+    public GameObject messageContainer;
+    public Text message;
     public int startTime;
     public Text scoreText;
 
     // scale the game time by this much for debugging purpose
-    public float scaleFactor = 0.997f;
-    public float gameDuration = 1800f; // 30 minutes
+    public readonly float scaleFactor = 0.97f;
+    public readonly float gameDuration = 1800f; // 30 minutes
     //private Animator anim;
 
 
@@ -78,7 +80,7 @@ public class GameManager : MonoBehaviour
 
     void OnEnable()
     {
-
+        startTime = (Int32)(DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
         //anim = GetComponent<Animator>();
         Tap.OnPlayerDied += OnPlayerDied;
         Tap.OnPlayerScored += OnPlayerScored;
@@ -112,7 +114,7 @@ public class GameManager : MonoBehaviour
         gameOver = false;
         healthBar.SetActive(true);
         currentScore.SetActive(true);
-        startTime = (Int32)(DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
+        //startTime = (Int32)(DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
 
     }
 

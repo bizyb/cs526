@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 58149822082202130}
   m_Layer: 0
   m_Name: Eagle
-  m_TagString: RewardZone
+  m_TagString: DeadZone
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -35,7 +35,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1208631977579262}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 4.107, y: 3.885, z: 0}
+  m_LocalPosition: {x: 3.4806566, y: 4.3295226, z: -4.373743}
   m_LocalScale: {x: 0.2697451, y: 0.2697451, z: 0.2697451}
   m_Children: []
   m_Father: {fileID: 0}

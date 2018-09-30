@@ -149,17 +149,35 @@ public class Parallaxer : MonoBehaviour
     private bool constraintSatisfied() {
         timeNow = (Int32)(DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
         int elapsed = timeNow - game.startTime;
-        float scalar = elapsed * (1 - game.scaleFactor);
-      
-        if (Prefab.name == "Eagle" && elapsed > 0 && elapsed < 250 * scalar ||
-            Prefab.name == "Albatross" && elapsed > 250* scalar && elapsed < 500* scalar ||
-            Prefab.name == "Paratrooper" && elapsed > 500* scalar && elapsed < 750* scalar ||
-            Prefab.name == "Blimp" && elapsed > 750* scalar && elapsed < 1000* scalar ||
-            Prefab.name == "Airplane" && elapsed > 1000* scalar && elapsed < 1250* scalar ||
-            Prefab.name == "Drone" && elapsed > 1250* scalar && elapsed < 1500* scalar ||
-            Prefab.name == "Balloon" && elapsed > 1500* scalar && elapsed < 1800* scalar ||
-            Prefab.name == "Cactus" && elapsed > 0 && elapsed < 750*scalar ||
-            Prefab.name == "Cricket" && (elapsed % (60* scalar) <= Double.Epsilon)) {
+        //float scalar = 1 - game.scaleFactor;
+        //Debug.Log("scalar: " + scalar);
+        //Debug.Log("scaled time: " + scalar * elapsed);
+        //Debug.Log("elapsed time: " + elapsed);
+
+        //if (Prefab.name == "Eagle" && elapsed > 0 && elapsed < 250 * scalar ||
+        //    Prefab.name == "Albatross" && elapsed > 250* scalar && elapsed < 500* scalar ||
+        //    Prefab.name == "Paratrooper" && elapsed > 500* scalar && elapsed < 750* scalar ||
+        //    Prefab.name == "Blimp" && elapsed > 750* scalar && elapsed < 1000* scalar ||
+        //    Prefab.name == "Airplane" && elapsed > 1000* scalar && elapsed < 1250* scalar ||
+        //    Prefab.name == "Drone" && elapsed > 1250* scalar && elapsed < 1500* scalar ||
+        //    Prefab.name == "Balloon" && elapsed > 1500* scalar && elapsed < 1800* scalar ||
+        //    Prefab.name == "Cactus" && elapsed > 0 && elapsed < 750*scalar ||
+        //    Prefab.name == "Cricket" && (elapsed % 2 == 0) ||
+        //    Prefab.name == "aAirplane") {
+        //    return true;
+        //}
+        float scalar = 1;
+        if (Prefab.name == "Eagle" && elapsed > 0 && elapsed < 5 * scalar ||
+          Prefab.name == "Albatross" && elapsed > 5 * scalar && elapsed < 10 * scalar ||
+          Prefab.name == "Paratrooper" && elapsed > 10 * scalar && elapsed < 15 * scalar ||
+          Prefab.name == "Blimp" && elapsed > 15* scalar && elapsed < 20 * scalar ||
+          Prefab.name == "Airplane" && elapsed > 20 * scalar && elapsed < 25 * scalar ||
+          Prefab.name == "Drone" && elapsed > 25 * scalar && elapsed < 30 * scalar ||
+          Prefab.name == "Balloon" && elapsed > 35 * scalar && elapsed < 40 * scalar ||
+          Prefab.name == "Cactus" && elapsed > 0 && elapsed < 20 * scalar ||
+          Prefab.name == "Cricket" && (elapsed % 2 == 0) ||
+          Prefab.name == "aAirplane")
+        {
             return true;
         }
         return false;
