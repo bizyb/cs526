@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System;
+using System.Collections;
 
 
 
@@ -18,6 +19,8 @@ public class GameManager : MonoBehaviour
     public GameObject startPage;
     public GameObject gameOverPage;
     public GameObject countdownPage;
+    public GameObject bird;
+    public GameObject parallaxObjects;
     public int startTime;
     public Text scoreText;
     PlayerHealth health;
@@ -54,8 +57,6 @@ public class GameManager : MonoBehaviour
             Instance = this;
             DontDestroyOnLoad(gameObject);
 
-            //OnCountdownFinished();
-
         }
     }
 
@@ -91,11 +92,15 @@ public class GameManager : MonoBehaviour
 
     void OnPlayerScored()
     {
-       
+
+        if (gameOver) { return; }
+
         score += MILES_PER_SEC;
         scoreText.text = score.ToString();
+       
 
     }
+
 
     void OnPlayerDied()
     {
@@ -105,6 +110,17 @@ public class GameManager : MonoBehaviour
         {
             PlayerPrefs.SetInt("HighScore", score);
         }
+        StartCoroutine("DelayedTransition");
+
+    }
+
+    /*
+     * Clear the screen before displaying game over text.
+    */
+    IEnumerator DelayedTransition()
+    {
+
+        yield return new WaitForSeconds(1);
         SetPageState(PageState.GameOver);
     }
 
@@ -145,7 +161,7 @@ public class GameManager : MonoBehaviour
 
     public void StartGame()
     {
-
+       
         SetPageState(PageState.Countdown);
     }
 
