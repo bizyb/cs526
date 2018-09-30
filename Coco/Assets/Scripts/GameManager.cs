@@ -23,6 +23,10 @@ public class GameManager : MonoBehaviour
     public GameObject parallaxObjects;
     public GameObject healthBar;
     public GameObject currentScore;
+    public GameObject backgroundAfrica;
+    public GameObject groundAfrica;
+    public GameObject backgroundLandscape;
+    public GameObject groundLandscape;
     public int startTime;
     public Text scoreText;
     //private Animator anim;
@@ -70,6 +74,13 @@ public class GameManager : MonoBehaviour
         Tap.OnPlayerScored += OnPlayerScored;
         CountdownText.OnCountdownFinished += OnCountdownFinished;
 
+        backgroundAfrica.SetActive(true);
+        backgroundLandscape.SetActive(false);
+        groundAfrica.SetActive(true);
+        groundLandscape.SetActive(false);
+        
+
+
         // update distance travelled, i.e. the score, every 1 second
         InvokeRepeating("OnPlayerScored", 1f, 1f);
 
@@ -102,6 +113,10 @@ public class GameManager : MonoBehaviour
 
         score += MILES_PER_SEC;
         scoreText.text = score.ToString();
+
+        if (score > 20) {
+            ChangeBackground();
+        }
        
 
     }
@@ -117,6 +132,14 @@ public class GameManager : MonoBehaviour
         }
         StartCoroutine("DelayedTransition");
 
+    }
+
+    void ChangeBackground() {
+
+        backgroundAfrica.SetActive(false);
+        backgroundLandscape.SetActive(true);
+        groundAfrica.SetActive(false);
+        groundLandscape.SetActive(true);
     }
 
     /*
