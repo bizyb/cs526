@@ -59,12 +59,6 @@ public class Tap : MonoBehaviour {
         anim = GetComponent<Animator>();
         game = GameManager.Instance;
         health = PlayerHealth.Instance;
-        if (game != null) { Debug.Log("game instance is NOT null"); }
-
-       
-
-        if (health == null) { Debug.Log("health instance IS null"); }
-
 		
 	}
 	
