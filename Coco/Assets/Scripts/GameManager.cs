@@ -23,12 +23,22 @@ public class GameManager : MonoBehaviour
     public GameObject parallaxObjects;
     public GameObject healthBar;
     public GameObject currentScore;
-    public GameObject backgroundAfrica;
-    public GameObject groundAfrica;
-    public GameObject backgroundLandscape;
-    public GameObject groundLandscape;
+    public GameObject backgroundOne;
+    public GameObject backgroundTwo;
+    public GameObject backgroundThree;
+    public GameObject backgroundFour;
+    public GameObject backgroundFive;
+    public GameObject groundOne;
+    public GameObject groundTwo;
+    public GameObject groundThree;
+    public GameObject groundFour;
+    public GameObject groundFive;
     public int startTime;
     public Text scoreText;
+
+    // scale the game time by this much for debugging purpose
+    public float scaleFactor = 0.997f;
+    public float gameDuration = 1800f; // 30 minutes
     //private Animator anim;
 
 
@@ -74,10 +84,10 @@ public class GameManager : MonoBehaviour
         Tap.OnPlayerScored += OnPlayerScored;
         CountdownText.OnCountdownFinished += OnCountdownFinished;
 
-        backgroundAfrica.SetActive(true);
-        backgroundLandscape.SetActive(false);
-        groundAfrica.SetActive(true);
-        groundLandscape.SetActive(false);
+        //backgroundAfrica.SetActive(true);
+        //backgroundLandscape.SetActive(false);
+        //groundAfrica.SetActive(true);
+        //groundLandscape.SetActive(false);
         
 
 
@@ -136,10 +146,10 @@ public class GameManager : MonoBehaviour
 
     void ChangeBackground() {
 
-        backgroundAfrica.SetActive(false);
-        backgroundLandscape.SetActive(true);
-        groundAfrica.SetActive(false);
-        groundLandscape.SetActive(true);
+        //backgroundAfrica.SetActive(false);
+        //backgroundLandscape.SetActive(true);
+        //groundAfrica.SetActive(false);
+        //groundLandscape.SetActive(true);
     }
 
     /*

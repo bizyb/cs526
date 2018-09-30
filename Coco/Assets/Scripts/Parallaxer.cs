@@ -146,28 +146,23 @@ public class Parallaxer : MonoBehaviour
        
     }
 
-        bool constraintSatisfied() {
+    private bool constraintSatisfied() {
         timeNow = (Int32)(DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
         int elapsed = timeNow - game.startTime;
-       
-       
-        if (Prefab.name == "Blimp" && elapsed > 0 && elapsed < 10 ||
-            Prefab.name == "Albatross" && elapsed > 10  && elapsed < 20 ||
-            Prefab.name == "Blimp" && elapsed > 6 && elapsed < 9 ||
-            Prefab.name == "Paratrooper" && elapsed > 9 && elapsed < 12 ||
-            Prefab.name == "Poop" && elapsed > 12 && elapsed < 15 ||
-            Prefab.name == "Landmark" && elapsed > 15 && elapsed < 18 ||
-            Prefab.name == "Cactus" && elapsed > 0 && elapsed < 9 ||
-            Prefab.name == "Cricket" ||
-            Prefab.name == "Blimp" ||
-            Prefab.name == "Balloon" ||
-            Prefab.name == "Paratrooper" ||
-            Prefab.name == "Airplane") {
+        float scalar = elapsed * (1 - game.scaleFactor);
+      
+        if (Prefab.name == "Eagle" && elapsed > 0 && elapsed < 250 * scalar ||
+            Prefab.name == "Albatross" && elapsed > 250* scalar && elapsed < 500* scalar ||
+            Prefab.name == "Paratrooper" && elapsed > 500* scalar && elapsed < 750* scalar ||
+            Prefab.name == "Blimp" && elapsed > 750* scalar && elapsed < 1000* scalar ||
+            Prefab.name == "Airplane" && elapsed > 1000* scalar && elapsed < 1250* scalar ||
+            Prefab.name == "Drone" && elapsed > 1250* scalar && elapsed < 1500* scalar ||
+            Prefab.name == "Balloon" && elapsed > 1500* scalar && elapsed < 1800* scalar ||
+            Prefab.name == "Cactus" && elapsed > 0 && elapsed < 750*scalar ||
+            Prefab.name == "Cricket" && (elapsed % (60* scalar) <= Double.Epsilon)) {
             return true;
         }
         return false;
-
-
 
     }
 

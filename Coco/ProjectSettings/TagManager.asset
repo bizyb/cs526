@@ -15,6 +15,7 @@ TagManager:
   - Balloon
   - Paratrooper
   - Airplane
+  - Drone
   layers:
   - Default
   - TransparentFX
