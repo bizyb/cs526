@@ -23,6 +23,7 @@ namespace SimpleHealthBar_SpaceshipExample
 		public GameObject explosionParticles;
 
 		public SimpleHealthBar healthBar;
+
 		public SimpleHealthBar shieldBar;
 
 	
@@ -42,8 +43,9 @@ namespace SimpleHealthBar_SpaceshipExample
 			currentHealth = maxHealth;
 			currentShield = maxShield;
 
-			// Update the Simple Health Bar with the updated values of Health and Shield.
-			healthBar.UpdateBar( currentHealth, maxHealth );
+            // Update the Simple Health Bar with the updated values of Health and Shield.
+            Debug.Log("updating health..");
+            healthBar.UpdateBar( currentHealth, maxHealth );
 			shieldBar.UpdateBar( currentShield, maxShield );
 		}
 

@@ -40,6 +40,7 @@ public class GameManager : MonoBehaviour
     public bool GameOver { get { return gameOver; } }
     public int Score { get { return score; }}
 
+   
     void Awake()
     {
 
@@ -59,10 +60,12 @@ public class GameManager : MonoBehaviour
 
     void OnEnable()
     {
-       
+
         Tap.OnPlayerDied += OnPlayerDied;
         Tap.OnPlayerScored += OnPlayerScored;
         CountdownText.OnCountdownFinished += OnCountdownFinished;
+
+
     }
 
     void OnDisable()
@@ -80,8 +83,6 @@ public class GameManager : MonoBehaviour
         gameOver = false;
         startTime = (Int32)(DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
 
-
-
         // update distance travelled, i.e. the score, every 1 second
         InvokeRepeating("OnPlayerScored", 1f, 1f);
     }
@@ -91,6 +92,7 @@ public class GameManager : MonoBehaviour
        
         score += MILES_PER_SEC;
         scoreText.text = score.ToString();
+
     }
 
     void OnPlayerDied()

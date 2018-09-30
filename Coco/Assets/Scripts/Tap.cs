@@ -21,6 +21,7 @@ public class Tap : MonoBehaviour {
 	Rigidbody2D rigidbod;
 
     GameManager game;
+    PlayerHealth health;
 
     //Quaternion downRotation;
     //Quaternion forwardRotation;
@@ -57,6 +58,12 @@ public class Tap : MonoBehaviour {
 		rigidbod = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         game = GameManager.Instance;
+        health = PlayerHealth.Instance;
+        if (game != null) { Debug.Log("game instance is NOT null"); }
+
+       
+
+        if (health == null) { Debug.Log("health instance IS null"); }
 
 		
 	}
@@ -95,6 +102,9 @@ public class Tap : MonoBehaviour {
             // make the reward object/food disappear after 
             // collision and update the fuel meter accordingly
             col.gameObject.SetActive(false);
+            //game.UpdateHealth();
+
+            health.UpdateHealth();
         }
 
     }
