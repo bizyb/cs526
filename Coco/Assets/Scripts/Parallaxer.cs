@@ -91,7 +91,6 @@ public class Parallaxer : MonoBehaviour
     PoolObject[] poolObjects;
     float targetAspect;
     GameManager game;
-    private int SECONDS = 60;
     private int timeNow;
 
   
@@ -159,7 +158,8 @@ public class Parallaxer : MonoBehaviour
             Prefab.name == "Poop" && elapsed > 12 && elapsed < 15 ||
             Prefab.name == "Landmark" && elapsed > 15 && elapsed < 18 ||
             Prefab.name == "Cactus" && elapsed > 0 && elapsed < 9 ||
-            Prefab.name == "Cricket") {
+            Prefab.name == "Cricket" ||
+            Prefab.name == "Blimp") {
             return true;
         }
         return false;
