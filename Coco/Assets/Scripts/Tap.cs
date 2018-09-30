@@ -14,7 +14,7 @@ public class Tap : MonoBehaviour
     public float upForce = 200f;
     public bool isDead = false;
     float reward = 20f;
-    float decay = -0.666f; // player health decay rate per second
+    float decay = -5.666f; // player health decay rate per second
     public Vector2 startLoc;
     private Animator anim;
 
@@ -24,9 +24,6 @@ public class Tap : MonoBehaviour
 
     GameManager game;
     PlayerHealth health;
-
-    //Quaternion downRotation;
-    //Quaternion forwardRotation;
 
 
     void OnEnable()
@@ -74,17 +71,15 @@ public class Tap : MonoBehaviour
         if (game.GameOver) { return; }
         if (!isDead)
         {
-            //InvokeRepeating("UpdateDistance", 1f, 1f);
-            //StartCoroutine("UpdateDistance");
+
             if (Input.GetMouseButtonDown(0))
             {
-                //transform.rotation = forwardRotation;
                 rigidbod.velocity = Vector2.zero;
                 rigidbod.AddForce(new Vector2(0, upForce));
                 anim.SetTrigger("Flap");
             }
         }
-        //transform.rotation = Quaternion.Lerp(transform.rotation, downRotation, tiltSmooth * Time.deltaTime);
+
     }
     void OnTriggerEnter2D(Collider2D col)
     {
@@ -98,8 +93,6 @@ public class Tap : MonoBehaviour
             // make the reward object/food disappear after 
             // collision and update the fuel meter accordingly
             col.gameObject.SetActive(false);
-            //game.UpdateHealth();
-
             health.UpdateHealth(reward, this);
         }
 

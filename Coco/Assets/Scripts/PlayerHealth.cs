@@ -35,12 +35,7 @@ public class PlayerHealth : MonoBehaviour {
     }
 
     // Update is called once per frame
-    void Update() {
-
-        //Debug.Log("updating health bar...");
-        //healthBar.UpdateBar(50f, 100f);
-
-    }
+    void Update() {}
 
     public void UpdateHealth(float points, Tap tapInstance) {
 
@@ -48,8 +43,6 @@ public class PlayerHealth : MonoBehaviour {
         if (currentHealth > maxHealth) { currentHealth = maxHealth; }
         if (currentHealth <= 0f) {
             currentHealth = 0f;
-
-            // TODO: untested from here; tested in Tap
             tapInstance.Dead();
         }
         healthBar.UpdateBar(currentHealth, maxHealth);
