@@ -86,6 +86,7 @@ public class Tap : MonoBehaviour
         // TODO: blimp collision area is too wide
         if (col.gameObject.tag == "DeadZone")
         {
+            Debug.Log("dead...");
             Dead();
         }
 
@@ -109,7 +110,7 @@ public class Tap : MonoBehaviour
         //rigidbod.AddForce(new Vector2(0, upForce));
         anim.SetTrigger("Idle");
         anim.speed = 0;
-
+        health.UpdateHealth(100f, this); //restore the health for next time
         OnPlayerDied(); //event sent to GameManager
 
     }

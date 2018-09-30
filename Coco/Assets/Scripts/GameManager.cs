@@ -21,6 +21,8 @@ public class GameManager : MonoBehaviour
     public GameObject countdownPage;
     public GameObject bird;
     public GameObject parallaxObjects;
+    public GameObject healthBar;
+    public GameObject currentScore;
     public int startTime;
     public Text scoreText;
     PlayerHealth health;
@@ -84,6 +86,8 @@ public class GameManager : MonoBehaviour
         OnGameStarted();
         score = 0;
         gameOver = false;
+        healthBar.SetActive(true);
+        currentScore.SetActive(true);
         startTime = (Int32)(DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
 
         // update distance travelled, i.e. the score, every 1 second
@@ -121,6 +125,8 @@ public class GameManager : MonoBehaviour
     {
 
         yield return new WaitForSeconds(1);
+        healthBar.SetActive(false);
+        currentScore.SetActive(false);
         SetPageState(PageState.GameOver);
     }
 
