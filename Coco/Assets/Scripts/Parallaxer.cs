@@ -161,7 +161,8 @@ public class Parallaxer : MonoBehaviour
             Prefab.name == "Cricket" ||
             Prefab.name == "Blimp" ||
             Prefab.name == "Balloon" ||
-            Prefab.name == "Paratrooper") {
+            Prefab.name == "Paratrooper" ||
+            Prefab.name == "Airplane") {
             return true;
         }
         return false;
