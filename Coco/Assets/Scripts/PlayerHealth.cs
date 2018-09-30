@@ -9,8 +9,10 @@ public class PlayerHealth : MonoBehaviour {
     public static PlayerHealth Instance { get { return instance; } }
 
     public SimpleHealthBar healthBar;
-    public int maxHealth = 100;
+    float maxHealth = 100;
     float currentHealth = 0;
+
+
 
     void Awake()
     {
@@ -29,6 +31,7 @@ public class PlayerHealth : MonoBehaviour {
 
         // Update the Simple Health Bar with the updated value of Health
         healthBar.UpdateBar(currentHealth, maxHealth);
+
     }
 
     // Update is called once per frame
@@ -39,8 +42,17 @@ public class PlayerHealth : MonoBehaviour {
 
     }
 
-    public void UpdateHealth() {
+    public void UpdateHealth(float points, Tap tapInstance) {
 
-        healthBar.UpdateBar(50f, 100f);
+        currentHealth += points;
+        if (currentHealth > maxHealth) { currentHealth = maxHealth; }
+        if (currentHealth <= 0f) {
+            currentHealth = 0f;
+
+            // TODO: untested from here; tested in Tap
+            tapInstance.Dead();
+        }
+        healthBar.UpdateBar(currentHealth, maxHealth);
     }
+
 }

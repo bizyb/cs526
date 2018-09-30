@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour
     public GameObject countdownPage;
     public int startTime;
     public Text scoreText;
+    PlayerHealth health;
 
 
     // Coco travels at 3 miles per second for 
@@ -64,6 +65,7 @@ public class GameManager : MonoBehaviour
         Tap.OnPlayerDied += OnPlayerDied;
         Tap.OnPlayerScored += OnPlayerScored;
         CountdownText.OnCountdownFinished += OnCountdownFinished;
+        health = PlayerHealth.Instance;
 
 
     }

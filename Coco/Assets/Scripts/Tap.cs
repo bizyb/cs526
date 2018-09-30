@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
-public class Tap : MonoBehaviour {
+public class Tap : MonoBehaviour
+{
 
     public delegate void PlayerDelegate();
     public static event PlayerDelegate OnPlayerDied;
@@ -12,13 +13,14 @@ public class Tap : MonoBehaviour {
 
     public float upForce = 200f;
     public bool isDead = false;
-    //public float tiltSmooth = 5;
-	public Vector2 startLoc;
+    float reward = 20f;
+    float decay = -0.666f; // player health decay rate per second
+    public Vector2 startLoc;
     private Animator anim;
 
 
 
-	Rigidbody2D rigidbod;
+    Rigidbody2D rigidbod;
 
     GameManager game;
     PlayerHealth health;
@@ -39,7 +41,8 @@ public class Tap : MonoBehaviour {
         GameManager.OnGameOverConfirmed -= OnGameOverConfirmed;
     }
 
-    void OnGameStarted() {
+    void OnGameStarted()
+    {
 
         rigidbod.velocity = Vector2.zero;
         rigidbod.simulated = true;
@@ -48,22 +51,26 @@ public class Tap : MonoBehaviour {
         anim.SetTrigger("Flap");
     }
 
-    void OnGameOverConfirmed() {
+    void OnGameOverConfirmed()
+    {
         transform.localPosition = startLoc;
     }
 
     // Use this for initialization
-    void Start () {
+    void Start()
+    {
 
-		rigidbod = GetComponent<Rigidbody2D>();
+        rigidbod = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         game = GameManager.Instance;
         health = PlayerHealth.Instance;
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
+        InvokeRepeating("HealthDecay", 1f, 1f);
+
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
         if (game.GameOver) { return; }
         if (!isDead)
         {
@@ -78,28 +85,43 @@ public class Tap : MonoBehaviour {
             }
         }
         //transform.rotation = Quaternion.Lerp(transform.rotation, downRotation, tiltSmooth * Time.deltaTime);
-	}
-    void OnTriggerEnter2D(Collider2D col) {
-        if (col.gameObject.tag == "DeadZone") {
-            // play sound, update score, etc
-            isDead = true;
-            rigidbod.simulated = false;
-            rigidbod.velocity = Vector2.zero;
-            //rigidbod.AddForce(new Vector2(0, upForce));
-            anim.SetTrigger("Idle");
-            anim.speed = 0;
-
-            OnPlayerDied(); //event sent to GameManager
+    }
+    void OnTriggerEnter2D(Collider2D col)
+    {
+        if (col.gameObject.tag == "DeadZone")
+        {
+            Dead();
         }
 
-        if (col.gameObject.tag == "RewardZone") {
+        if (col.gameObject.tag == "RewardZone")
+        {
             // make the reward object/food disappear after 
             // collision and update the fuel meter accordingly
             col.gameObject.SetActive(false);
             //game.UpdateHealth();
 
-            health.UpdateHealth();
+            health.UpdateHealth(reward, this);
         }
 
+    }
+
+    public void Dead()
+    {
+
+        // play sound, update score, etc
+        isDead = true;
+        rigidbod.simulated = false;
+        rigidbod.velocity = Vector2.zero;
+        //rigidbod.AddForce(new Vector2(0, upForce));
+        anim.SetTrigger("Idle");
+        anim.speed = 0;
+
+        OnPlayerDied(); //event sent to GameManager
+
+    }
+
+    void HealthDecay()
+    {
+        health.UpdateHealth(decay, this);
     }
 }
