@@ -12,6 +12,8 @@ TagManager:
   - Albatross
   - Cricket
   - Blimp
+  - Balloon
+  - Paratrooper
   layers:
   - Default
   - TransparentFX
