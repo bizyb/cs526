@@ -291,10 +291,10 @@ public class GameManager : MonoBehaviour
         //if (!backgroundFive.activeInHierarchy) { gameOver = true; }
         gameOver = true;
         int savedScore = PlayerPrefs.GetInt("HighScore");
-        if (score > savedScore)
-        {
+        //if (score > savedScore)
+        //{
             PlayerPrefs.SetInt("HighScore", score);
-        }
+        //}
         StartCoroutine("DelayedTransition");
         CancelInvoke();
 
@@ -499,7 +499,6 @@ public class GameManager : MonoBehaviour
         Debug.Log("confirming game over state: replay button clicked");
         SetPageState(PageState.Start);
         scoreText.text = "0";
-        //anim.SetTrigger("Idle");
         ResetObjects();
        
 ;

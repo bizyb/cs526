@@ -81,7 +81,7 @@ public class Tap : MonoBehaviour
                 anim.SetTrigger("Flap");
             }
         }
-        if (game.backgroundTwo.activeInHierarchy && !game.FinalLeg) {
+        if (game.backgroundFive.activeInHierarchy && !game.FinalLeg) {
             game.FinalLeg = true;
             StartCoroutine("OnGameOverSuccess");
         }
@@ -109,6 +109,7 @@ public class Tap : MonoBehaviour
     IEnumerator OnGameOverSuccess() {
         Debug.Log("Entering OnGameOverSuccess");
         yield return new WaitForSeconds(3);
+        //anim.speed = 0;
         Dead();
 
     }

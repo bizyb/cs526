@@ -9,7 +9,7 @@ public class BackgroundScroll : MonoBehaviour
 
         GameManager game = GameManager.Instance;
         if (game.GameOver) { return; }
-        if (game.backgroundFive.activeInHierarchy) { speed = 0.01f; }
+        if (game.FinalLeg) { speed = 0.01f; }
 
         Vector2 offset = new Vector2(Time.time * speed, 0);
         GetComponent<Renderer>().material.mainTextureOffset = offset;
