@@ -16,6 +16,7 @@ TagManager:
   - Paratrooper
   - Airplane
   - Drone
+  - TopPerimeter
   layers:
   - Default
   - TransparentFX

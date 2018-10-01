@@ -291,10 +291,10 @@ public class GameManager : MonoBehaviour
         //if (!backgroundFive.activeInHierarchy) { gameOver = true; }
         gameOver = true;
         int savedScore = PlayerPrefs.GetInt("HighScore");
-        //if (score > savedScore)
-        //{
+        if (score > savedScore)
+        {
             PlayerPrefs.SetInt("HighScore", score);
-        //}
+        }
         StartCoroutine("DelayedTransition");
         CancelInvoke();
 
@@ -444,6 +444,7 @@ public class GameManager : MonoBehaviour
         if (finalLeg) {
             // wait about 26 seconds to end the game; that's how long it takes
             // for the castle to center
+
             Debug.Log("returned from yielding...about to set success!!!");
             SetPageState(PageState.GameOverSuccess);
         }

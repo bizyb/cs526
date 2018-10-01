@@ -176,7 +176,7 @@ public class Parallaxer : MonoBehaviour
           Prefab.name == "Balloon" && elapsed > 35 * scalar && elapsed < 40 * scalar ||
           Prefab.name == "Cactus" && elapsed > 0 && elapsed < 20 * scalar ||
           Prefab.name == "Cricket" && (elapsed % 2 == 0) ||
-          Prefab.name == "aAirplane")
+          Prefab.name == "Cricket")
         {
             return true;
         }
@@ -261,8 +261,19 @@ public class Parallaxer : MonoBehaviour
         //discarding them as they go off screen
         for (int i = 0; i < poolObjects.Length; i++)
         {
+
             poolObjects[i].transform.position += Vector3.left * shiftSpeed * Time.deltaTime;
             CheckDisposeObject(poolObjects[i]);
+
+            // If these are crickets, they could have been eaten by the bird so 
+            // need to re-activate them off screen
+
+            Vector3 viewPos = Camera.main.WorldToViewportPoint(poolObjects[i].transform.position);
+            if (!(viewPos.x >= 0 && viewPos.x <= 1 && viewPos.y >= 0 && viewPos.y <= 1 && viewPos.z > 0))
+            {
+                poolObjects[i].transform.gameObject.SetActive(true);
+            }
+
         }
     }
 

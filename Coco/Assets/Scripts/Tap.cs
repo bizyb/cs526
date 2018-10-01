@@ -97,19 +97,22 @@ public class Tap : MonoBehaviour
             Dead();
         }
 
-        if (col.gameObject.tag == "RewardZone")
+        else if (col.gameObject.tag == "RewardZone")
         {
             // make the reward object/food disappear after 
             // collision and update the fuel meter accordingly
             col.gameObject.SetActive(false);
+            //Destroy(col.gameObject);
             health.UpdateHealth(reward, this);
+        }
+        else if (col.gameObject.tag == "TopPerimeter") {
+            rigidbod.AddForce(new Vector2(0, -upForce));
         }
 
     }
     IEnumerator OnGameOverSuccess() {
         Debug.Log("Entering OnGameOverSuccess");
-        yield return new WaitForSeconds(3);
-        //anim.speed = 0;
+        yield return new WaitForSeconds(15);
         Dead();
 
     }
