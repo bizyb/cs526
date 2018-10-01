@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
 
     public GameObject startPage;
     public GameObject gameOverPage;
+    public GameObject gameOverSuccessPage;
     public GameObject countdownPage;
     public GameObject bird;
     public GameObject parallaxObjects;
@@ -55,7 +56,8 @@ public class GameManager : MonoBehaviour
         None,
         Start,
         Countdown,
-        GameOver
+        GameOver,
+        GameOverSuccess
     }
 
     enum Background {
@@ -416,21 +418,31 @@ public class GameManager : MonoBehaviour
                 startPage.SetActive(false);
                 gameOverPage.SetActive(false);
                 countdownPage.SetActive(false);
+                gameOverSuccessPage.SetActive(false);
                 break;
             case PageState.Start:
                 startPage.SetActive(true);
                 gameOverPage.SetActive(false);
                 countdownPage.SetActive(false);
+                gameOverSuccessPage.SetActive(false);
                 break;
             case PageState.Countdown:
                 startPage.SetActive(false);
                 gameOverPage.SetActive(false);
                 countdownPage.SetActive(true);
+                gameOverSuccessPage.SetActive(false);
                 break;
             case PageState.GameOver:
                 startPage.SetActive(false);
                 gameOverPage.SetActive(true);
                 countdownPage.SetActive(false);
+                gameOverSuccessPage.SetActive(false);
+                break;
+            case PageState.GameOverSuccess:
+                startPage.SetActive(false);
+                gameOverPage.SetActive(false);
+                countdownPage.SetActive(false);
+                gameOverSuccessPage.SetActive(true);
                 break;
         }
     }
