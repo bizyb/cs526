@@ -37,6 +37,8 @@ public class GameManager : MonoBehaviour
     public Text message;
     public int startTime;
     public Text scoreText;
+    private bool[] alerted = new bool[5];
+    private bool[] bgChanged = new bool[5];
 
     // scale the game time by this much for debugging purpose
     public readonly float scaleFactor = 0.97f;
@@ -54,6 +56,21 @@ public class GameManager : MonoBehaviour
         Start,
         Countdown,
         GameOver
+    }
+
+    enum Background {
+        Leg1,
+        Leg2,
+        Leg3,
+        Leg4,
+        Leg5
+    }
+    enum Alerts {
+        Alert1,
+        Alert2,
+        Alert3,
+        Alert4,
+        Alert5
     }
 
     int score = 0;
@@ -95,6 +112,7 @@ public class GameManager : MonoBehaviour
 
         // update distance travelled, i.e. the score, every 1 second
         InvokeRepeating("OnPlayerScored", 1f, 1f);
+        ChangeBackground(Background.Leg1);
 
 
     }
@@ -118,18 +136,129 @@ public class GameManager : MonoBehaviour
 
     }
 
+    /*
+     * Scoring is based on time travelled. For every second spent travelling, 
+     * increment the distance by MILES_PER_SEC. In addition, alert the player 
+     * at certain points in the game about an approaching completion of the 
+     * current leg of the race. Changes are made according to the given schedule.
+     * Alerts should be displayed before the end of the current leg and removed 
+     * right before the background change.
+     * 
+     * The schedule (timesteps):
+     * Leg1: 0-750 (Ghana-Algeria)
+     * Leg2: 750-1200 (Algeria-Spain)
+     * Leg3: 1200-1500 (Spain-France)
+     * Leg4: 1500-1700 (France-England)
+     * Leg5: 1700-1800 (England to the castle)
+     * 
+     * Alerts:
+     *  Alert1: 0-50: Leg 1: Ghana to Algeria
+     *  Alert2: 700-750: Approaching Leg2: Algeria to Spain
+     *  Alert3: 1150-1200: Approaching Leg 3: Spain to France
+     *  Alert4: 1450-1500: Approaching Leg 4: France to England
+     *  Alert5: 1650-1700: Approaching Leg 5: Destination
+     *  
+    */
     void OnPlayerScored()
     {
        
         if (gameOver) { return; }
+        int timeNow = (Int32)(DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
+        int elapsed = timeNow - startTime;
 
         score += MILES_PER_SEC;
         scoreText.text = score.ToString();
 
-        if (score > 20) {
-            ChangeBackground();
+        // Alert the player 
+        //if (elapsed >= 0 && elapsed < 50 && !alertSent) {
+        //    AlertPlayer(Alerts.Alert1); 
+        //}
+        //else if (elapsed >= 700 && elapsed < 750 && !alertSent) {
+        //    AlertPlayer(Alerts.Alert2); 
+        //}
+        //else if (elapsed >= 1150 && elapsed < 1200 && !alertSent) {
+        //    AlertPlayer(Alerts.Alert3);
+        //}
+        //else if (elapsed >= 1450 && elapsed < 1500 && !alertSent) {
+        //    AlertPlayer(Alerts.Alert4);
+        //}
+        //else if (elapsed >= 1650 && !alertSent) {
+        //    AlertPlayer(Alerts.Alert5);
+        //}
+
+        //if (elapsed >= 0 && elapsed < 750 && !backgroundChanged) {
+        //    ChangeBackground(Background.Leg1);
+        //}
+        //else if (elapsed >= 750 && elapsed < 1200 && !backgroundChanged)
+        //{
+        //    ChangeBackground(Background.Leg2);
+        //}
+        //else if (elapsed >= 1200 && elapsed < 1500 && !backgroundChanged)
+        //{
+        //    ChangeBackground(Background.Leg3);
+        //}
+        //else if (elapsed >= 1500 && elapsed < 1700 && !backgroundChanged)
+        //{
+        //    ChangeBackground(Background.Leg4);
+        //}
+        //else if (elapsed >= 1700 && !backgroundChanged)
+        //{
+        //    ChangeBackground(Background.Leg5);
+        //}
+
+        // use boolean flags to avoid having to make multiple calls to the 
+        // functions
+        if (elapsed >= 0 && elapsed < 5 && !alerted[0])
+        {
+            AlertPlayer(Alerts.Alert1);
+
         }
-       
+        else if (elapsed >= 5 && elapsed < 10 && !alerted[1])
+        {
+            AlertPlayer(Alerts.Alert2);
+
+        }
+        else if (elapsed >= 10 && elapsed < 15 && !alerted[2])
+        {
+            AlertPlayer(Alerts.Alert3);
+           
+        }
+        else if (elapsed >= 15 && elapsed < 20 && !alerted[3])
+        {
+            AlertPlayer(Alerts.Alert4);
+
+        }
+        else if (elapsed >= 20 && !alerted[4])
+        {
+            AlertPlayer(Alerts.Alert5);
+           
+        }
+
+        if (elapsed >= 0 && elapsed < 5 && !bgChanged[0])
+        {
+            ChangeBackground(Background.Leg1);
+
+        }
+        else if (elapsed >= 5 && elapsed < 10 && !bgChanged[1])
+        {
+            ChangeBackground(Background.Leg2);
+           
+        }
+        else if (elapsed >= 10 && elapsed < 20 && !bgChanged[2])
+        {
+            ChangeBackground(Background.Leg3);
+           
+        }
+        else if (elapsed >= 20 && elapsed < 25 && !bgChanged[3])
+        {
+            ChangeBackground(Background.Leg4);
+           
+        }
+        else if (elapsed >= 25 && !bgChanged[4])
+        {
+            ChangeBackground(Background.Leg5);
+           
+        }
 
     }
 
@@ -146,12 +275,125 @@ public class GameManager : MonoBehaviour
 
     }
 
-    void ChangeBackground() {
+    void AlertPlayer(Alerts alert) {
+        //TODO: play sound 
 
-        //backgroundAfrica.SetActive(false);
-        //backgroundLandscape.SetActive(true);
-        //groundAfrica.SetActive(false);
-        //groundLandscape.SetActive(true);
+        String s = "";
+        switch (alert) {
+            case Alerts.Alert1:
+                s = "Leg 1: Ghana to Algeria";
+                alerted[0] = true;
+                break;
+            case Alerts.Alert2:
+                s = "Approaching Leg2: Algeria to Spain";
+                alerted[1] = true;
+                break;
+            case Alerts.Alert3:
+                s = "Approaching Leg 3: Spain to France";
+                alerted[2] = true;
+                break;
+            case Alerts.Alert4:
+                s = "Approaching Leg 4: France to England";
+                alerted[3] = true;
+                break;
+            case Alerts.Alert5:
+                s = "Approaching Leg 5: Destination";
+                alerted[4] = true;
+                break;
+        }
+        messageContainer.SetActive(true);
+        message.text = s;
+
+    }
+
+    void ChangeBackground(Background leg) {
+
+        switch (leg) {
+            case Background.Leg1:
+                backgroundOne.SetActive(true);
+                backgroundTwo.SetActive(false);
+                backgroundThree.SetActive(false);
+                backgroundFour.SetActive(false);
+                backgroundFive.SetActive(false);
+
+                groundOne.SetActive(true);
+                groundTwo.SetActive(false);
+                groundThree.SetActive(false);
+                groundFour.SetActive(false);
+                groundFive.SetActive(false);
+
+                bgChanged[0] = true;
+                break;
+            case Background.Leg2:
+                backgroundOne.SetActive(false);
+                backgroundTwo.SetActive(true);
+                backgroundThree.SetActive(false);
+                backgroundFour.SetActive(false);
+                backgroundFive.SetActive(false);
+
+                groundOne.SetActive(false);
+                groundTwo.SetActive(true);
+                groundThree.SetActive(false);
+                groundFour.SetActive(false);
+                groundFive.SetActive(false);
+
+                bgChanged[1] = true;
+                break;
+            case Background.Leg3:
+                backgroundOne.SetActive(false);
+                backgroundTwo.SetActive(false);
+                backgroundThree.SetActive(true);
+                backgroundFour.SetActive(false);
+                backgroundFive.SetActive(false);
+
+                groundOne.SetActive(false);
+                groundTwo.SetActive(false);
+                groundThree.SetActive(true);
+                groundFour.SetActive(false);
+                groundFive.SetActive(false);
+
+                bgChanged[2] = true;
+                break;
+            case Background.Leg4:
+                backgroundOne.SetActive(false);
+                backgroundTwo.SetActive(false);
+                backgroundThree.SetActive(false);
+                backgroundFour.SetActive(true);
+                backgroundFive.SetActive(false);
+
+                groundOne.SetActive(false);
+                groundTwo.SetActive(false);
+                groundThree.SetActive(false);
+                groundFour.SetActive(true);
+                groundFive.SetActive(false);
+
+                bgChanged[3] = true;
+                break;
+            case Background.Leg5:
+                backgroundOne.SetActive(false);
+                backgroundTwo.SetActive(false);
+                backgroundThree.SetActive(false);
+                backgroundFour.SetActive(false);
+                backgroundFive.SetActive(true);
+
+                groundOne.SetActive(false);
+                groundTwo.SetActive(false);
+                groundThree.SetActive(false);
+                groundFour.SetActive(false);
+                groundFive.SetActive(true);
+
+                bgChanged[4] = true;
+                break;
+        }
+       
+        String msg = "";
+        if (leg == Background.Leg2) { msg = "Leg2: Algeria to Spain"; }
+        else if (leg == Background.Leg3) { msg = "Leg3: Spain to France"; }
+        else if (leg == Background.Leg4) { msg = "Leg 4: France to England"; }
+        else if (leg == Background.Leg5) { msg = "Leg 5: Destination"; }
+        message.text = msg;
+        messageContainer.SetActive(false);
+
     }
 
     /*
