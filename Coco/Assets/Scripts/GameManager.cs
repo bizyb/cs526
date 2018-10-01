@@ -105,11 +105,6 @@ public class GameManager : MonoBehaviour
         Tap.OnPlayerScored += OnPlayerScored;
         CountdownText.OnCountdownFinished += OnCountdownFinished;
 
-        //backgroundAfrica.SetActive(true);
-        //backgroundLandscape.SetActive(false);
-        //groundAfrica.SetActive(true);
-        //groundLandscape.SetActive(false);
-        
 
 
         // update distance travelled, i.e. the score, every 1 second
@@ -267,7 +262,7 @@ public class GameManager : MonoBehaviour
 
     void OnPlayerDied()
     {
-        gameOver = true;
+        if (!backgroundFive.activeInHierarchy) { gameOver = true; }
         int savedScore = PlayerPrefs.GetInt("HighScore");
         if (score > savedScore)
         {
@@ -309,7 +304,7 @@ public class GameManager : MonoBehaviour
     }
 
     void ChangeBackground(Background leg) {
-        //return;;
+
         switch (leg) {
             case Background.Leg1:
                 backgroundOne.SetActive(true);
@@ -393,8 +388,8 @@ public class GameManager : MonoBehaviour
         else if (leg == Background.Leg3) { msg = "Leg3: Spain to France"; }
         else if (leg == Background.Leg4) { msg = "Leg 4: France to England"; }
         else if (leg == Background.Leg5) { msg = "Leg 5: Destination"; }
+        messageContainer.SetActive(true);
         message.text = msg;
-        //messageContainer.SetActive(true);
 
     }
 
@@ -407,7 +402,20 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(1);
         healthBar.SetActive(false);
         currentScore.SetActive(false);
-        SetPageState(PageState.GameOver);
+        messageContainer.SetActive(false);
+        message.text = "";
+
+        if (backgroundTwo.activeInHierarchy) {
+            // wait about 26 seconds to end the game; that's how long it takes
+            // for the castle to center
+            Debug.Log("returned from yielding...about to set success!!!");
+            gameOver = true;
+            SetPageState(PageState.GameOverSuccess);
+        }
+        else {
+            SetPageState(PageState.GameOver);
+        }
+
     }
 
     void SetPageState(PageState state)

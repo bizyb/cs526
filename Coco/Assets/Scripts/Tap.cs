@@ -79,6 +79,10 @@ public class Tap : MonoBehaviour
                 anim.SetTrigger("Flap");
             }
         }
+        if (game.backgroundTwo.activeInHierarchy) {
+            StartCoroutine("GameOverSuccess");
+
+        }
 
     }
     void OnTriggerEnter2D(Collider2D col)
@@ -97,6 +101,11 @@ public class Tap : MonoBehaviour
             col.gameObject.SetActive(false);
             health.UpdateHealth(reward, this);
         }
+
+    }
+    IEnumerator GameOverSuccess() {
+        yield return new WaitForSeconds(5);
+        Dead();
 
     }
 
