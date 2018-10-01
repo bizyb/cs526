@@ -307,7 +307,7 @@ public class GameManager : MonoBehaviour
     }
 
     void ChangeBackground(Background leg) {
-        //return;
+        //return;;
         switch (leg) {
             case Background.Leg1:
                 backgroundOne.SetActive(true);

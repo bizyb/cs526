@@ -244,7 +244,6 @@
 /Users/biz/Documents/cs526/Coco/Temp/bin/Debug/UnityEngine.ClusterRendererModule.xml
 /Users/biz/Documents/cs526/Coco/Temp/bin/Debug/Unity.UNetWeaver.dll.mdb
 /Users/biz/Documents/cs526/Coco/Temp/bin/Debug/Unity.IvyParser.dll.mdb
-/Users/biz/Documents/cs526/Coco/obj/Debug/Assembly-CSharp.csprojAssemblyReference.cache
 /Users/biz/Documents/cs526/Coco/obj/Debug/Assembly-CSharp.csproj.CoreCompileInputs.cache
 /Users/biz/Documents/cs526/Coco/obj/Debug/Assembly-CSharp.csproj.CopyComplete
 /Users/biz/Documents/cs526/Coco/obj/Debug/Assembly-CSharp.dll
