@@ -2,6 +2,7 @@
 using UnityEngine.UI;
 using System;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 
 
@@ -41,6 +42,8 @@ public class GameManager : MonoBehaviour
     private bool[] alerted = new bool[5];
     private bool[] bgChanged = new bool[5];
 
+
+
     // scale the game time by this much for debugging purpose
     public readonly float scaleFactor = 0.97f;
     public readonly float gameDuration = 1800f; // 30 minutes
@@ -77,9 +80,12 @@ public class GameManager : MonoBehaviour
 
     int score = 0;
     bool gameOver;
+    bool finalLeg;
 
     public bool GameOver { get { return gameOver; } }
     public int Score { get { return score; }}
+
+    public bool FinalLeg { get { return finalLeg; } set { finalLeg = value; }}
 
    
     void Awake()
@@ -99,6 +105,7 @@ public class GameManager : MonoBehaviour
 
     void OnEnable()
     {
+        Debug.Log("Entering OnEnable");
         startTime = (Int32)(DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
         //anim = GetComponent<Animator>();
         Tap.OnPlayerDied += OnPlayerDied;
@@ -108,30 +115,42 @@ public class GameManager : MonoBehaviour
 
 
         // update distance travelled, i.e. the score, every 1 second
-        InvokeRepeating("OnPlayerScored", 1f, 1f);
-        ChangeBackground(Background.Leg1);
+
+        //SetPageState(PageState.Start);
+        //ResetObjects();
+        Debug.Log("Exiting OnEnable");
+
+
 
 
     }
 
     void OnDisable()
     {
+        Debug.Log("Entering OnDisable");
         Tap.OnPlayerDied -= OnPlayerDied;
         Tap.OnPlayerScored -= OnPlayerScored;
         CountdownText.OnCountdownFinished -= OnCountdownFinished;
+        Debug.Log("Exiting OnDisable");
+
     }
 
     void OnCountdownFinished()
     {
+        Debug.Log("Entering OnCountdownFinished");
         SetPageState(PageState.None);
         OnGameStarted();
         score = 0;
         gameOver = false;
-        healthBar.SetActive(true);
-        currentScore.SetActive(true);
+        startTime = (Int32)(DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
+        InvokeRepeating("OnPlayerScored", 1f, 1f);
+        Debug.Log("Exiting OnCountdownFinished");
+
+
         //startTime = (Int32)(DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
 
     }
+   
 
     /*
      * Scoring is based on time travelled. For every second spent travelling, 
@@ -158,7 +177,12 @@ public class GameManager : MonoBehaviour
     */
     void OnPlayerScored()
     {
-       
+        Debug.Log("Entering OnPlayerScored");
+        //Debug.Log("game over: " + gameOver);
+
+        //string str = UnityEngine.StackTraceUtility.ExtractStackTrace();
+        //Debug.Log(str);
+
         if (gameOver) { return; }
         int timeNow = (Int32)(DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
         int elapsed = timeNow - startTime;
@@ -257,20 +281,25 @@ public class GameManager : MonoBehaviour
            
         }
 
+        Debug.Log("Exiting OnPlayerScored");
+
     }
 
 
     void OnPlayerDied()
     {
-        if (!backgroundFive.activeInHierarchy) { gameOver = true; }
+        //if (!backgroundFive.activeInHierarchy) { gameOver = true; }
+        gameOver = true;
         int savedScore = PlayerPrefs.GetInt("HighScore");
         if (score > savedScore)
         {
             PlayerPrefs.SetInt("HighScore", score);
         }
         StartCoroutine("DelayedTransition");
+        CancelInvoke();
 
     }
+
 
     void AlertPlayer(Alerts alert) {
         //TODO: play sound 
@@ -382,7 +411,7 @@ public class GameManager : MonoBehaviour
                 bgChanged[4] = true;
                 break;
         }
-       
+        if (gameOver) { return; }
         String msg = "";
         if (leg == Background.Leg2) { msg = "Leg2: Algeria to Spain"; }
         else if (leg == Background.Leg3) { msg = "Leg3: Spain to France"; }
@@ -391,7 +420,18 @@ public class GameManager : MonoBehaviour
         messageContainer.SetActive(true);
         message.text = msg;
 
+        Debug.Log("game over state: " + gameOver);
+        Debug.Log("setting message container to active....");
+
     }
+
+    //IEnumerator OnGameOverSuccess()
+    //{
+    //    Debug.Log("Entering OnGameOverSuccess");
+    //    yield return new WaitForSeconds(3);
+       
+
+    //}
 
     /*
      * Clear the screen before displaying game over text.
@@ -399,22 +439,21 @@ public class GameManager : MonoBehaviour
     IEnumerator DelayedTransition()
     {
 
-        yield return new WaitForSeconds(1);
-        healthBar.SetActive(false);
-        currentScore.SetActive(false);
-        messageContainer.SetActive(false);
-        message.text = "";
-
-        if (backgroundTwo.activeInHierarchy) {
+        yield return new WaitForSeconds(2);
+      
+        if (finalLeg) {
             // wait about 26 seconds to end the game; that's how long it takes
             // for the castle to center
             Debug.Log("returned from yielding...about to set success!!!");
-            gameOver = true;
             SetPageState(PageState.GameOverSuccess);
         }
         else {
             SetPageState(PageState.GameOver);
         }
+        healthBar.SetActive(false);
+        currentScore.SetActive(false);
+        messageContainer.SetActive(false);
+        message.text = "";
 
     }
 
@@ -457,17 +496,52 @@ public class GameManager : MonoBehaviour
 
     public void ConfirmGameOver()
     {
-
+        Debug.Log("confirming game over state: replay button clicked");
         SetPageState(PageState.Start);
         scoreText.text = "0";
         //anim.SetTrigger("Idle");
+        ResetObjects();
+       
+;
         OnGameOverConfirmed();
+
     }
 
     public void StartGame()
     {
-       
+        Debug.Log("Entering StartGame...");
+        //messageContainer.SetActive(false);
+        healthBar.SetActive(true);
+        currentScore.SetActive(true);
+        messageContainer.SetActive(true);
+        ChangeBackground(Background.Leg1);
         SetPageState(PageState.Countdown);
+        Debug.Log("Exiting StartGame...");
+    }
+
+    void ResetObjects()
+    {
+        Debug.Log("Entering ResetObject...");
+        CancelInvoke();
+        // 
+        for (int i = 0; i < bgChanged.Length; i++) { bgChanged[i] = false; }
+        for (int i = 0; i < alerted.Length; i++) { alerted[i] = false; }
+
+        score = 0;
+        finalLeg = false;
+
+
+        ChangeBackground(Background.Leg1);
+
+        healthBar.SetActive(false);
+        currentScore.SetActive(false);
+        messageContainer.SetActive(false);
+
+        Debug.Log("set all of them to false");
+
+        //bird.transform.position = new Vector2(0, 0);
+        Debug.Log("Exiting ResetObject...");
+
     }
 
 }

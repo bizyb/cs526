@@ -9,6 +9,7 @@ public class PlayerHealth : MonoBehaviour {
     public static PlayerHealth Instance { get { return instance; } }
 
     public SimpleHealthBar healthBar;
+    public GameManager game;
     float maxHealth = 100;
     float currentHealth = 0;
 
@@ -31,6 +32,7 @@ public class PlayerHealth : MonoBehaviour {
 
         // Update the Simple Health Bar with the updated value of Health
         healthBar.UpdateBar(currentHealth, maxHealth);
+        game = GameManager.Instance;
 
     }
 
@@ -43,7 +45,13 @@ public class PlayerHealth : MonoBehaviour {
         if (currentHealth > maxHealth) { currentHealth = maxHealth; }
         if (currentHealth <= 0f) {
             currentHealth = 0f;
-            tapInstance.Dead();
+            // TODO: change it to backgroundFive
+            // the bird should not die even if it runs out of energy in 
+            // in the final leg
+            if (!game.backgroundTwo.activeInHierarchy) {
+                tapInstance.Dead();
+            }
+           
         }
         healthBar.UpdateBar(currentHealth, maxHealth);
     }

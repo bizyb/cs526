@@ -19,7 +19,6 @@ public class Tap : MonoBehaviour
     private Animator anim;
 
 
-
     Rigidbody2D rigidbod;
 
     GameManager game;
@@ -51,6 +50,8 @@ public class Tap : MonoBehaviour
     void OnGameOverConfirmed()
     {
         transform.localPosition = startLoc;
+        anim.speed = 1;
+        //anim.SetTrigger("Idle");
     }
 
     // Use this for initialization
@@ -62,6 +63,7 @@ public class Tap : MonoBehaviour
         game = GameManager.Instance;
         health = PlayerHealth.Instance;
         InvokeRepeating("HealthDecay", 1f, 1f);
+
 
     }
 
@@ -79,18 +81,19 @@ public class Tap : MonoBehaviour
                 anim.SetTrigger("Flap");
             }
         }
-        if (game.backgroundTwo.activeInHierarchy) {
-            StartCoroutine("GameOverSuccess");
-
+        if (game.backgroundTwo.activeInHierarchy && !game.FinalLeg) {
+            game.FinalLeg = true;
+            StartCoroutine("OnGameOverSuccess");
         }
 
     }
     void OnTriggerEnter2D(Collider2D col)
     {
         // TODO: blimp collision area is too wide
-        if (col.gameObject.tag == "DeadZone")
+       
+        if (col.gameObject.tag == "DeadZone") 
         {
-            //Debug.Log("dead...");
+
             Dead();
         }
 
@@ -103,8 +106,9 @@ public class Tap : MonoBehaviour
         }
 
     }
-    IEnumerator GameOverSuccess() {
-        yield return new WaitForSeconds(5);
+    IEnumerator OnGameOverSuccess() {
+        Debug.Log("Entering OnGameOverSuccess");
+        yield return new WaitForSeconds(3);
         Dead();
 
     }
@@ -118,11 +122,11 @@ public class Tap : MonoBehaviour
         isDead = true;
         rigidbod.simulated = false;
         rigidbod.velocity = Vector2.zero;
-        //rigidbod.AddForce(new Vector2(0, upForce));
-        anim.SetTrigger("Idle");
-        anim.speed = 0;
+        //anim.SetTrigger("Idle");
+        //anim.speed = 0;
         health.UpdateHealth(100f, this); //restore the health for next time
-        OnPlayerDied(); //event sent to GameManager
+
+        OnPlayerDied();
 
     }
 
