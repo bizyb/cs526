@@ -307,7 +307,7 @@ public class GameManager : MonoBehaviour
     }
 
     void ChangeBackground(Background leg) {
-
+        //return;
         switch (leg) {
             case Background.Leg1:
                 backgroundOne.SetActive(true);
@@ -392,7 +392,7 @@ public class GameManager : MonoBehaviour
         else if (leg == Background.Leg4) { msg = "Leg 4: France to England"; }
         else if (leg == Background.Leg5) { msg = "Leg 5: Destination"; }
         message.text = msg;
-        messageContainer.SetActive(false);
+        //messageContainer.SetActive(true);
 
     }
 
