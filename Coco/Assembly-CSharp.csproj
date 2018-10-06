@@ -61,6 +61,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\_Gloomy_Animal\Script\CharacterSelect.cs" />
+    <Compile Include="Assets\_Gloomy_Animal\Script\MouseOrbitImproved.cs" />
+    <Compile Include="Assets\living birds\demo\livingBirdsDemoScript.cs" />
+    <Compile Include="Assets\living birds\scripts\lb_Bird.cs" />
+    <Compile Include="Assets\living birds\scripts\lb_BirdController.cs" />
+    <Compile Include="Assets\living birds\scripts\lb_CrowProximity.cs" />
     <Compile Include="Assets\Scripts\BackgroundScroll.cs" />
     <Compile Include="Assets\Scripts\CountdownText.cs" />
     <Compile Include="Assets\Scripts\CurrentScore.cs" />
@@ -69,6 +75,11 @@
     <Compile Include="Assets\Scripts\PlayerHealth.cs" />
     <Compile Include="Assets\Scripts\Score.cs" />
     <Compile Include="Assets\Scripts\Tap.cs" />
+    <Compile Include="Assets\Simple Health Bar\_Asteroids Example\Scripts\AsteroidController.cs" />
+    <Compile Include="Assets\Simple Health Bar\_Asteroids Example\Scripts\GameManager.cs" />
+    <Compile Include="Assets\Simple Health Bar\_Asteroids Example\Scripts\HealthPickupController.cs" />
+    <Compile Include="Assets\Simple Health Bar\_Asteroids Example\Scripts\PlayerController.cs" />
+    <Compile Include="Assets\Simple Health Bar\_Asteroids Example\Scripts\PlayerHealth.cs" />
     <Compile Include="Assets\Simple Health Bar\Scripts\SimpleHealthBar.cs" />
     <None Include="Assets\Simple Health Bar\README.txt" />
     <Reference Include="UnityEditor.StandardEvents">

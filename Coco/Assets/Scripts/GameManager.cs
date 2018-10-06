@@ -26,17 +26,17 @@ public class GameManager : MonoBehaviour
     public GameObject healthBar;
     public GameObject currentScore;
     public GameObject backgroundOne;
-    public GameObject backgroundTwo;
-    public GameObject backgroundThree;
-    public GameObject backgroundFour;
-    public GameObject backgroundFive;
+    //public GameObject backgroundTwo;
+    //public GameObject backgroundThree;
+    //public GameObject backgroundFour;
+    //public GameObject backgroundFive;
     public GameObject groundOne;
-    public GameObject groundTwo;
-    public GameObject groundThree;
-    public GameObject groundFour;
-    public GameObject groundFive;
-    public GameObject messageContainer;
-    public Text message;
+    //public GameObject groundTwo;
+    //public GameObject groundThree;
+    //public GameObject groundFour;
+    //public GameObject groundFive;
+    //public GameObject messageContainer;
+    //public Text message;
     public int startTime;
     public Text scoreText;
     private bool[] alerted = new bool[5];
@@ -118,6 +118,7 @@ public class GameManager : MonoBehaviour
 
         //SetPageState(PageState.Start);
         //ResetObjects();
+        InvokeRepeating("OnPlayerScored", 1f, 1f); // remve after debuggin and enable the one in OnCountDownFinished
         Debug.Log("Exiting OnEnable");
 
 
@@ -143,7 +144,7 @@ public class GameManager : MonoBehaviour
         score = 0;
         gameOver = false;
         startTime = (Int32)(DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
-        InvokeRepeating("OnPlayerScored", 1f, 1f);
+        //InvokeRepeating("OnPlayerScored", 1f, 1f); //this is the right place, not OnEnable
         Debug.Log("Exiting OnCountdownFinished");
 
 
@@ -178,14 +179,15 @@ public class GameManager : MonoBehaviour
     void OnPlayerScored()
     {
         Debug.Log("Entering OnPlayerScored");
+
         //Debug.Log("game over: " + gameOver);
 
         //string str = UnityEngine.StackTraceUtility.ExtractStackTrace();
         //Debug.Log(str);
 
         if (gameOver) { return; }
-        int timeNow = (Int32)(DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
-        int elapsed = timeNow - startTime;
+        //int timeNow = (Int32)(DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
+        //int elapsed = timeNow - startTime;
 
         score += MILES_PER_SEC;
         scoreText.text = score.ToString();
@@ -229,57 +231,57 @@ public class GameManager : MonoBehaviour
 
         // use boolean flags to avoid having to make multiple calls to the 
         // functions
-        if (elapsed >= 0 && elapsed < 5 && !alerted[0])
-        {
-            AlertPlayer(Alerts.Alert1);
+        //if (elapsed >= 0 && elapsed < 5 && !alerted[0])
+        //{
+        //    AlertPlayer(Alerts.Alert1);
 
-        }
-        else if (elapsed >= 5 && elapsed < 10 && !alerted[1])
-        {
-            AlertPlayer(Alerts.Alert2);
+        //}
+        //else if (elapsed >= 5 && elapsed < 10 && !alerted[1])
+        //{
+        //    AlertPlayer(Alerts.Alert2);
 
-        }
-        else if (elapsed >= 10 && elapsed < 15 && !alerted[2])
-        {
-            AlertPlayer(Alerts.Alert3);
+        //}
+        //else if (elapsed >= 10 && elapsed < 15 && !alerted[2])
+        //{
+        //    AlertPlayer(Alerts.Alert3);
            
-        }
-        else if (elapsed >= 15 && elapsed < 20 && !alerted[3])
-        {
-            AlertPlayer(Alerts.Alert4);
+        //}
+        //else if (elapsed >= 15 && elapsed < 20 && !alerted[3])
+        //{
+        //    AlertPlayer(Alerts.Alert4);
 
-        }
-        else if (elapsed >= 20 && !alerted[4])
-        {
-            AlertPlayer(Alerts.Alert5);
+        //}
+        //else if (elapsed >= 20 && !alerted[4])
+        //{
+        //    AlertPlayer(Alerts.Alert5);
            
-        }
+        //}
 
-        if (elapsed >= 0 && elapsed < 5 && !bgChanged[0])
-        {
-            ChangeBackground(Background.Leg1);
+        //if (elapsed >= 0 && elapsed < 5 && !bgChanged[0])
+        //{
+        //    ChangeBackground(Background.Leg1);
 
-        }
-        else if (elapsed >= 5 && elapsed < 10 && !bgChanged[1])
-        {
-            ChangeBackground(Background.Leg2);
+        //}
+        //else if (elapsed >= 5 && elapsed < 10 && !bgChanged[1])
+        //{
+        //    ChangeBackground(Background.Leg2);
            
-        }
-        else if (elapsed >= 10 && elapsed < 20 && !bgChanged[2])
-        {
-            ChangeBackground(Background.Leg3);
+        //}
+        //else if (elapsed >= 10 && elapsed < 20 && !bgChanged[2])
+        //{
+        //    ChangeBackground(Background.Leg3);
            
-        }
-        else if (elapsed >= 20 && elapsed < 25 && !bgChanged[3])
-        {
-            ChangeBackground(Background.Leg4);
+        //}
+        //else if (elapsed >= 20 && elapsed < 25 && !bgChanged[3])
+        //{
+        //    ChangeBackground(Background.Leg4);
            
-        }
-        else if (elapsed >= 25 && !bgChanged[4])
-        {
-            ChangeBackground(Background.Leg5);
+        //}
+        //else if (elapsed >= 25 && !bgChanged[4])
+        //{
+            //ChangeBackground(Background.Leg5);
            
-        }
+        //}
 
         Debug.Log("Exiting OnPlayerScored");
 
@@ -288,6 +290,7 @@ public class GameManager : MonoBehaviour
 
     void OnPlayerDied()
     {
+        Debug.Log("Entering OnPlayerDied");
         //if (!backgroundFive.activeInHierarchy) { gameOver = true; }
         gameOver = true;
         int savedScore = PlayerPrefs.GetInt("HighScore");
@@ -295,133 +298,135 @@ public class GameManager : MonoBehaviour
         {
             PlayerPrefs.SetInt("HighScore", score);
         }
-        StartCoroutine("DelayedTransition");
+        //StartCoroutine("DelayedTransition");
+        SetPageState(PageState.GameOver);
         CancelInvoke();
+        Debug.Log("Exiting OnPlayerDied");
 
     }
 
 
-    void AlertPlayer(Alerts alert) {
-        //TODO: play sound 
+    //void AlertPlayer(Alerts alert) {
+    //    //TODO: play sound 
 
-        String s = "";
-        switch (alert) {
-            case Alerts.Alert1:
-                s = "Leg 1: Ghana to Algeria";
-                alerted[0] = true;
-                break;
-            case Alerts.Alert2:
-                s = "Approaching Leg2: Algeria to Spain";
-                alerted[1] = true;
-                break;
-            case Alerts.Alert3:
-                s = "Approaching Leg 3: Spain to France";
-                alerted[2] = true;
-                break;
-            case Alerts.Alert4:
-                s = "Approaching Leg 4: France to England";
-                alerted[3] = true;
-                break;
-            case Alerts.Alert5:
-                s = "Approaching Leg 5: Destination";
-                alerted[4] = true;
-                break;
-        }
-        messageContainer.SetActive(true);
-        message.text = s;
+    //    String s = "";
+    //    switch (alert) {
+    //        case Alerts.Alert1:
+    //            s = "Leg 1: Ghana to Algeria";
+    //            alerted[0] = true;
+    //            break;
+    //        case Alerts.Alert2:
+    //            s = "Approaching Leg2: Algeria to Spain";
+    //            alerted[1] = true;
+    //            break;
+    //        case Alerts.Alert3:
+    //            s = "Approaching Leg 3: Spain to France";
+    //            alerted[2] = true;
+    //            break;
+    //        case Alerts.Alert4:
+    //            s = "Approaching Leg 4: France to England";
+    //            alerted[3] = true;
+    //            break;
+    //        case Alerts.Alert5:
+    //            s = "Approaching Leg 5: Destination";
+    //            alerted[4] = true;
+    //            break;
+    //    }
+    //    messageContainer.SetActive(true);
+    //    message.text = s;
 
-    }
+    //}
 
     void ChangeBackground(Background leg) {
 
         switch (leg) {
             case Background.Leg1:
                 backgroundOne.SetActive(true);
-                backgroundTwo.SetActive(false);
-                backgroundThree.SetActive(false);
-                backgroundFour.SetActive(false);
-                backgroundFive.SetActive(false);
+                //backgroundTwo.SetActive(false);
+                //backgroundThree.SetActive(false);
+                //backgroundFour.SetActive(false);
+                //backgroundFive.SetActive(false);
 
                 groundOne.SetActive(true);
-                groundTwo.SetActive(false);
-                groundThree.SetActive(false);
-                groundFour.SetActive(false);
-                groundFive.SetActive(false);
+                //groundTwo.SetActive(false);
+                //groundThree.SetActive(false);
+                //groundFour.SetActive(false);
+                //groundFive.SetActive(false);
 
                 bgChanged[0] = true;
                 break;
-            case Background.Leg2:
-                backgroundOne.SetActive(false);
-                backgroundTwo.SetActive(true);
-                backgroundThree.SetActive(false);
-                backgroundFour.SetActive(false);
-                backgroundFive.SetActive(false);
+            //case Background.Leg2:
+                //backgroundOne.SetActive(false);
+                //backgroundTwo.SetActive(true);
+                //backgroundThree.SetActive(false);
+                //backgroundFour.SetActive(false);
+                //backgroundFive.SetActive(false);
 
-                groundOne.SetActive(false);
-                groundTwo.SetActive(true);
-                groundThree.SetActive(false);
-                groundFour.SetActive(false);
-                groundFive.SetActive(false);
+                //groundOne.SetActive(false);
+                //groundTwo.SetActive(true);
+                //groundThree.SetActive(false);
+                //groundFour.SetActive(false);
+                //groundFive.SetActive(false);
 
-                bgChanged[1] = true;
-                break;
-            case Background.Leg3:
-                backgroundOne.SetActive(false);
-                backgroundTwo.SetActive(false);
-                backgroundThree.SetActive(true);
-                backgroundFour.SetActive(false);
-                backgroundFive.SetActive(false);
+                //bgChanged[1] = true;
+                //break;
+            //case Background.Leg3:
+            //    backgroundOne.SetActive(false);
+            //    backgroundTwo.SetActive(false);
+            //    backgroundThree.SetActive(true);
+            //    backgroundFour.SetActive(false);
+            //    backgroundFive.SetActive(false);
 
-                groundOne.SetActive(false);
-                groundTwo.SetActive(false);
-                groundThree.SetActive(true);
-                groundFour.SetActive(false);
-                groundFive.SetActive(false);
+            //    groundOne.SetActive(false);
+            //    groundTwo.SetActive(false);
+            //    groundThree.SetActive(true);
+            //    groundFour.SetActive(false);
+            //    groundFive.SetActive(false);
 
-                bgChanged[2] = true;
-                break;
-            case Background.Leg4:
-                backgroundOne.SetActive(false);
-                backgroundTwo.SetActive(false);
-                backgroundThree.SetActive(false);
-                backgroundFour.SetActive(true);
-                backgroundFive.SetActive(false);
+            //    bgChanged[2] = true;
+            //    break;
+            //case Background.Leg4:
+            //    backgroundOne.SetActive(false);
+            //    backgroundTwo.SetActive(false);
+            //    backgroundThree.SetActive(false);
+            //    backgroundFour.SetActive(true);
+            //    backgroundFive.SetActive(false);
 
-                groundOne.SetActive(false);
-                groundTwo.SetActive(false);
-                groundThree.SetActive(false);
-                groundFour.SetActive(true);
-                groundFive.SetActive(false);
+            //    groundOne.SetActive(false);
+            //    groundTwo.SetActive(false);
+            //    groundThree.SetActive(false);
+            //    groundFour.SetActive(true);
+            //    groundFive.SetActive(false);
 
-                bgChanged[3] = true;
-                break;
-            case Background.Leg5:
-                backgroundOne.SetActive(false);
-                backgroundTwo.SetActive(false);
-                backgroundThree.SetActive(false);
-                backgroundFour.SetActive(false);
-                backgroundFive.SetActive(true);
+            //    bgChanged[3] = true;
+            //    break;
+            //case Background.Leg5:
+                //backgroundOne.SetActive(false);
+                //backgroundTwo.SetActive(false);
+                //backgroundThree.SetActive(false);
+                //backgroundFour.SetActive(false);
+                //backgroundFive.SetActive(true);
 
-                groundOne.SetActive(false);
-                groundTwo.SetActive(false);
-                groundThree.SetActive(false);
-                groundFour.SetActive(false);
-                groundFive.SetActive(true);
+                //groundOne.SetActive(false);
+                //groundTwo.SetActive(false);
+                //groundThree.SetActive(false);
+                //groundFour.SetActive(false);
+                //groundFive.SetActive(true);
 
-                bgChanged[4] = true;
-                break;
+                //bgChanged[4] = true;
+                //break;
         }
-        if (gameOver) { return; }
-        String msg = "";
-        if (leg == Background.Leg2) { msg = "Leg2: Algeria to Spain"; }
-        else if (leg == Background.Leg3) { msg = "Leg3: Spain to France"; }
-        else if (leg == Background.Leg4) { msg = "Leg 4: France to England"; }
-        else if (leg == Background.Leg5) { msg = "Leg 5: Destination"; }
-        messageContainer.SetActive(true);
-        message.text = msg;
+        //if (gameOver) { return; }
+        //String msg = "";
+        //if (leg == Background.Leg2) { msg = "Leg2: Algeria to Spain"; }
+        //else if (leg == Background.Leg3) { msg = "Leg3: Spain to France"; }
+        //else if (leg == Background.Leg4) { msg = "Leg 4: France to England"; }
+        //else if (leg == Background.Leg5) { msg = "Leg 5: Destination"; }
+        //messageContainer.SetActive(true);
+        //message.text = msg;
 
-        Debug.Log("game over state: " + gameOver);
-        Debug.Log("setting message container to active....");
+        //Debug.Log("game over state: " + gameOver);
+        //Debug.Log("setting message container to active....");
 
     }
 
@@ -439,22 +444,23 @@ public class GameManager : MonoBehaviour
     IEnumerator DelayedTransition()
     {
 
-        yield return new WaitForSeconds(2);
-      
-        if (finalLeg) {
-            // wait about 26 seconds to end the game; that's how long it takes
-            // for the castle to center
+        yield return new WaitForSeconds(0);
+        SetPageState(PageState.GameOver);
 
-            Debug.Log("returned from yielding...about to set success!!!");
-            SetPageState(PageState.GameOverSuccess);
-        }
-        else {
-            SetPageState(PageState.GameOver);
-        }
+        //if (finalLeg) {
+        //    // wait about 26 seconds to end the game; that's how long it takes
+        //    // for the castle to center
+
+        //    Debug.Log("returned from yielding...about to set success!!!");
+        //    SetPageState(PageState.GameOverSuccess);
+        //}
+        //else {
+        //    SetPageState(PageState.GameOver);
+        //}
         healthBar.SetActive(false);
         currentScore.SetActive(false);
-        messageContainer.SetActive(false);
-        message.text = "";
+        //messageContainer.SetActive(false);
+        //message.text = "";
 
     }
 
@@ -481,6 +487,7 @@ public class GameManager : MonoBehaviour
                 gameOverSuccessPage.SetActive(false);
                 break;
             case PageState.GameOver:
+                Debug.Log("Setting page state to GAME OVER");
                 startPage.SetActive(false);
                 gameOverPage.SetActive(true);
                 countdownPage.SetActive(false);
@@ -513,7 +520,7 @@ public class GameManager : MonoBehaviour
         //messageContainer.SetActive(false);
         healthBar.SetActive(true);
         currentScore.SetActive(true);
-        messageContainer.SetActive(true);
+        //messageContainer.SetActive(true);
         ChangeBackground(Background.Leg1);
         SetPageState(PageState.Countdown);
         Debug.Log("Exiting StartGame...");
@@ -535,7 +542,7 @@ public class GameManager : MonoBehaviour
 
         healthBar.SetActive(false);
         currentScore.SetActive(false);
-        messageContainer.SetActive(false);
+        //messageContainer.SetActive(false);
 
         Debug.Log("set all of them to false");
 

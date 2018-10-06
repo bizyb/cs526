@@ -248,3 +248,4 @@
 /Users/biz/Documents/cs526/Coco/obj/Debug/Assembly-CSharp.csproj.CopyComplete
 /Users/biz/Documents/cs526/Coco/obj/Debug/Assembly-CSharp.dll
 /Users/biz/Documents/cs526/Coco/obj/Debug/Assembly-CSharp.pdb
+/Users/biz/Documents/cs526/Coco/obj/Debug/Assembly-CSharp.csprojAssemblyReference.cache

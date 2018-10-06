@@ -14,7 +14,7 @@ public class Tap : MonoBehaviour
     public float upForce = 200f;
     public bool isDead = false;
     float reward = 20f;
-    float decay = -0.0666f; // player health decay rate per second
+    float decay = -3.0666f; // player health decay rate per second
     public Vector2 startLoc;
     private Animator anim;
 
@@ -81,10 +81,10 @@ public class Tap : MonoBehaviour
                 anim.SetTrigger("Flap");
             }
         }
-        if (game.backgroundFive.activeInHierarchy && !game.FinalLeg) {
-            game.FinalLeg = true;
-            StartCoroutine("OnGameOverSuccess");
-        }
+        //if (game.backgroundFive.activeInHierarchy && !game.FinalLeg) {
+        //    game.FinalLeg = true;
+        //    StartCoroutine("OnGameOverSuccess");
+        //}
 
     }
     void OnTriggerEnter2D(Collider2D col)
@@ -128,7 +128,7 @@ public class Tap : MonoBehaviour
         rigidbod.velocity = Vector2.zero;
         //anim.SetTrigger("Idle");
         //anim.speed = 0;
-        health.UpdateHealth(100f, this); //restore the health for next time
+        //health.UpdateHealth(100f, this); //restore the health for next time
 
         OnPlayerDied();
 

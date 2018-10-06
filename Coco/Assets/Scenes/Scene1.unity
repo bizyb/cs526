@@ -1159,7 +1159,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 0, g: 1, b: 0, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -1291,7 +1291,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 2.4699707, y: -5.6499023}
+  m_AnchoredPosition: {x: 2.4697266, y: -5.6499023}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &397259233 stripped
@@ -2869,7 +2869,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 2.4699707, y: -5.6499023}
+  m_AnchoredPosition: {x: 2.4697266, y: -5.6499023}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1316346829
@@ -3565,7 +3565,7 @@ SpriteRenderer:
   m_SortingLayerID: -425464917
   m_SortingLayer: 2
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 216df85b1710f4cdca49dbe4dedf466c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 356b0b71cfad74b55a0faf240fd36e01, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -3583,8 +3583,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1892697264}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.7304884, y: 0.6546016, z: 1.3409281}
+  m_LocalPosition: {x: -0.628, y: -0.57, z: 0}
+  m_LocalScale: {x: 0.4714587, y: 0.42248118, z: 0.86543775}
   m_Children: []
   m_Father: {fileID: 989074222}
   m_RootOrder: 0
@@ -3645,7 +3645,7 @@ Animator:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1892697264}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 84755aa0db2d140199faf068cc445286, type: 2}
   m_CullingMode: 0
@@ -3952,7 +3952,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: 57083afe53cf24ae987aa7b81aebc2c3, type: 2}
+  - {fileID: 2100000, guid: 9d11588c79df24ea5bfcb3f8bbc5b868, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

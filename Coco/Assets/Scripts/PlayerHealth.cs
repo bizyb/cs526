@@ -9,7 +9,8 @@ public class PlayerHealth : MonoBehaviour {
     public static PlayerHealth Instance { get { return instance; } }
 
     public SimpleHealthBar healthBar;
-    public GameManager game;
+    public SimpleHealthBar sheildBar;
+    private GameManager game;
     float maxHealth = 100;
     float currentHealth = 0;
 
@@ -32,6 +33,7 @@ public class PlayerHealth : MonoBehaviour {
 
         // Update the Simple Health Bar with the updated value of Health
         healthBar.UpdateBar(currentHealth, maxHealth);
+        sheildBar.UpdateBar(currentHealth, maxHealth);
         game = GameManager.Instance;
 
     }
@@ -54,6 +56,8 @@ public class PlayerHealth : MonoBehaviour {
            
         }
         healthBar.UpdateBar(currentHealth, maxHealth);
+        sheildBar.UpdateBar(currentHealth, maxHealth);
+
     }
 
 }
