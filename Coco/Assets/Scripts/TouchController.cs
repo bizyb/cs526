@@ -12,8 +12,10 @@ public class TouchController : MonoBehaviour
    
     void Update()
     {
+        Debug.Log("entered update in TouchController");
         if (Input.GetMouseButtonDown(0))
         {
+            Debug.Log("mouse input received");
             Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             Vector2 mousePos2D = new Vector2(mousePos.x, mousePos.y);
 

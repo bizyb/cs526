@@ -47,6 +47,7 @@ public class Tap : MonoBehaviour
     void OnGameStarted()
     {
 
+
         rigidbod.velocity = Vector2.zero;
         rigidbod.simulated = true;
         isDead = false;
@@ -61,6 +62,7 @@ public class Tap : MonoBehaviour
     {
         transform.localPosition = startLoc;
         anim.speed = 1;
+        TouchController.OnJoystickTouch += OnJoystickTouch;
         //anim.SetTrigger("Idle");
     }
 
@@ -78,6 +80,7 @@ public class Tap : MonoBehaviour
         //downForce = -200f;
 
 
+
     }
 
     public void OnJoystickTouch(string direction) {
@@ -85,6 +88,7 @@ public class Tap : MonoBehaviour
         if (game.GameOver) { return; }
         if (!isDead)
         {
+            Debug.Log("Force: " + upForce);
             rigidbod.velocity = Vector2.zero;
             switch (direction) {
                 case "Up":
