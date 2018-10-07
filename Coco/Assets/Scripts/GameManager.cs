@@ -175,11 +175,12 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("Entering OnCountdownFinished");
         SetPageState(PageState.None);
-        joystickPage.SetActive(true);
         OnGameStarted();
         score = 0;
         gameOver = false;
         startTime = 0; //(Int32)(DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
+        joystickPage.SetActive(true);
+        healthBar.SetActive(true);
         Debug.Log("Exiting OnCountdownFinished");
 
 
@@ -215,6 +216,7 @@ public class GameManager : MonoBehaviour
         }
       
         joystickPage.SetActive(false);
+        healthBar.SetActive(false);
         gameOverScreen.gameObject.SetActive(true);
         Debug.Log("Exiting OnPlayerDied");
 
@@ -275,7 +277,7 @@ public class GameManager : MonoBehaviour
         Debug.Log("confirming game over state: replay button clicked");
         SetPageState(PageState.Start);
         scoreText.text = "0";
-        ResetObjects();
+        //ResetObjects();
        
 ;
         OnGameOverConfirmed();
@@ -286,38 +288,38 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("Entering StartGame...");
         //messageContainer.SetActive(false);
-        healthBar.SetActive(true);
-        currentScore.SetActive(true);
+        //healthBar.SetActive(true);
+        //currentScore.SetActive(true);
         //messageContainer.SetActive(true);
         ChangeBackground(Background.Leg1);
         SetPageState(PageState.Countdown);
         Debug.Log("Exiting StartGame...");
     }
 
-    void ResetObjects()
-    {
-        Debug.Log("Entering ResetObject...");
-        CancelInvoke();
-        // 
-        for (int i = 0; i < bgChanged.Length; i++) { bgChanged[i] = false; }
-        for (int i = 0; i < alerted.Length; i++) { alerted[i] = false; }
+    //void ResetObjects()
+    //{
+    //    Debug.Log("Entering ResetObject...");
+    //    CancelInvoke();
+    //    // 
+    //    for (int i = 0; i < bgChanged.Length; i++) { bgChanged[i] = false; }
+    //    for (int i = 0; i < alerted.Length; i++) { alerted[i] = false; }
 
-        score = 0;
-        finalLeg = false;
+    //    score = 0;
+    //    finalLeg = false;
 
 
-        ChangeBackground(Background.Leg1);
+    //    ChangeBackground(Background.Leg1);
 
-        healthBar.SetActive(false);
-        currentScore.SetActive(false);
-        //messageContainer.SetActive(false);
+    //    healthBar.SetActive(false);
+    //    currentScore.SetActive(false);
+    //    //messageContainer.SetActive(false);
 
-        Debug.Log("set all of them to false");
+    //    Debug.Log("set all of them to false");
 
-        //bird.transform.position = new Vector2(0, 0);
-        Debug.Log("Exiting ResetObject...");
+    //    //bird.transform.position = new Vector2(0, 0);
+    //    Debug.Log("Exiting ResetObject...");
 
-    }
+    //}
 
     void SpawnAsteroid()
     {
