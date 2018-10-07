@@ -154,15 +154,15 @@ public class GameManager : MonoBehaviour
     }
     void OnEnable()
     {
-        Debug.Log("Entering OnEnable");
+        //Debug.Log("Entering OnEnable");
         StartCoroutine("SpawnTimer");
         startTime = 0; //(Int32)(DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
         //anim = GetComponent<Animator>();
         Tap.OnPlayerDied += OnPlayerDied;
-        Tap.OnPlayerScored += OnPlayerScored;
+        //Tap.OnPlayerScored += OnPlayerScored;
         TouchController.OnPlayerScored += OnPlayerScored;
         CountdownText.OnCountdownFinished += OnCountdownFinished;
-        Debug.Log("Exiting OnEnable");
+        //Debug.Log("Exiting OnEnable");
 
 
 
@@ -171,19 +171,19 @@ public class GameManager : MonoBehaviour
 
     void OnDisable()
     {
-        Debug.Log("Entering OnDisable");
+        //Debug.Log("Entering OnDisable");
         Tap.OnPlayerDied -= OnPlayerDied;
-        Tap.OnPlayerScored -= OnPlayerScored;
+        //Tap.OnPlayerScored -= OnPlayerScored;
         TouchController.OnPlayerScored -= OnPlayerScored;
         CountdownText.OnCountdownFinished -= OnCountdownFinished;
-        Debug.Log("Exiting OnDisable");
+        //Debug.Log("Exiting OnDisable");
 
     }
 
     void OnCountdownFinished()
     {
        
-        Debug.Log("Entering OnCountdownFinished");
+        //Debug.Log("Entering OnCountdownFinished");
         SetPageState(PageState.None);
         OnGameStarted();
         score = 0;
@@ -191,7 +191,7 @@ public class GameManager : MonoBehaviour
         startTime = 0; //(Int32)(DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
         health.UpdateHealth(maxHealth, null);
         healthBar.SetActive(true);
-        Debug.Log("Exiting OnCountdownFinished");
+        //Debug.Log("Exiting OnCountdownFinished");
 
 
         //startTime = (Int32)(DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
@@ -199,9 +199,9 @@ public class GameManager : MonoBehaviour
     }
    
 
-    void OnPlayerScored()
+    void OnPlayerScored(string optional)
     {
-        Debug.Log("Entering OnPlayerScored");
+        //Debug.Log("Entering OnPlayerScored");
 
         if (gameOver) { return; }
         //int timeNow = (Int32)(DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
@@ -209,14 +209,14 @@ public class GameManager : MonoBehaviour
 
         score += MILES_PER_SEC;
         scoreText.text = score.ToString();
-        Debug.Log("Exiting OnPlayerScored");
+        //Debug.Log("Exiting OnPlayerScored");
 
     }
 
 
-    void OnPlayerDied()
+    void OnPlayerDied(string optional)
     {
-        Debug.Log("Entering OnPlayerDied");
+        //Debug.Log("Entering OnPlayerDied");
         //if (!backgroundFive.activeInHierarchy) { gameOver = true; }
         gameOver = true;
         int savedScore = PlayerPrefs.GetInt("HighScore");
@@ -228,7 +228,7 @@ public class GameManager : MonoBehaviour
         joystickPage.SetActive(false);
         healthBar.SetActive(false);
         gameOverScreen.gameObject.SetActive(true);
-        Debug.Log("Exiting OnPlayerDied");
+        //Debug.Log("Exiting OnPlayerDied");
 
     }
 
@@ -284,7 +284,7 @@ public class GameManager : MonoBehaviour
 
     public void ConfirmGameOver()
     {
-        Debug.Log("confirming game over state: replay button clicked");
+        //Debug.Log("confirming game over state: replay button clicked");
         ResetObjects();
         SetPageState(PageState.Start);
         scoreText.text = "0";
@@ -297,7 +297,7 @@ public class GameManager : MonoBehaviour
 
     public void StartGame()
     {
-        Debug.Log("Entering StartGame...");
+        //Debug.Log("Entering StartGame...");
         //messageContainer.SetActive(false);
         //healthBar.SetActive(true);
         //currentScore.SetActive(true);
@@ -305,13 +305,13 @@ public class GameManager : MonoBehaviour
         joystickPage.SetActive(true);
         ChangeBackground(Background.Leg1);
         SetPageState(PageState.Countdown);
-        Debug.Log("Exiting StartGame...");
+        //Debug.Log("Exiting StartGame...");
     }
 
     void ResetObjects()
     {
       
-        Debug.Log("Entering ResetObject...");
+        //Debug.Log("Entering ResetObject...");
 
         foreach (GameObject obstacle in obstacles)
         {
@@ -320,7 +320,7 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        Debug.Log("Exiting ResetObject...");
+        //Debug.Log("Exiting ResetObject...");
 
     }
 

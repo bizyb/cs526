@@ -6,14 +6,13 @@ using UnityEngine;
 public class Tap : MonoBehaviour
 {
 
-    public delegate void PlayerDelegate();
+    public delegate void PlayerDelegate(string optional);
     public static event PlayerDelegate OnPlayerDied;
-    public static event PlayerDelegate OnPlayerScored;
     static Tap instance;
-    public static Tap Instance{ get { return instance; }}
+    public static Tap Instance { get { return instance; } }
 
-    float upForce;
-    float downForce;
+    readonly float upForce = 4f;
+    //readonly float downForce = -20f;
     public bool isDead = false;
     float reward = 20f;
     float decay = -3.0666f; // player health decay rate per second
@@ -25,8 +24,10 @@ public class Tap : MonoBehaviour
     //public Rigidbody2D Bird { get { return rigidbod; } }
 
     GameManager game;
-    public GameObject joystick;
     PlayerHealth health;
+    //JoystickController joystick;
+
+    //public static Joystick JoystickDirections {get {return Joystick;}}
 
 
     void OnEnable()
@@ -51,8 +52,8 @@ public class Tap : MonoBehaviour
         isDead = false;
         anim.speed = 1;
         anim.SetTrigger("Flap");
-        upForce = 100f;
-        downForce = -200f; // the bird is a bit bouncy but it's fine
+        //upForce = 100f;
+        //downForce = -200f; // the bird is a bit bouncy but it's fine
         //rigidbod.transform.position.x;
     }
 
@@ -71,20 +72,37 @@ public class Tap : MonoBehaviour
         anim = GetComponent<Animator>();
         game = GameManager.Instance;
         health = PlayerHealth.Instance;
+        //joystick = JoystickController.Instance;
         InvokeRepeating("HealthDecay", 1f, 1f);
-        upForce = 20f;
-        downForce = -200f;
+        //upForce = 20f;
+        //downForce = -200f;
 
 
     }
 
-    public void OnJoystickTouch() {
+    public void OnJoystickTouch(string direction) {
+
         if (game.GameOver) { return; }
         if (!isDead)
         {
-            Debug.Log("upForce: " + upForce);
             rigidbod.velocity = Vector2.zero;
-            rigidbod.AddForce(new Vector2(0, upForce));
+            switch (direction) {
+                case "Up":
+                    rigidbod.velocity = new Vector2(0, upForce);
+                    break;
+                case "Down":
+                    Debug.Log("Down button pressed");
+                    rigidbod.velocity = new Vector2(0, -upForce);
+                    break;
+                case "Left":
+                    Debug.Log("Left button pressed");
+                    rigidbod.velocity = new Vector2(-upForce, 0);
+                    break;
+                case "Right":
+                    Debug.Log("Right button pressed");
+                    rigidbod.velocity = new Vector2(upForce, 0);
+                    break;
+            }
             anim.SetTrigger("Flap");
         }
 
@@ -108,18 +126,29 @@ public class Tap : MonoBehaviour
             //Destroy(col.gameObject);
             health.UpdateHealth(reward, this);
         }
-        else if (col.gameObject.tag == "TopPerimeter") {
-            Debug.Log("Top Permeter breached!!!");
-            rigidbod.AddForce(new Vector2(0, downForce));
+        else {
+            rigidbod.velocity = Vector2.zero;
+            switch (col.gameObject.tag) {
+                case "TopPerimeter":
+                    rigidbod.velocity = new Vector2(0, -upForce);
+                    break;
+                case "LeftPerimeter":
+                    rigidbod.velocity = new Vector2(upForce, 0);
+                    break;
+                case "RightPerimeter":
+                    rigidbod.velocity = new Vector2(-upForce, 0);
+                    break;
+            }
         }
 
     }
-    IEnumerator OnGameOverSuccess() {
-        Debug.Log("Entering OnGameOverSuccess");
-        yield return new WaitForSeconds(15);
-        Dead();
 
-    }
+    //IEnumerator OnGameOverSuccess() {
+    //    //Debug.Log("Entering OnGameOverSuccess");
+    //    yield return new WaitForSeconds(15);
+    //    Dead();
+
+    //}
 
     public void Dead()
     {
@@ -134,7 +163,7 @@ public class Tap : MonoBehaviour
         //anim.speed = 0;
         //health.UpdateHealth(100f, this); //restore the health for next time
 
-        OnPlayerDied();
+        OnPlayerDied("");
 
     }
 

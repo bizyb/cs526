@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public class TouchController : MonoBehaviour
 {
 
-    public delegate void PlayerDelegate();
+    public delegate void PlayerDelegate(string direction);
     public static event PlayerDelegate OnJoystickTouch;
     public static event PlayerDelegate OnPlayerScored;
 
@@ -20,14 +20,27 @@ public class TouchController : MonoBehaviour
             RaycastHit2D hit = Physics2D.Raycast(mousePos2D, Vector2.zero);
             if (hit.collider != null)
             {
-                if (hit.collider.gameObject.name == "Joystick") {
-                    OnJoystickTouch();
+                if (hit.collider.gameObject.name == "UpArrow") {
+                    OnJoystickTouch("Up");
                 }
-                else{
+                else if (hit.collider.gameObject.name == "DownArrow")
+                {
+                    OnJoystickTouch("Down");
+                }
+                else if (hit.collider.gameObject.name == "LeftArrow")
+                {
+                    OnJoystickTouch("Left");
+                }
+                else if (hit.collider.gameObject.name == "RightArrow")
+                {
+                    OnJoystickTouch("Right");
+                }
+                else
+                {
                     Destroy(hit.collider.gameObject);
 
                     // update the health as well
-                    OnPlayerScored();
+                    OnPlayerScored(null);
                 }
                
             }
