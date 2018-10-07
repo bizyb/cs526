@@ -56,6 +56,23 @@ public class GameManager : MonoBehaviour
     private readonly int MILES_PER_SEC = 2;
 
 
+    [System.Serializable]
+    public struct YSpawnRange
+    {
+        public float minY;
+        public float maxY;
+    }
+
+    [System.Serializable]
+    public struct XSpawnRange
+    {
+        public float minX;
+        public float maxX;
+    }
+    public YSpawnRange ySpawnRange;
+    public XSpawnRange xSpawnRange;
+
+
 
     // Prefabs //
     [Header("Prefabs")]
@@ -67,8 +84,8 @@ public class GameManager : MonoBehaviour
     // Spawning Info //
     bool spawning = true;
     [Header("Spawning")]
-    public float spawnTimeMin = 5.0f;
-    public float spawnTimeMax = 10.0f;
+    public float spawnTimeMin = 1.0f;
+    public float spawnTimeMax = 3.0f;
     public int startingAsteroids = 2;
     public float healthSpawnTimeMin = 15.0f;
     public float healthSpawnTimeMax = 20.0f;
@@ -143,6 +160,7 @@ public class GameManager : MonoBehaviour
     void OnEnable()
     {
         Debug.Log("Entering OnEnable");
+        StartCoroutine("SpawnTimer");
         startTime = 0; //(Int32)(DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
         //anim = GetComponent<Animator>();
         Tap.OnPlayerDied += OnPlayerDied;
@@ -591,8 +609,10 @@ public class GameManager : MonoBehaviour
 
     void SpawnAsteroid()
     {
-        // Get a random point within a circle area.
-        Vector2 dir = Random.insideUnitCircle;
+        // Get a random point within spawn range
+        Vector2 dir = Vector2.zero;
+        dir.x = Random.Range(xSpawnRange.minX, xSpawnRange.maxX);
+        dir.y = Random.Range(ySpawnRange.minY, ySpawnRange.maxY);
 
         // Create a Vector3 varaible to store the spawn position.
         Vector3 pos = Vector3.zero;
@@ -608,11 +628,11 @@ public class GameManager : MonoBehaviour
         GameObject ast = Instantiate(astroidPrefab, pos, Quaternion.Euler(Random.value * 360.0f, Random.value * 360.0f, Random.value * 360.0f)) as GameObject;
 
         // Call the setup function on the asteroid with the desired force and torque.
-        ast.GetComponent<AsteroidController>().Setup(-pos.normalized * 1000.0f, Random.insideUnitSphere * Random.Range(500.0f, 1500.0f));
+        //ast.GetComponent<AsteroidController>().Setup(-pos.normalized * 1000.0f, Random.insideUnitSphere * Random.Range(500.0f, 1500.0f));
 
         // Assign the health values to the asteroid.
-        ast.GetComponent<AsteroidController>().health = asteroidHealth;
-        ast.GetComponent<AsteroidController>().maxHealth = asteroidHealth;
+        //ast.GetComponent<AsteroidController>().health = asteroidHealth;
+        //ast.GetComponent<AsteroidController>().maxHealth = asteroidHealth;
     }
 
 
@@ -659,15 +679,15 @@ public class GameManager : MonoBehaviour
         // Set the visual score amount to reflect the current score value.
         scoreText.text = score.ToString();
     }
-    void Start()
-    {
-        // Start the spawning timers.
-        StartCoroutine("SpawnTimer");
-        //StartCoroutine("SpawnHealthTimer");
+    //void Start()
+    //{
+    //    // Start the spawning timers.
+    //    StartCoroutine("SpawnTimer");
+    //    //StartCoroutine("SpawnHealthTimer");
 
-        // Update the score text to reflect the current score on start.
-        UpdateScoreText();
-    }
+    //    // Update the score text to reflect the current score on start.
+    //    UpdateScoreText();
+    //}
 
 
 }

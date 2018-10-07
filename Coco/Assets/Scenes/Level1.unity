@@ -1140,10 +1140,16 @@ MonoBehaviour:
   groundOne: {fileID: 1938054088}
   startTime: 0
   scoreText: {fileID: 1267450690}
+  ySpawnRange:
+    minY: -3
+    maxY: 5
+  xSpawnRange:
+    minX: 4
+    maxX: 6
   astroidPrefab: {fileID: 105640, guid: 0b4a8843001420c4197015d9b24c213d, type: 2}
   spawnTimeMin: 5
   spawnTimeMax: 10
-  startingAsteroids: 2
+  startingAsteroids: 20
   healthSpawnTimeMin: 15
   healthSpawnTimeMax: 20
   asteroidPoints: 50
