@@ -141,7 +141,8 @@ public class Tap : MonoBehaviour
             health.UpdateHealth(reward, this);
         }
         else if (col.gameObject.tag == "TopPerimeter") {
-            rigidbod.AddForce(new Vector2(0, -upForce));
+            Debug.Log("Top Permeter breached!!!");
+            rigidbod.AddForce(new Vector2(0, -upForce*10));
         }
 
     }

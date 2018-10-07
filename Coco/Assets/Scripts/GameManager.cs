@@ -358,7 +358,7 @@ public class GameManager : MonoBehaviour
         }
         //StartCoroutine("DelayedTransition");
         SetPageState(PageState.GameOver);
-        CancelInvoke();
+        //CancelInvoke();
         Debug.Log("Exiting OnPlayerDied");
 
     }
@@ -611,6 +611,7 @@ public class GameManager : MonoBehaviour
 
     void SpawnAsteroid()
     {
+        if (gameOver) { return; }
         // Get a random point within spawn range
         Vector2 dir = Vector2.zero;
         dir.x = Random.Range(xSpawnRange.minX, xSpawnRange.maxX);
