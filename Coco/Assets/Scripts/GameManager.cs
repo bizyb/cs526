@@ -28,6 +28,7 @@ public class GameManager : MonoBehaviour
     public GameObject ground;
     public int startTime;
     public Text scoreText;
+    public Text gameScore;
 
 
     // scale the game time by this much for debugging purpose
@@ -182,6 +183,7 @@ public class GameManager : MonoBehaviour
         joystickPage.SetActive(false);
         healthBar.SetActive(false);
         gameOverScreen.gameObject.SetActive(true);
+        gameScore.text = score.ToString();
         //Debug.Log("Exiting OnPlayerDied");
 
     }
