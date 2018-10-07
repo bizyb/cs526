@@ -8,9 +8,6 @@ public class AudioController : MonoBehaviour {
     public static AudioController Instance {get { return audioController;} }
 
     public AudioSource audioSource;
-    //public AudioSource backgroundSource;
-    //public AudioSource birdWingSource;
-    //public AudioSource joystickSource;
     public AudioClip scoreClip;
     public AudioClip deathClip;
     public AudioClip wingFlapClip;
@@ -18,7 +15,9 @@ public class AudioController : MonoBehaviour {
     public AudioClip backgroundClip;
     bool wingAudioPlaying;
     bool backgroundPlaying;
+    bool deathPlaying;
     GameManager game;
+    Tap tapController;
 
     private void Awake()
     {
@@ -29,13 +28,16 @@ public class AudioController : MonoBehaviour {
             audioSource.mute = true;
         }
     }
+   
     private void Update()
     {
+        //Debug.Log("Game over state: " + game.GameOver);
         if (game.GameOver)
         {
-            audioSource.Stop();
-            //birdWingSource.Stop();
-            //joystickSource.Stop();
+            if (!deathPlaying) {
+                audioSource.Stop();
+                AudioOnDeath();
+            }
             return;
         }
         if (!audioSource.isPlaying) {
@@ -55,12 +57,19 @@ public class AudioController : MonoBehaviour {
     private void Start()
     {
         game = GameManager.Instance;
+        tapController = Tap.Instance;
+        deathPlaying = false;
     }
     public void AudioOnScore() {
         audioSource.PlayOneShot(scoreClip);
     }
 
-    public void AudioOnDeath() {
+    void AudioOnDeath() {
+
+
+        deathPlaying = true;
+        Debug.Log("playing death....");
+        audioSource.PlayOneShot(deathClip);
 
     }
 
@@ -68,7 +77,11 @@ public class AudioController : MonoBehaviour {
         wingAudioPlaying = true;
         yield return new WaitForSeconds(2.4f);
         wingAudioPlaying = false;
-        audioSource.PlayOneShot(wingFlapClip);
+        if (!game.GameOver && tapController.CanPlayAudio)
+        { 
+            audioSource.PlayOneShot(wingFlapClip); 
+        }
+       
     }
 
     IEnumerator PlayBackground() {
@@ -77,7 +90,10 @@ public class AudioController : MonoBehaviour {
         backgroundPlaying = true;
         yield return new WaitForSeconds(14f);
         backgroundPlaying = false;
-        audioSource.PlayOneShot(backgroundClip);
+        if (!game.GameOver && tapController.CanPlayAudio) {
+            audioSource.PlayOneShot(backgroundClip);
+        }
+
     }
 
     public void AudioOnReward() {

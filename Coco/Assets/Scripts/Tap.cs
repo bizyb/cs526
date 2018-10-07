@@ -19,19 +19,21 @@ public class Tap : MonoBehaviour
     public Vector2 startLoc;
     private Animator anim;
 
-    //Audio
+    bool canPlayAudio;
+    public bool CanPlayAudio{ get { return CanPlayAudio; }}
 
+  
    
     Rigidbody2D rigidbod;
-    //public Rigidbody2D Bird { get { return rigidbod; } }
 
     GameManager game;
     PlayerHealth health;
     AudioController audioController;
-    //JoystickController joystick;
 
-    //public static Joystick JoystickDirections {get {return Joystick;}}
-
+    private void Awake()
+    {
+        if (instance == null) { instance = this; }
+    }
 
     void OnEnable()
     {
@@ -56,6 +58,7 @@ public class Tap : MonoBehaviour
         isDead = false;
         anim.speed = 1;
         anim.SetTrigger("Flap");
+        canPlayAudio = true;
         //upForce = 100f;
         //downForce = -200f; // the bird is a bit bouncy but it's fine
         //rigidbod.transform.position.x;
@@ -118,7 +121,7 @@ public class Tap : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D col)
     {
-        // TODO: blimp collision area is too wide
+     
        
         if (col.gameObject.tag == "DeadZone") 
         {
@@ -145,19 +148,13 @@ public class Tap : MonoBehaviour
 
     }
 
-    //IEnumerator OnGameOverSuccess() {
-    //    //Debug.Log("Entering OnGameOverSuccess");
-    //    yield return new WaitForSeconds(15);
-    //    Dead();
-
-    //}
-
     public void Dead()
     {
         // TODO: make sure the bird is restored to its idle state when the start 
         // page loads
 
         // play sound, update score, etc
+        canPlayAudio = false;
         isDead = true;
         rigidbod.simulated = false;
         rigidbod.velocity = Vector2.zero;

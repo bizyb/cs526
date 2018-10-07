@@ -90,8 +90,9 @@ public class GameManager : MonoBehaviour
     //int score = 0;
     bool gameOver;
     bool finalLeg;
-
+    //bool stopAllAudio;
     public bool GameOver { get { return gameOver; } }
+    //public bool StopAllAudio { get { return stopAllAudio; }}
     public int Score { get { return score; }}
 
     public bool FinalLeg { get { return finalLeg; } set { finalLeg = value; }}
@@ -191,11 +192,10 @@ public class GameManager : MonoBehaviour
         healthBar.SetActive(false);
         gameOverScreen.gameObject.SetActive(true);
         gameScore.text = score.ToString();
-        audioController.AudioOnDeath();
         //Debug.Log("Exiting OnPlayerDied");
 
     }
-
+ 
     void SetBackground() {
 
         background.SetActive(true);
