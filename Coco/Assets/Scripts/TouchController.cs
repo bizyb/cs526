@@ -7,6 +7,7 @@ public class TouchController : MonoBehaviour
 
     public delegate void PlayerDelegate();
     public static event PlayerDelegate OnJoystickTouch;
+    public static event PlayerDelegate OnPlayerScored;
 
    
     void Update()
@@ -24,6 +25,9 @@ public class TouchController : MonoBehaviour
                 }
                 else{
                     Destroy(hit.collider.gameObject);
+
+                    // update the health as well
+                    OnPlayerScored();
                 }
                
             }

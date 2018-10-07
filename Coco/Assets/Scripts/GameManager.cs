@@ -165,6 +165,7 @@ public class GameManager : MonoBehaviour
         //anim = GetComponent<Animator>();
         Tap.OnPlayerDied += OnPlayerDied;
         Tap.OnPlayerScored += OnPlayerScored;
+        TouchController.OnPlayerScored += OnPlayerScored;
         CountdownText.OnCountdownFinished += OnCountdownFinished;
 
 
@@ -173,7 +174,7 @@ public class GameManager : MonoBehaviour
 
         //SetPageState(PageState.Start);
         //ResetObjects();
-        InvokeRepeating("OnPlayerScored", 1f, 1f); // remve after debuggin and enable the one in OnCountDownFinished
+        //InvokeRepeating("OnPlayerScored", 1f, 1f); // remve after debuggin and enable the one in OnCountDownFinished
         Debug.Log("Exiting OnEnable");
 
 
@@ -186,6 +187,7 @@ public class GameManager : MonoBehaviour
         Debug.Log("Entering OnDisable");
         Tap.OnPlayerDied -= OnPlayerDied;
         Tap.OnPlayerScored -= OnPlayerScored;
+        TouchController.OnPlayerScored -= OnPlayerScored;
         CountdownText.OnCountdownFinished -= OnCountdownFinished;
         Debug.Log("Exiting OnDisable");
 
@@ -246,7 +248,7 @@ public class GameManager : MonoBehaviour
         //int elapsed = timeNow - startTime;
 
         score += MILES_PER_SEC;
-        //scoreText.text = score.ToString();
+        scoreText.text = score.ToString();
 
         // Alert the player 
         //if (elapsed >= 0 && elapsed < 50 && !alertSent) {
