@@ -12,7 +12,10 @@ public class TouchController : MonoBehaviour
    
     void Update()
     {
-        Debug.Log("entered update in TouchController");
+        //TODO: if the bird touches the joystick while falling, it will slow down
+        // this shouldn't happen; it's velocity should stay the same
+
+        //Debug.Log("entered update in TouchController");
         if (Input.GetMouseButtonDown(0))
         {
             Debug.Log("mouse input received");

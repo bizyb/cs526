@@ -20,33 +20,21 @@ public class GameManager : MonoBehaviour
     public GameObject gameOverSuccessPage;
     public GameObject countdownPage;
     public GameObject bird;
-    public GameObject parallaxObjects;
     public GameObject healthBar;
     PlayerHealth health;
     public GameObject joystickPage;
     public GameObject currentScore;
-    public GameObject backgroundOne;
-   
-    public GameObject groundOne;
+    public GameObject background;
+    public GameObject ground;
     public int startTime;
     public Text scoreText;
-    private bool[] alerted = new bool[5];
-    private bool[] bgChanged = new bool[5];
-
 
 
     // scale the game time by this much for debugging purpose
     public readonly float scaleFactor = 0.97f;
     public readonly float gameDuration = 1800f; // 30 minutes
     readonly float maxHealth = 100f;
-    //private Animator anim;
-
-
-    // Coco travels at 3 miles per second for 
-    // 25 minutes to cover 4500 miles, the distance between Ghana and the UK
-    private readonly int MILES_PER_SEC = 2;
-
-
+  
     [System.Serializable]
     public struct YSpawnRange
     {
@@ -70,30 +58,18 @@ public class GameManager : MonoBehaviour
 
     // Prefabs //
     [Header("Prefabs")]
-    public GameObject astroidPrefab;
+    public GameObject obstaclePrefab;
+    public int startingObstacles = 5;
 
     // Spawning Info //
     bool spawning = true;
     [Header("Spawning")]
     public float spawnTimeMin = 1.0f;
     public float spawnTimeMax = 3.0f;
-    public int startingAsteroids = 2;
-    public float healthSpawnTimeMin = 15.0f;
-    public float healthSpawnTimeMax = 20.0f;
 
     // Score //
-    [Header("Score")]
     int score = 0;
-    public int asteroidPoints = 50;
-    public int debrisPoints = 10;
 
-    // Game Over //
-    [Header("Game Over")]
-
-    public int asteroidHealth = 100;
-    public int debrisHealth = 20;
-
-    bool hasLost = false;
 
     enum PageState
     {
@@ -104,20 +80,6 @@ public class GameManager : MonoBehaviour
         GameOverSuccess
     }
 
-    enum Background {
-        Leg1,
-        Leg2,
-        Leg3,
-        Leg4,
-        Leg5
-    }
-    enum Alerts {
-        Alert1,
-        Alert2,
-        Alert3,
-        Alert4,
-        Alert5
-    }
 
     //int score = 0;
     bool gameOver;
@@ -129,8 +91,6 @@ public class GameManager : MonoBehaviour
     public bool FinalLeg { get { return finalLeg; } set { finalLeg = value; }}
 
     LinkedList<GameObject> obstacles;
-
-
 
     void Awake()
     {
@@ -154,15 +114,12 @@ public class GameManager : MonoBehaviour
     }
     void OnEnable()
     {
-        //Debug.Log("Entering OnEnable");
+   
         StartCoroutine("SpawnTimer");
         startTime = 0; //(Int32)(DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
-        //anim = GetComponent<Animator>();
         Tap.OnPlayerDied += OnPlayerDied;
-        //Tap.OnPlayerScored += OnPlayerScored;
         TouchController.OnPlayerScored += OnPlayerScored;
         CountdownText.OnCountdownFinished += OnCountdownFinished;
-        //Debug.Log("Exiting OnEnable");
 
 
 
@@ -171,12 +128,10 @@ public class GameManager : MonoBehaviour
 
     void OnDisable()
     {
-        //Debug.Log("Entering OnDisable");
+
         Tap.OnPlayerDied -= OnPlayerDied;
-        //Tap.OnPlayerScored -= OnPlayerScored;
         TouchController.OnPlayerScored -= OnPlayerScored;
         CountdownText.OnCountdownFinished -= OnCountdownFinished;
-        //Debug.Log("Exiting OnDisable");
 
     }
 
@@ -207,7 +162,7 @@ public class GameManager : MonoBehaviour
         //int timeNow = (Int32)(DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
         //int elapsed = timeNow - startTime;
 
-        score += MILES_PER_SEC;
+        score++;
         scoreText.text = score.ToString();
         //Debug.Log("Exiting OnPlayerScored");
 
@@ -217,7 +172,6 @@ public class GameManager : MonoBehaviour
     void OnPlayerDied(string optional)
     {
         //Debug.Log("Entering OnPlayerDied");
-        //if (!backgroundFive.activeInHierarchy) { gameOver = true; }
         gameOver = true;
         int savedScore = PlayerPrefs.GetInt("HighScore");
         if (score > savedScore)
@@ -232,16 +186,10 @@ public class GameManager : MonoBehaviour
 
     }
 
-    void ChangeBackground(Background leg) {
+    void SetBackground() {
 
-        switch (leg) {
-            case Background.Leg1:
-                backgroundOne.SetActive(true);
-                groundOne.SetActive(true);
-                bgChanged[0] = true;
-                break; 
-        }
-
+        background.SetActive(true);
+        ground.SetActive(true);
     }
 
     void SetPageState(PageState state)
@@ -267,7 +215,7 @@ public class GameManager : MonoBehaviour
                 gameOverSuccessPage.SetActive(false);
                 break;
             case PageState.GameOver:
-                Debug.Log("Setting page state to GAME OVER");
+                //Debug.Log("Setting page state to GAME OVER");
                 startPage.SetActive(false);
                 gameOverPage.SetActive(true);
                 countdownPage.SetActive(false);
@@ -289,8 +237,6 @@ public class GameManager : MonoBehaviour
         SetPageState(PageState.Start);
         scoreText.text = "0";
         ResetObjects();
-        // TODO: set background to default
-
         OnGameOverConfirmed();
 
     }
@@ -298,12 +244,8 @@ public class GameManager : MonoBehaviour
     public void StartGame()
     {
         //Debug.Log("Entering StartGame...");
-        //messageContainer.SetActive(false);
-        //healthBar.SetActive(true);
-        //currentScore.SetActive(true);
-        //messageContainer.SetActive(true);
         joystickPage.SetActive(true);
-        ChangeBackground(Background.Leg1);
+        SetBackground();
         SetPageState(PageState.Countdown);
         //Debug.Log("Exiting StartGame...");
     }
@@ -324,58 +266,31 @@ public class GameManager : MonoBehaviour
 
     }
 
-    void SpawnAsteroid()
+    void SpawnObstacle()
     {
         if (gameOver) { return; }
-        // Get a random point within spawn range
         Vector2 dir = Vector2.zero;
         dir.x = Random.Range(xSpawnRange.minX, xSpawnRange.maxX);
         dir.y = Random.Range(ySpawnRange.minY, ySpawnRange.maxY);
-
-        // Create a Vector3 varaible to store the spawn position.
         Vector3 pos = Vector3.zero;
 
-        // If the X value of the spawn direction is greater than the Y, then spawn the asteroid to the left or right of the screen, determined by the value of dir.
         if (Mathf.Abs(dir.x) > Mathf.Abs(dir.y))
             pos = new Vector3(Mathf.Sign(dir.x) * Camera.main.orthographicSize * Camera.main.aspect * 1.3f, dir.y * Camera.main.orthographicSize * 1.2f, 0);
-        // Else the Y value is greater than X, so spawn the asteroid up or down, determined by the value of dir.
         else
             pos = new Vector3(dir.x * Camera.main.orthographicSize * Camera.main.aspect * 1.3f, Mathf.Sign(dir.y) * Camera.main.orthographicSize * 1.2f, 0);
 
-        // Create the asteroid game object at the position( determined above ), and at a random rotation.
-        GameObject ast = Instantiate(astroidPrefab, pos, Quaternion.Euler(0, 0, 0)) as GameObject;
-        obstacles.AddLast(ast);
 
-    }
+        GameObject obst = Instantiate(obstaclePrefab, pos, Quaternion.Euler(0, 0, 0)) as GameObject;
+        obstacles.AddLast(obst);
 
-
-    public void ModifyScore(string scoreType = "")
-    {
-        if (hasLost == true)
-            return;
-
-        int scoreMod = 5;
-
-        if (scoreType == "Asteroid")
-            scoreMod = asteroidPoints;
-        else if (scoreType == "Debris")
-            scoreMod = debrisPoints;
-
-        // Increase the score by the appropriate amount.
-        score += scoreMod;
-
-        // Update the score text to reflect the current score.
-        UpdateScoreText();
     }
 
     IEnumerator SpawnTimer()
     {
         // Wait for a bit before the initial spawn.
         yield return new WaitForSeconds(0.5f);
-
-        // For as many times as the startingAsteroids variable dictates, spawn an asteroid.
-        for (int i = 0; i < startingAsteroids; i++)
-            SpawnAsteroid();
+        for (int i = 0; i < startingObstacles; i++)
+            SpawnObstacle();
 
         // While spawning is true...
         while (spawning)
@@ -384,15 +299,7 @@ public class GameManager : MonoBehaviour
             yield return new WaitForSeconds(Random.Range(spawnTimeMin, spawnTimeMax));
 
             // Spawn an asteroid.
-            SpawnAsteroid();
+            SpawnObstacle();
         }
     }
-    void UpdateScoreText()
-    {
-        // Set the visual score amount to reflect the current score value.
-        scoreText.text = score.ToString();
-    }
-  
-
-
 }
