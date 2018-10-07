@@ -18,6 +18,9 @@ public class GameManager : MonoBehaviour
     public GameObject startPage;
     public GameObject gameOverPage;
     public GameObject gameOverSuccessPage;
+    public GameObject howtoPlayPage;
+    public GameObject aboutPage;
+    public GameObject creditsPage;
     public GameObject countdownPage;
     public GameObject bird;
     public GameObject healthBar;
@@ -303,5 +306,30 @@ public class GameManager : MonoBehaviour
             // Spawn an asteroid.
             SpawnObstacle();
         }
+    }
+
+    // TODO: there's gotta be a better way to do this
+    public void CloseHowTo() {
+        howtoPlayPage.SetActive(false);
+    }
+    public void CloseAbout()
+    {
+        Debug.Log("about close clicked");
+        aboutPage.SetActive(false);
+    }
+    public void CloseCredits()
+    {
+        creditsPage.SetActive(false);
+    }
+    public void OpenHowTo() {
+        howtoPlayPage.SetActive(true);
+    }
+    public void OpenAbout()
+    {
+        aboutPage.SetActive(true);
+    }
+    public void OpenCredits()
+    {
+        creditsPage.SetActive(true);
     }
 }
