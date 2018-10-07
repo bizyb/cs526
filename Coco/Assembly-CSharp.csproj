@@ -73,7 +73,6 @@
     <Compile Include="Assets\Scripts\CurrentScore.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\Parallaxer.cs" />
-    <Compile Include="Assets\Scripts\PlayerController.cs" />
     <Compile Include="Assets\Scripts\PlayerHealth.cs" />
     <Compile Include="Assets\Scripts\RandomPath.cs" />
     <Compile Include="Assets\Scripts\Score.cs" />

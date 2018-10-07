@@ -2,9 +2,8 @@
   <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="Unity.Editor" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/PlayerController.cs">
     <Files>
-      <File FileName="Assets/Scripts/GameManager.cs" Line="636" Column="6" />
+      <File FileName="Assets/Scripts/GameManager.cs" Line="634" Column="64" />
       <File FileName="Assets/Scripts/PlayerController.cs" Line="10" Column="39" />
-      <File FileName="Assets/Scripts/TouchController.cs" Line="27" Column="70" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
