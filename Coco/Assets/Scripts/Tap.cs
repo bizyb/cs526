@@ -12,7 +12,8 @@ public class Tap : MonoBehaviour
     static Tap instance;
     public static Tap Instance{ get { return instance; }}
 
-    public float upForce;
+    float upForce;
+    float downForce;
     public bool isDead = false;
     float reward = 20f;
     float decay = -3.0666f; // player health decay rate per second
@@ -50,6 +51,8 @@ public class Tap : MonoBehaviour
         isDead = false;
         anim.speed = 1;
         anim.SetTrigger("Flap");
+        upForce = 200f;
+        downForce = -200f; // the bird is a bit bouncy but it's fine
         //rigidbod.transform.position.x;
     }
 
@@ -70,6 +73,7 @@ public class Tap : MonoBehaviour
         health = PlayerHealth.Instance;
         InvokeRepeating("HealthDecay", 1f, 1f);
         upForce = 20f;
+        downForce = -200f;
 
 
     }
@@ -142,7 +146,7 @@ public class Tap : MonoBehaviour
         }
         else if (col.gameObject.tag == "TopPerimeter") {
             Debug.Log("Top Permeter breached!!!");
-            rigidbod.AddForce(new Vector2(0, -upForce*10));
+            rigidbod.AddForce(new Vector2(0, downForce));
         }
 
     }
