@@ -625,7 +625,7 @@ public class GameManager : MonoBehaviour
             pos = new Vector3(dir.x * Camera.main.orthographicSize * Camera.main.aspect * 1.3f, Mathf.Sign(dir.y) * Camera.main.orthographicSize * 1.2f, 0);
 
         // Create the asteroid game object at the position( determined above ), and at a random rotation.
-        GameObject ast = Instantiate(astroidPrefab, pos, Quaternion.Euler(Random.value * 360.0f, Random.value * 360.0f, Random.value * 360.0f)) as GameObject;
+        GameObject ast = Instantiate(astroidPrefab, pos, Quaternion.Euler(0, 0, 0)) as GameObject;
 
         // Call the setup function on the asteroid with the desired force and torque.
         //ast.GetComponent<AsteroidController>().Setup(-pos.normalized * 1000.0f, Random.insideUnitSphere * Random.Range(500.0f, 1500.0f));

@@ -249,3 +249,4 @@
 /Users/biz/Documents/cs526/Coco/obj/Debug/Assembly-CSharp.dll
 /Users/biz/Documents/cs526/Coco/obj/Debug/Assembly-CSharp.pdb
 /Users/biz/Documents/cs526/Coco/obj/Debug/Assembly-CSharp.csprojAssemblyReference.cache
+/Users/biz/Documents/cs526/Coco/Temp/bin/Debug/Assembly-CSharp-firstpass.pdb

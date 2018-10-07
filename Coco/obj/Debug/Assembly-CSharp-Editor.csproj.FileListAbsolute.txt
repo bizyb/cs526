@@ -298,3 +298,4 @@
 /Users/biz/Documents/cs526/Coco/obj/Debug/Assembly-CSharp-Editor.csproj.CopyComplete
 /Users/biz/Documents/cs526/Coco/obj/Debug/Assembly-CSharp-Editor.dll
 /Users/biz/Documents/cs526/Coco/obj/Debug/Assembly-CSharp-Editor.pdb
+/Users/biz/Documents/cs526/Coco/Temp/bin/Debug/Assembly-CSharp-firstpass.pdb

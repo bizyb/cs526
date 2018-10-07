@@ -2,15 +2,9 @@
   <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="Unity.Editor" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/PlayerController.cs">
     <Files>
-      <File FileName="Assets/Scripts/GameManager.cs" Line="634" Column="55" />
-      <File FileName="Assets/Scripts/BackgroundScroll.cs" Line="18" Column="2" />
-      <File FileName="Assets/Scripts/Tap.cs" Line="64" Column="15" />
-      <File FileName="Assets/Scripts/PlayerHealth.cs" Line="13" Column="12" />
-      <File FileName="Assets/Simple Health Bar/_Asteroids Example/Scripts/PlayerController.cs" Line="213" Column="2" />
-      <File FileName="Assets/Simple Health Bar/_Asteroids Example/Scripts/GameManager.cs" Line="132" Column="21" />
-      <File FileName="Assets/Simple Health Bar/_Asteroids Example/Scripts/PlayerHealth.cs" Line="83" Column="4" />
-      <File FileName="../../../Downloads/MoveToTutorial/Assets/SimpleAnimation.cs" Line="7" Column="3" />
-      <File FileName="Assets/Scripts/PlayerController.cs" Line="33" Column="23" />
+      <File FileName="Assets/Scripts/GameManager.cs" Line="636" Column="6" />
+      <File FileName="Assets/Scripts/PlayerController.cs" Line="10" Column="39" />
+      <File FileName="Assets/Scripts/TouchController.cs" Line="27" Column="70" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />

@@ -21,6 +21,8 @@ GameObject:
   - component: {fileID: 4284033880840764}
   - component: {fileID: 212187433121615836}
   - component: {fileID: 61167505499796414}
+  - component: {fileID: 114477421806481246}
+  - component: {fileID: 114731862047114764}
   m_Layer: 0
   m_Name: Albatross
   m_TagString: DeadZone
@@ -64,8 +66,32 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.17, y: 3.42}
+  m_Size: {x: 2.28, y: 3.42}
   m_EdgeRadius: 0
+--- !u!114 &114477421806481246
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1389706521648306}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9efd1137ab6547d6bb44a013d5756d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  game: {fileID: 0}
+  speed: 1
+--- !u!114 &114731862047114764
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1389706521648306}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8c605d48d6534cfab0e5a00bb0a72a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!212 &212187433121615836
 SpriteRenderer:
   m_ObjectHideFlags: 1

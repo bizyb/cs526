@@ -83,12 +83,14 @@ public class Tap : MonoBehaviour
                 anim.SetTrigger("Flap");
             }
         }
+       
         //if (game.backgroundFive.activeInHierarchy && !game.FinalLeg) {
         //    game.FinalLeg = true;
         //    StartCoroutine("OnGameOverSuccess");
         //}
 
     }
+
     void OnTriggerEnter2D(Collider2D col)
     {
         // TODO: blimp collision area is too wide
