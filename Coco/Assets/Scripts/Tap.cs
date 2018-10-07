@@ -116,7 +116,7 @@ public class Tap : MonoBehaviour
         {
            
             rigidbod.velocity = Vector2.zero;
-            rigidbod.AddForce(new Vector2(0, upForce));
+            rigidbod.AddForce(new Vector2(0, 200));
             anim.SetTrigger("Flap");
         }
 

@@ -2,6 +2,7 @@
 using UnityEngine.UI;
 //using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 
 
@@ -127,7 +128,10 @@ public class GameManager : MonoBehaviour
 
     public bool FinalLeg { get { return finalLeg; } set { finalLeg = value; }}
 
-   
+    LinkedList<GameObject> obstacles;
+
+
+
     void Awake()
     {
 
@@ -145,6 +149,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         health = PlayerHealth.Instance;
+        obstacles = new LinkedList<GameObject>();
     }
     void OnEnable()
     {
@@ -156,8 +161,6 @@ public class GameManager : MonoBehaviour
         Tap.OnPlayerScored += OnPlayerScored;
         TouchController.OnPlayerScored += OnPlayerScored;
         CountdownText.OnCountdownFinished += OnCountdownFinished;
-
-
         Debug.Log("Exiting OnEnable");
 
 
@@ -178,6 +181,7 @@ public class GameManager : MonoBehaviour
 
     void OnCountdownFinished()
     {
+       
         Debug.Log("Entering OnCountdownFinished");
         SetPageState(PageState.None);
         OnGameStarted();
@@ -284,9 +288,9 @@ public class GameManager : MonoBehaviour
         ResetObjects();
         SetPageState(PageState.Start);
         scoreText.text = "0";
-       
-       
-;
+        ResetObjects();
+        // TODO: set background to default
+
         OnGameOverConfirmed();
 
     }
@@ -305,7 +309,15 @@ public class GameManager : MonoBehaviour
 
     void ResetObjects()
     {
+      
         Debug.Log("Entering ResetObject...");
+
+        foreach (GameObject obstacle in obstacles)
+        {
+            if (obstacle != null) {
+                Destroy(obstacle);
+            }
+        }
 
         Debug.Log("Exiting ResetObject...");
 
@@ -331,6 +343,7 @@ public class GameManager : MonoBehaviour
 
         // Create the asteroid game object at the position( determined above ), and at a random rotation.
         GameObject ast = Instantiate(astroidPrefab, pos, Quaternion.Euler(0, 0, 0)) as GameObject;
+        obstacles.AddLast(ast);
 
     }
 
