@@ -21,6 +21,7 @@ public class GameManager : MonoBehaviour
     public GameObject bird;
     public GameObject parallaxObjects;
     public GameObject healthBar;
+    PlayerHealth health;
     public GameObject joystickPage;
     public GameObject currentScore;
     public GameObject backgroundOne;
@@ -36,6 +37,7 @@ public class GameManager : MonoBehaviour
     // scale the game time by this much for debugging purpose
     public readonly float scaleFactor = 0.97f;
     public readonly float gameDuration = 1800f; // 30 minutes
+    readonly float maxHealth = 100f;
     //private Animator anim;
 
 
@@ -140,7 +142,10 @@ public class GameManager : MonoBehaviour
 
         }
     }
-
+    private void Start()
+    {
+        health = PlayerHealth.Instance;
+    }
     void OnEnable()
     {
         Debug.Log("Entering OnEnable");
@@ -180,6 +185,7 @@ public class GameManager : MonoBehaviour
         gameOver = false;
         startTime = 0; //(Int32)(DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
         joystickPage.SetActive(true);
+        health.UpdateHealth(maxHealth, null);
         healthBar.SetActive(true);
         Debug.Log("Exiting OnCountdownFinished");
 
@@ -275,9 +281,10 @@ public class GameManager : MonoBehaviour
     public void ConfirmGameOver()
     {
         Debug.Log("confirming game over state: replay button clicked");
+        ResetObjects();
         SetPageState(PageState.Start);
         scoreText.text = "0";
-        //ResetObjects();
+       
        
 ;
         OnGameOverConfirmed();
@@ -296,30 +303,13 @@ public class GameManager : MonoBehaviour
         Debug.Log("Exiting StartGame...");
     }
 
-    //void ResetObjects()
-    //{
-    //    Debug.Log("Entering ResetObject...");
-    //    CancelInvoke();
-    //    // 
-    //    for (int i = 0; i < bgChanged.Length; i++) { bgChanged[i] = false; }
-    //    for (int i = 0; i < alerted.Length; i++) { alerted[i] = false; }
+    void ResetObjects()
+    {
+        Debug.Log("Entering ResetObject...");
 
-    //    score = 0;
-    //    finalLeg = false;
+        Debug.Log("Exiting ResetObject...");
 
-
-    //    ChangeBackground(Background.Leg1);
-
-    //    healthBar.SetActive(false);
-    //    currentScore.SetActive(false);
-    //    //messageContainer.SetActive(false);
-
-    //    Debug.Log("set all of them to false");
-
-    //    //bird.transform.position = new Vector2(0, 0);
-    //    Debug.Log("Exiting ResetObject...");
-
-    //}
+    }
 
     void SpawnAsteroid()
     {

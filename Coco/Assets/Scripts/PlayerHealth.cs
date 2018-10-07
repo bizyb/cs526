@@ -47,13 +47,7 @@ public class PlayerHealth : MonoBehaviour {
         if (currentHealth > maxHealth) { currentHealth = maxHealth; }
         if (currentHealth <= 0f) {
             currentHealth = 0f;
-
-            // the bird should not die even if it runs out of energy in 
-            // in the final leg
-            if (!game.FinalLeg) {
-                tapInstance.Dead();
-            }
-           
+            tapInstance.Dead();
         }
         healthBar.UpdateBar(currentHealth, maxHealth);
         sheildBar.UpdateBar(currentHealth, maxHealth);
