@@ -852,7 +852,7 @@ Prefab:
     - target: {fileID: 58018565145198974, guid: b3da629128a004143ac2dffb94e07fef,
         type: 2}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1727207803954452, guid: b3da629128a004143ac2dffb94e07fef, type: 2}
       propertyPath: m_IsActive
@@ -1273,10 +1273,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioSource: {fileID: 519420037}
-  backgroundSource: {fileID: 519420037}
   scoreClip: {fileID: 8300000, guid: 4dd357db2aba1416e842ec58c801f51e, type: 3}
   deathClip: {fileID: 0}
-  wingFlapClip: {fileID: 0}
+  wingFlapClip: {fileID: 8300000, guid: a5b16fcbc19da462fa8ae29db0ae908f, type: 3}
   joystickClip: {fileID: 0}
   backgroundClip: {fileID: 8300000, guid: 3bdd340db97ab42c8a7122c1ade098ca, type: 3}
 --- !u!82 &519420037

@@ -8,12 +8,16 @@ public class AudioController : MonoBehaviour {
     public static AudioController Instance {get { return audioController;} }
 
     public AudioSource audioSource;
-    public AudioSource backgroundSource;
+    //public AudioSource backgroundSource;
+    //public AudioSource birdWingSource;
+    //public AudioSource joystickSource;
     public AudioClip scoreClip;
     public AudioClip deathClip;
     public AudioClip wingFlapClip;
     public AudioClip joystickClip;
     public AudioClip backgroundClip;
+    bool wingAudioPlaying;
+    bool backgroundPlaying;
     GameManager game;
 
     private void Awake()
@@ -29,24 +33,25 @@ public class AudioController : MonoBehaviour {
     {
         if (game.GameOver)
         {
-            backgroundSource.Stop();
+            audioSource.Stop();
+            //birdWingSource.Stop();
+            //joystickSource.Stop();
             return;
         }
-        if (!backgroundSource.isPlaying) {
-            backgroundSource.PlayOneShot(backgroundClip);
+        if (!audioSource.isPlaying) {
+            audioSource.PlayOneShot(backgroundClip);
+            audioSource.PlayOneShot(wingFlapClip);
+        }
+        if (!wingAudioPlaying) {
+            StartCoroutine("PlayBirdWingFlap");
+        }
+        if (!backgroundPlaying) {
+            StartCoroutine("PlayBackground");
         }
 
-
-
+       
     }
-    //private void OnEnable()
-    //{
-    //    InvokeRepeating("AudioOnGamePlay", 1f, 0.01f);
-    //}
-    //private void OnDisable()
-    //{
-    //    CancelInvoke();
-    //}
+
     private void Start()
     {
         game = GameManager.Instance;
@@ -59,6 +64,22 @@ public class AudioController : MonoBehaviour {
 
     }
 
+    IEnumerator PlayBirdWingFlap() {
+        wingAudioPlaying = true;
+        yield return new WaitForSeconds(2.4f);
+        wingAudioPlaying = false;
+        audioSource.PlayOneShot(wingFlapClip);
+    }
+
+    IEnumerator PlayBackground() {
+        // TODO: different levels have background music of different length; 
+        // should not be hard-coded
+        backgroundPlaying = true;
+        yield return new WaitForSeconds(14f);
+        backgroundPlaying = false;
+        audioSource.PlayOneShot(backgroundClip);
+    }
+
     public void AudioOnReward() {
 
     }
@@ -66,12 +87,4 @@ public class AudioController : MonoBehaviour {
     public void AudioOnJoystick() {
 
     }
-
-    //public void AudioOnGamePlay() {
-    //    if (game.GameOver) {
-    //        audioSource.Stop();
-    //    }
-    //    if (audioSource.isPlaying(backgroundClip))
-    //    audioSource.pl
-    //}
 }
