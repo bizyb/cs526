@@ -117,25 +117,19 @@ public class Tap : MonoBehaviour
 
             Dead();
         }
-
-        else if (col.gameObject.tag == "RewardZone")
-        {
-            // make the reward object/food disappear after 
-            // collision and update the fuel meter accordingly
-            col.gameObject.SetActive(false);
-            //Destroy(col.gameObject);
-            health.UpdateHealth(reward, this);
-        }
         else {
             rigidbod.velocity = Vector2.zero;
-            switch (col.gameObject.tag) {
+            switch (col.gameObject.name) {
                 case "TopPerimeter":
+                    Debug.Log("Top perimeter breached!!!");
                     rigidbod.velocity = new Vector2(0, -upForce);
                     break;
                 case "LeftPerimeter":
+                    Debug.Log("Left perimeter breached!!!");
                     rigidbod.velocity = new Vector2(upForce, 0);
                     break;
                 case "RightPerimeter":
+                    Debug.Log("Right perimeter breached!!!");
                     rigidbod.velocity = new Vector2(-upForce, 0);
                     break;
             }
