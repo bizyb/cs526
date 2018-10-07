@@ -148,6 +148,7 @@ public class GameManager : MonoBehaviour
     }
     private void Start()
     {
+        // TODO: store the obstacles in a hash table; 
         health = PlayerHealth.Instance;
         obstacles = new LinkedList<GameObject>();
     }
@@ -188,7 +189,6 @@ public class GameManager : MonoBehaviour
         score = 0;
         gameOver = false;
         startTime = 0; //(Int32)(DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
-        joystickPage.SetActive(true);
         health.UpdateHealth(maxHealth, null);
         healthBar.SetActive(true);
         Debug.Log("Exiting OnCountdownFinished");
@@ -302,6 +302,7 @@ public class GameManager : MonoBehaviour
         //healthBar.SetActive(true);
         //currentScore.SetActive(true);
         //messageContainer.SetActive(true);
+        joystickPage.SetActive(true);
         ChangeBackground(Background.Leg1);
         SetPageState(PageState.Countdown);
         Debug.Log("Exiting StartGame...");

@@ -11,11 +11,6 @@ public class Score : MonoBehaviour
     void OnEnable()
     {
         score = GetComponent<Text>();
-        score.text = "Longest Journey: " + PlayerPrefs.GetInt("HighScore").ToString();
-        if (GameManager.Instance.Score == 1)
-        {
-            score.text += " mile";
-        }
-        else { score.text += " miles"; }
+        score.text = "Highest Score: " + PlayerPrefs.GetInt("HighScore").ToString();
     }
 }

@@ -114,9 +114,9 @@ public class Tap : MonoBehaviour
         if (game.GameOver) { return; }
         if (!isDead)
         {
-           
+            Debug.Log("upForce: " + upForce);
             rigidbod.velocity = Vector2.zero;
-            rigidbod.AddForce(new Vector2(0, 200));
+            rigidbod.AddForce(new Vector2(0, upForce));
             anim.SetTrigger("Flap");
         }
 
