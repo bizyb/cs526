@@ -24,10 +24,10 @@ public class GameManager : MonoBehaviour
     public GameObject bird;
     public GameObject parallaxObjects;
     public GameObject healthBar;
-
+    public GameObject joystickPage;
     public GameObject currentScore;
     public GameObject backgroundOne;
-    //public GameObject backgroundTwo;
+   
     //public GameObject backgroundThree;
     //public GameObject backgroundFour;
     //public GameObject backgroundFive;
@@ -200,6 +200,7 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("Entering OnCountdownFinished");
         SetPageState(PageState.None);
+        joystickPage.SetActive(true);
         OnGameStarted();
         score = 0;
         gameOver = false;
@@ -362,7 +363,8 @@ public class GameManager : MonoBehaviour
         //StartCoroutine("DelayedTransition");
         //SetPageState(PageState.GameOver);
         //CancelInvoke();
-        ShowDeathScreen();
+        joystickPage.SetActive(false);
+        gameOverScreen.gameObject.SetActive(true);
         Debug.Log("Exiting OnPlayerDied");
 
     }
@@ -686,68 +688,7 @@ public class GameManager : MonoBehaviour
         // Set the visual score amount to reflect the current score value.
         scoreText.text = score.ToString();
     }
-    public void ShowDeathScreen()
-    {
-        //if (hasLost == false)
-            //hasLost = true;
-
-        // Enable the game over screen game object.
-        gameOverScreen.gameObject.SetActive(true);
-
-        // Start the Fade coroutine so that the death screen will fade in.
-        //StartCoroutine("FadeDeathScreen");
-
-        // Set spawning to false so that no more asteroids get spawned.
-        //spawning = false;
-    }
-
-    IEnumerator FadeDeathScreen()
-    {
-        // Wait for half a second for a little bit more dynamic effect.
-        yield return new WaitForSeconds(0.0f);
-
-        // Set the text to the final score text plus the user's score.
-        //finalScoreText.text = "Final Score\n" + score.ToString();
-
-        // Create temporary colors to be able to apply a fade to the image and text.
-        Color imageColor = gameOverScreen.color;
-        Color textColor = gameOverText.color;
-        //Color finalScoreTextColor = finalScoreText.color;
-
-        for (float t = 0.0f; t < 1.0f; t += Time.deltaTime * 3f)
-        {
-            // Lerp the alpha of the temp colors from 0 to 0.75 by the amount of t. 
-            imageColor.a = Mathf.Lerp(0.0f, 0.75f, t);
-            textColor.a = Mathf.Lerp(0.0f, 1.0f, t);
-            //finalScoreTextColor.a = Mathf.Lerp(0.0f, 1.0f, t);
-
-            // Apply the temp color to the image and text.
-            gameOverScreen.color = imageColor;
-            gameOverText.color = textColor;
-
-            //finalScoreText.color = finalScoreTextColor;
-
-            // Wait for next frame.
-            yield return null;
-        }
-
-        // Apply a finalized amount to the alpha channels.
-        imageColor.a = 0.75f;
-        textColor.a = 1.0f;
-
-        // Apply the final color values to the image and text.
-        gameOverScreen.color = imageColor;
-        gameOverText.color = textColor;
-    }
-    //void Start()
-    //{
-    //    // Start the spawning timers.
-    //    StartCoroutine("SpawnTimer");
-    //    //StartCoroutine("SpawnHealthTimer");
-
-    //    // Update the score text to reflect the current score on start.
-    //    UpdateScoreText();
-    //}
+  
 
 
 }
