@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using System;
+//using System;
 using System.Collections;
 using UnityEngine.SceneManagement;
 
@@ -24,6 +24,7 @@ public class GameManager : MonoBehaviour
     public GameObject bird;
     public GameObject parallaxObjects;
     public GameObject healthBar;
+
     public GameObject currentScore;
     public GameObject backgroundOne;
     //public GameObject backgroundTwo;
@@ -52,7 +53,43 @@ public class GameManager : MonoBehaviour
 
     // Coco travels at 3 miles per second for 
     // 25 minutes to cover 4500 miles, the distance between Ghana and the UK
-    private readonly int MILES_PER_SEC = 2; 
+    private readonly int MILES_PER_SEC = 2;
+
+
+
+    // Prefabs //
+    [Header("Prefabs")]
+    public GameObject astroidPrefab;
+    //public GameObject debrisPrefab;
+    //public GameObject explosionPrefab;
+    //public GameObject healthPickupPrefab;
+
+    // Spawning Info //
+    bool spawning = true;
+    [Header("Spawning")]
+    public float spawnTimeMin = 5.0f;
+    public float spawnTimeMax = 10.0f;
+    public int startingAsteroids = 2;
+    public float healthSpawnTimeMin = 15.0f;
+    public float healthSpawnTimeMax = 20.0f;
+
+    // Score //
+    [Header("Score")]
+    //public Text scoreText;
+    //public Text finalScoreText;
+    int score = 0;
+    public int asteroidPoints = 50;
+    public int debrisPoints = 10;
+
+    // Game Over //
+    [Header("Game Over")]
+    //public Image gameOverScreen;
+    //public Text gameOverText;
+
+    public int asteroidHealth = 100;
+    public int debrisHealth = 20;
+
+    bool hasLost = false;
 
     enum PageState
     {
@@ -78,7 +115,7 @@ public class GameManager : MonoBehaviour
         Alert5
     }
 
-    int score = 0;
+    //int score = 0;
     bool gameOver;
     bool finalLeg;
 
@@ -106,7 +143,7 @@ public class GameManager : MonoBehaviour
     void OnEnable()
     {
         Debug.Log("Entering OnEnable");
-        startTime = (Int32)(DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
+        startTime = 0; //(Int32)(DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
         //anim = GetComponent<Animator>();
         Tap.OnPlayerDied += OnPlayerDied;
         Tap.OnPlayerScored += OnPlayerScored;
@@ -143,7 +180,7 @@ public class GameManager : MonoBehaviour
         OnGameStarted();
         score = 0;
         gameOver = false;
-        startTime = (Int32)(DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
+        startTime = 0; //(Int32)(DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
         //InvokeRepeating("OnPlayerScored", 1f, 1f); //this is the right place, not OnEnable
         Debug.Log("Exiting OnCountdownFinished");
 
@@ -152,6 +189,7 @@ public class GameManager : MonoBehaviour
 
     }
    
+
 
     /*
      * Scoring is based on time travelled. For every second spent travelling, 
@@ -190,7 +228,7 @@ public class GameManager : MonoBehaviour
         //int elapsed = timeNow - startTime;
 
         score += MILES_PER_SEC;
-        scoreText.text = score.ToString();
+        //scoreText.text = score.ToString();
 
         // Alert the player 
         //if (elapsed >= 0 && elapsed < 50 && !alertSent) {
@@ -550,5 +588,86 @@ public class GameManager : MonoBehaviour
         Debug.Log("Exiting ResetObject...");
 
     }
+
+    void SpawnAsteroid()
+    {
+        // Get a random point within a circle area.
+        Vector2 dir = Random.insideUnitCircle;
+
+        // Create a Vector3 varaible to store the spawn position.
+        Vector3 pos = Vector3.zero;
+
+        // If the X value of the spawn direction is greater than the Y, then spawn the asteroid to the left or right of the screen, determined by the value of dir.
+        if (Mathf.Abs(dir.x) > Mathf.Abs(dir.y))
+            pos = new Vector3(Mathf.Sign(dir.x) * Camera.main.orthographicSize * Camera.main.aspect * 1.3f, dir.y * Camera.main.orthographicSize * 1.2f, 0);
+        // Else the Y value is greater than X, so spawn the asteroid up or down, determined by the value of dir.
+        else
+            pos = new Vector3(dir.x * Camera.main.orthographicSize * Camera.main.aspect * 1.3f, Mathf.Sign(dir.y) * Camera.main.orthographicSize * 1.2f, 0);
+
+        // Create the asteroid game object at the position( determined above ), and at a random rotation.
+        GameObject ast = Instantiate(astroidPrefab, pos, Quaternion.Euler(Random.value * 360.0f, Random.value * 360.0f, Random.value * 360.0f)) as GameObject;
+
+        // Call the setup function on the asteroid with the desired force and torque.
+        ast.GetComponent<AsteroidController>().Setup(-pos.normalized * 1000.0f, Random.insideUnitSphere * Random.Range(500.0f, 1500.0f));
+
+        // Assign the health values to the asteroid.
+        ast.GetComponent<AsteroidController>().health = asteroidHealth;
+        ast.GetComponent<AsteroidController>().maxHealth = asteroidHealth;
+    }
+
+
+    public void ModifyScore(string scoreType = "")
+    {
+        if (hasLost == true)
+            return;
+
+        int scoreMod = 5;
+
+        if (scoreType == "Asteroid")
+            scoreMod = asteroidPoints;
+        else if (scoreType == "Debris")
+            scoreMod = debrisPoints;
+
+        // Increase the score by the appropriate amount.
+        score += scoreMod;
+
+        // Update the score text to reflect the current score.
+        UpdateScoreText();
+    }
+
+    IEnumerator SpawnTimer()
+    {
+        // Wait for a bit before the initial spawn.
+        yield return new WaitForSeconds(0.5f);
+
+        // For as many times as the startingAsteroids variable dictates, spawn an asteroid.
+        for (int i = 0; i < startingAsteroids; i++)
+            SpawnAsteroid();
+
+        // While spawning is true...
+        while (spawning)
+        {
+            // Wait for a range of seconds determined my the min and max variables.
+            yield return new WaitForSeconds(Random.Range(spawnTimeMin, spawnTimeMax));
+
+            // Spawn an asteroid.
+            SpawnAsteroid();
+        }
+    }
+    void UpdateScoreText()
+    {
+        // Set the visual score amount to reflect the current score value.
+        scoreText.text = score.ToString();
+    }
+    void Start()
+    {
+        // Start the spawning timers.
+        StartCoroutine("SpawnTimer");
+        //StartCoroutine("SpawnHealthTimer");
+
+        // Update the score text to reflect the current score on start.
+        UpdateScoreText();
+    }
+
 
 }
