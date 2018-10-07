@@ -34,6 +34,8 @@ public class GameManager : MonoBehaviour
     public Text gameScore;
 
 
+    AudioController audioController;
+
     // scale the game time by this much for debugging purpose
     public readonly float scaleFactor = 0.97f;
     public readonly float gameDuration = 1800f; // 30 minutes
@@ -115,6 +117,7 @@ public class GameManager : MonoBehaviour
         // TODO: store the obstacles in a hash table; 
         health = PlayerHealth.Instance;
         obstacles = new LinkedList<GameObject>();
+        audioController = AudioController.Instance;
     }
     void OnEnable()
     {
@@ -168,6 +171,7 @@ public class GameManager : MonoBehaviour
 
         score++;
         scoreText.text = score.ToString();
+        audioController.AudioOnScore();
         //Debug.Log("Exiting OnPlayerScored");
 
     }
@@ -187,6 +191,7 @@ public class GameManager : MonoBehaviour
         healthBar.SetActive(false);
         gameOverScreen.gameObject.SetActive(true);
         gameScore.text = score.ToString();
+        audioController.AudioOnDeath();
         //Debug.Log("Exiting OnPlayerDied");
 
     }

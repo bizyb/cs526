@@ -19,12 +19,15 @@ public class Tap : MonoBehaviour
     public Vector2 startLoc;
     private Animator anim;
 
+    //Audio
 
+   
     Rigidbody2D rigidbod;
     //public Rigidbody2D Bird { get { return rigidbod; } }
 
     GameManager game;
     PlayerHealth health;
+    AudioController audioController;
     //JoystickController joystick;
 
     //public static Joystick JoystickDirections {get {return Joystick;}}
@@ -74,6 +77,7 @@ public class Tap : MonoBehaviour
         anim = GetComponent<Animator>();
         game = GameManager.Instance;
         health = PlayerHealth.Instance;
+        audioController = AudioController.Instance;
         //joystick = JoystickController.Instance;
         InvokeRepeating("HealthDecay", 1f, 1f);
         //upForce = 20f;

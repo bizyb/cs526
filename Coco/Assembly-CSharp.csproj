@@ -67,6 +67,7 @@
     <Compile Include="Assets\living birds\scripts\lb_Bird.cs" />
     <Compile Include="Assets\living birds\scripts\lb_BirdController.cs" />
     <Compile Include="Assets\living birds\scripts\lb_CrowProximity.cs" />
+    <Compile Include="Assets\Scripts\AudioController.cs" />
     <Compile Include="Assets\Scripts\BackgroundScroll.cs" />
     <Compile Include="Assets\Scripts\CountdownText.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
