@@ -1,9 +1,12 @@
 ﻿<Properties StartupConfiguration="{DEC9D723-7386-76F2-7997-CDF01FCA234B}|">
   <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="Unity.Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/PlayerController.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/PlayerHealth.cs">
     <Files>
-      <File FileName="Assets/Scripts/GameManager.cs" Line="634" Column="64" />
+      <File FileName="Assets/Scripts/GameManager.cs" Line="23" Column="37" />
       <File FileName="Assets/Scripts/PlayerController.cs" Line="10" Column="39" />
+      <File FileName="Assets/Scripts/TouchController.cs" Line="14" Column="6" />
+      <File FileName="Assets/Scripts/Tap.cs" Line="12" Column="50" />
+      <File FileName="Assets/Scripts/PlayerHealth.cs" Line="11" Column="38" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />

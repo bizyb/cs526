@@ -61,6 +61,43 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Plugins\LeoLuz\Virtual Plug and Play Joystick\Samples\Scripts\Projectile.cs" />
+    <Compile Include="Assets\Plugins\LeoLuz\Virtual Plug and Play Joystick\Samples\Scripts\SimpleController.cs" />
+    <Compile Include="Assets\Plugins\LeoLuz\Virtual Plug and Play Joystick\Scripts\AnalogActor.cs" />
+    <Compile Include="Assets\Plugins\LeoLuz\Virtual Plug and Play Joystick\Scripts\AnalogicKnob.cs" />
+    <Compile Include="Assets\Plugins\LeoLuz\Virtual Plug and Play Joystick\Scripts\Input.cs" />
+    <Compile Include="Assets\Plugins\LeoLuz\Virtual Plug and Play Joystick\Scripts\InputDebug.cs" />
+    <Compile Include="Assets\Plugins\LeoLuz\Virtual Plug and Play Joystick\Scripts\TouchScopeToButton.cs" />
+    <Compile Include="Assets\Plugins\LeoLuz\Virtual Plug and Play Joystick\Scripts\UIButtonToAxis.cs" />
+    <Compile Include="Assets\Plugins\LeoLuz\Virtual Plug and Play Joystick\Scripts\UIButtonToButton.cs" />
+    <Compile Include="Assets\Plugins\LeoLuz\Virtual Plug and Play Joystick\Utilities\AnimatorUtility.cs" />
+    <Compile Include="Assets\Plugins\LeoLuz\Virtual Plug and Play Joystick\Utilities\ArrayUtility.cs" />
+    <Compile Include="Assets\Plugins\LeoLuz\Virtual Plug and Play Joystick\Utilities\DebugUtility.cs" />
+    <Compile Include="Assets\Plugins\LeoLuz\Virtual Plug and Play Joystick\Utilities\enableOnTriggerEnter.cs" />
+    <Compile Include="Assets\Plugins\LeoLuz\Virtual Plug and Play Joystick\Utilities\FileUtility.cs" />
+    <Compile Include="Assets\Plugins\LeoLuz\Virtual Plug and Play Joystick\Utilities\Helpful Extention Methods\ColorExtentionMethods.cs" />
+    <Compile Include="Assets\Plugins\LeoLuz\Virtual Plug and Play Joystick\Utilities\Helpful Extention Methods\LayerMaskExtentionMethods.cs" />
+    <Compile Include="Assets\Plugins\LeoLuz\Virtual Plug and Play Joystick\Utilities\Helpful Extention Methods\TypeExtention.cs" />
+    <Compile Include="Assets\Plugins\LeoLuz\Virtual Plug and Play Joystick\Utilities\Helpful Properties Attributtes\AnimatorStateInfo.cs" />
+    <Compile Include="Assets\Plugins\LeoLuz\Virtual Plug and Play Joystick\Utilities\Helpful Properties Attributtes\ExtendLabelAttribute.cs" />
+    <Compile Include="Assets\Plugins\LeoLuz\Virtual Plug and Play Joystick\Utilities\Helpful Properties Attributtes\GetComponentHereAttribute.cs" />
+    <Compile Include="Assets\Plugins\LeoLuz\Virtual Plug and Play Joystick\Utilities\Helpful Properties Attributtes\HideByClausuleAttribute.cs" />
+    <Compile Include="Assets\Plugins\LeoLuz\Virtual Plug and Play Joystick\Utilities\Helpful Properties Attributtes\HideDifferentAttribute.cs" />
+    <Compile Include="Assets\Plugins\LeoLuz\Virtual Plug and Play Joystick\Utilities\Helpful Properties Attributtes\HideIfAnyIsDifferentAttribute.cs" />
+    <Compile Include="Assets\Plugins\LeoLuz\Virtual Plug and Play Joystick\Utilities\Helpful Properties Attributtes\hideIfAttribute_1.cs" />
+    <Compile Include="Assets\Plugins\LeoLuz\Virtual Plug and Play Joystick\Utilities\Helpful Properties Attributtes\InputAxisListDropdownAttribute.cs" />
+    <Compile Include="Assets\Plugins\LeoLuz\Virtual Plug and Play Joystick\Utilities\Helpful Properties Attributtes\LargeHeader.cs" />
+    <Compile Include="Assets\Plugins\LeoLuz\Virtual Plug and Play Joystick\Utilities\Helpful Properties Attributtes\LargeHeaderDrawer.cs" />
+    <Compile Include="Assets\Plugins\LeoLuz\Virtual Plug and Play Joystick\Utilities\Helpful Properties Attributtes\MinMaxSliderAttribute.cs" />
+    <Compile Include="Assets\Plugins\LeoLuz\Virtual Plug and Play Joystick\Utilities\Helpful Properties Attributtes\RangeHideIfDifferentAttribute.cs" />
+    <Compile Include="Assets\Plugins\LeoLuz\Virtual Plug and Play Joystick\Utilities\Helpful Properties Attributtes\RangeReadOnlyIfDifferent.cs" />
+    <Compile Include="Assets\Plugins\LeoLuz\Virtual Plug and Play Joystick\Utilities\Helpful Properties Attributtes\readOnlyAtributes.cs" />
+    <Compile Include="Assets\Plugins\LeoLuz\Virtual Plug and Play Joystick\Utilities\Helpful Properties Attributtes\ReadOnlyIfDifferent.cs" />
+    <Compile Include="Assets\Plugins\LeoLuz\Virtual Plug and Play Joystick\Utilities\InstantiateOnAnimationEvent.cs" />
+    <Compile Include="Assets\Plugins\LeoLuz\Virtual Plug and Play Joystick\Utilities\PerformanceTests.cs" />
+    <Compile Include="Assets\Plugins\LeoLuz\Virtual Plug and Play Joystick\Utilities\RootMotionController.cs" />
+    <Compile Include="Assets\Plugins\LeoLuz\Virtual Plug and Play Joystick\Utilities\stringUtility.cs" />
+    <Compile Include="Assets\Plugins\LeoLuz\Virtual Plug and Play Joystick\Utilities\TextureUtility.cs" />
     <Compile Include="Assets\Plugins\Pixelplacement\iTween\iTween.cs" />
     <Compile Include="Assets\Plugins\Pixelplacement\iTween\Sample\MoveSample.cs" />
     <Compile Include="Assets\Plugins\Pixelplacement\iTween\Sample\RotateSample.cs" />

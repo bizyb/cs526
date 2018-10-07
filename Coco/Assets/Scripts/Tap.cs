@@ -9,8 +9,10 @@ public class Tap : MonoBehaviour
     public delegate void PlayerDelegate();
     public static event PlayerDelegate OnPlayerDied;
     public static event PlayerDelegate OnPlayerScored;
+    static Tap instance;
+    public static Tap Instance{ get { return instance; }}
 
-    public float upForce = 200f;
+    public float upForce;
     public bool isDead = false;
     float reward = 20f;
     float decay = -3.0666f; // player health decay rate per second
@@ -22,6 +24,7 @@ public class Tap : MonoBehaviour
     //public Rigidbody2D Bird { get { return rigidbod; } }
 
     GameManager game;
+    public GameObject joystick;
     PlayerHealth health;
 
 
@@ -29,12 +32,14 @@ public class Tap : MonoBehaviour
     {
         GameManager.OnGameStarted += OnGameStarted;
         GameManager.OnGameOverConfirmed += OnGameOverConfirmed;
+        TouchController.OnJoystickTouch += OnJoystickTouch;
     }
 
     void OnDisable()
     {
         GameManager.OnGameStarted -= OnGameStarted;
         GameManager.OnGameOverConfirmed -= OnGameOverConfirmed;
+        TouchController.OnJoystickTouch -= OnJoystickTouch;
     }
 
     void OnGameStarted()
@@ -64,6 +69,7 @@ public class Tap : MonoBehaviour
         game = GameManager.Instance;
         health = PlayerHealth.Instance;
         InvokeRepeating("HealthDecay", 1f, 1f);
+        upForce = 20f;
 
 
     }
@@ -71,18 +77,32 @@ public class Tap : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (game.GameOver) { return; }
-        if (!isDead)
-        {
+        //if (game.GameOver) { return; }
+        //if (!isDead)
+        //{
 
-            if (Input.GetMouseButtonDown(0))
-            {
-                rigidbod.velocity = Vector2.zero;
-                rigidbod.AddForce(new Vector2(0, upForce));
-                //Debug.Log("current bird y: " + transform.position.y);
-                anim.SetTrigger("Flap");
-            }
-        }
+            //if (Input.GetMouseButtonDown(0))
+            //{
+            //    Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            //    Vector2 mousePos2D = new Vector2(mousePos.x, mousePos.y);
+
+            //    RaycastHit2D hit = Physics2D.Raycast(mousePos2D, Vector2.zero);
+            //    if (hit.collider != null && hit.collider.gameObject == joystick)
+            //    {
+            //        Debug.Log("jostick clicked...");
+            //        //rigidbod.velocity = Vector2.zero;
+            //        //rigidbod.AddForce(new Vector2(0, upForce));
+            //        ////Debug.Log("current bird y: " + transform.position.y);
+            //        //anim.SetTrigger("Flap");
+            //    }
+            //    rigidbod.velocity = Vector2.zero;
+            //    rigidbod.AddForce(new Vector2(0, upForce));
+            //    //Debug.Log("current bird y: " + transform.position.y);
+            //    anim.SetTrigger("Flap");
+
+
+            //}
+        //}
        
         //if (game.backgroundFive.activeInHierarchy && !game.FinalLeg) {
         //    game.FinalLeg = true;
@@ -90,6 +110,17 @@ public class Tap : MonoBehaviour
         //}
 
     }
+    public void OnJoystickTouch() {
+        if (game.GameOver) { return; }
+        if (!isDead)
+        {
+           
+            rigidbod.velocity = Vector2.zero;
+            rigidbod.AddForce(new Vector2(0, upForce));
+            anim.SetTrigger("Flap");
+        }
+
+    } 
 
     void OnTriggerEnter2D(Collider2D col)
     {
