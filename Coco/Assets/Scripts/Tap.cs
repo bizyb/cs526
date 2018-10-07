@@ -10,7 +10,6 @@ public class Tap : MonoBehaviour
     public static event PlayerDelegate OnPlayerDied;
     public static event PlayerDelegate OnPlayerScored;
 
-
     public float upForce = 200f;
     public bool isDead = false;
     float reward = 20f;
@@ -20,6 +19,7 @@ public class Tap : MonoBehaviour
 
 
     Rigidbody2D rigidbod;
+    //public Rigidbody2D Bird { get { return rigidbod; } }
 
     GameManager game;
     PlayerHealth health;
@@ -45,6 +45,7 @@ public class Tap : MonoBehaviour
         isDead = false;
         anim.speed = 1;
         anim.SetTrigger("Flap");
+        //rigidbod.transform.position.x;
     }
 
     void OnGameOverConfirmed()
@@ -78,6 +79,7 @@ public class Tap : MonoBehaviour
             {
                 rigidbod.velocity = Vector2.zero;
                 rigidbod.AddForce(new Vector2(0, upForce));
+                //Debug.Log("current bird y: " + transform.position.y);
                 anim.SetTrigger("Flap");
             }
         }
