@@ -1,14 +1,6 @@
 ﻿<Properties StartupConfiguration="{DEC9D723-7386-76F2-7997-CDF01FCA234B}|">
   <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="Unity.Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/GameManager.cs">
-    <Files>
-      <File FileName="Assets/Scripts/Tap.cs" Line="43" Column="40" />
-      <File FileName="Assets/Scripts/PlayerHealth.cs" Line="15" Column="21" />
-      <File FileName="Assets/Scripts/GameManager.cs" Line="257" Column="39" />
-      <File FileName="Assets/Scripts/BackgroundScroll.cs" Line="11" Column="20" />
-      <File FileName="Assets/Scripts/AudioController.cs" Line="34" Column="47" />
-    </Files>
-  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workbench />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
