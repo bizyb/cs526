@@ -19,8 +19,8 @@ public class Tap : MonoBehaviour
     public Vector2 startLoc;
     private Animator anim;
 
-    bool canPlayAudio;
-    public bool CanPlayAudio{ get { return CanPlayAudio; }}
+    //bool canPlayAudio;
+    //public bool CanPlayAudio{ get { return canPlayAudio; }}
 
   
    
@@ -58,7 +58,7 @@ public class Tap : MonoBehaviour
         isDead = false;
         anim.speed = 1;
         anim.SetTrigger("Flap");
-        canPlayAudio = true;
+        //canPlayAudio = true;
         //upForce = 100f;
         //downForce = -200f; // the bird is a bit bouncy but it's fine
         //rigidbod.transform.position.x;
@@ -154,13 +154,14 @@ public class Tap : MonoBehaviour
         // page loads
 
         // play sound, update score, etc
-        canPlayAudio = false;
+        //canPlayAudio = false;
         isDead = true;
         rigidbod.simulated = false;
         rigidbod.velocity = Vector2.zero;
         //anim.SetTrigger("Idle");
         //anim.speed = 0;
         //health.UpdateHealth(100f, this); //restore the health for next time
+        audioController.AudioOnDeath();
 
         OnPlayerDied("");
 

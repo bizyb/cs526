@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Simple Health Bar/_Asteroids Example/Scenes/Example_Asteroids.unity
+- path: Assets/Scenes/Level1.unity
   isLoaded: 1
   isActive: 1
