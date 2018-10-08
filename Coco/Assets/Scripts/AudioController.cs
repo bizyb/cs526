@@ -31,7 +31,7 @@ public class AudioController : MonoBehaviour {
     private void Update()
     {
        
-        if (game.GameOver)
+        if (game.GameOver || !game.GameStarted)
         {
             wingAudioSrc.Stop();
             backgroundAudioSrc.Stop();

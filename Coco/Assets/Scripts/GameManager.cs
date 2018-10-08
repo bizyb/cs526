@@ -32,6 +32,7 @@ public class GameManager : MonoBehaviour
     public int startTime;
     public Text scoreText;
     public Text gameScore;
+    public Rigidbody2D birdRigidBody;
 
 
     AudioController audioController;
@@ -90,7 +91,9 @@ public class GameManager : MonoBehaviour
     //int score = 0;
     bool gameOver;
     bool finalLeg;
+    bool gameStarted;
     //bool stopAllAudio;
+    public bool GameStarted { get { return gameStarted; }}
     public bool GameOver { get { return gameOver; } }
     //public bool StopAllAudio { get { return stopAllAudio; }}
     public int Score { get { return score; }}
@@ -116,14 +119,17 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         // TODO: store the obstacles in a hash table; 
+       
         health = PlayerHealth.Instance;
         obstacles = new LinkedList<GameObject>();
         audioController = AudioController.Instance;
     }
     void OnEnable()
     {
-   
-        StartCoroutine("SpawnTimer");
+        SetPageState(PageState.Start);
+        bird.SetActive(false);
+        joystickPage.SetActive(false);
+        healthBar.SetActive(false);
         startTime = 0; //(Int32)(DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
         Tap.OnPlayerDied += OnPlayerDied;
         TouchController.OnPlayerScored += OnPlayerScored;
@@ -151,9 +157,12 @@ public class GameManager : MonoBehaviour
         OnGameStarted();
         score = 0;
         gameOver = false;
+        gameStarted = true;
         startTime = 0; //(Int32)(DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
         health.UpdateHealth(maxHealth, null);
+        joystickPage.SetActive(true);
         healthBar.SetActive(true);
+        StartCoroutine("SpawnTimer");
         //Debug.Log("Exiting OnCountdownFinished");
 
 
@@ -181,6 +190,7 @@ public class GameManager : MonoBehaviour
     void OnPlayerDied(string optional)
     {
         //Debug.Log("Entering OnPlayerDied");
+        gameStarted = false;
         gameOver = true;
         int savedScore = PlayerPrefs.GetInt("HighScore");
         if (score > savedScore)
@@ -248,12 +258,15 @@ public class GameManager : MonoBehaviour
         scoreText.text = "0";
         ResetObjects();
         OnGameOverConfirmed();
+        bird.SetActive(false);
 
     }
 
     public void StartGame()
     {
-        //Debug.Log("Entering StartGame...");
+        //Debug.Log("Entering StartGame...")
+        bird.SetActive(true);
+        birdRigidBody.simulated = false;
         joystickPage.SetActive(true);
         SetBackground();
         SetPageState(PageState.Countdown);
@@ -319,7 +332,7 @@ public class GameManager : MonoBehaviour
     }
     public void CloseAbout()
     {
-        Debug.Log("about close clicked");
+       
         aboutPage.SetActive(false);
     }
     public void CloseCredits()

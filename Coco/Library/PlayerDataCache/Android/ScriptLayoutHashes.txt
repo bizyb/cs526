@@ -187,7 +187,7 @@ aac9c55ae7ba4b95b852a7d9c191acd1 Unity.TextMeshPro.dll:TMPro.TextMeshProUGUI
 486cd95c82d8305219c352c06b776e1f Assembly-CSharp-firstpass.dll:.RotateSample
 0a006f3734181ba8b26758f0866152c0 UnityEngine.SpatialTracking.dll:UnityEngine.SpatialTracking.TrackedPoseDriver
 e5da7174a6fb1e7e00e067484e6bffdf Assembly-CSharp-firstpass.dll:.InputDebug
-4d6375dc84d7fde78844ee1307ec09c6 Assembly-CSharp.dll:.GameManager
+f15635290ebd2f7f2758934c94c334ce Assembly-CSharp.dll:.GameManager
 52b755f6fb6aa3997f7a6840dc02fb20 Assembly-CSharp-firstpass.dll:.PerformanceTests
 a57f9f24207e28805bd2919faec2014d Assembly-CSharp-firstpass.dll:.AnalogActor
 e04611b8715e6833d2bd7010fc6be10b Unity.TextMeshPro.dll:TMPro.TMP_StyleSheet
@@ -199,5 +199,5 @@ e04611b8715e6833d2bd7010fc6be10b Unity.TextMeshPro.dll:TMPro.TMP_StyleSheet
 9318334b30e9f195f573b2ce00154b95 Unity.TextMeshPro.dll:TMPro.TMP_ColorGradient
 93307bd34e39d73fd24e00ec39c25a91 Unity.TextMeshPro.dll:TMPro.TMP_SubMesh
 e6838bc6d791348a73d0267f86f5d7af Assembly-CSharp-firstpass.dll:.SimpleController
-c7edc8f192e892ba7e651c559d8f00f7 Assembly-CSharp.dll:.PlayerHealth
+971a636f1c87325d0312fdbd335e1e99 Assembly-CSharp.dll:.PlayerHealth
 04cd321e37abf52fa1c2913a3e5d427e Assembly-CSharp.dll:.livingBirdsDemoScript

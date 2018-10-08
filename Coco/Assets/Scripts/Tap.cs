@@ -19,11 +19,6 @@ public class Tap : MonoBehaviour
     public Vector2 startLoc;
     private Animator anim;
 
-    //bool canPlayAudio;
-    //public bool CanPlayAudio{ get { return canPlayAudio; }}
-
-  
-   
     Rigidbody2D rigidbod;
 
     GameManager game;
@@ -58,10 +53,9 @@ public class Tap : MonoBehaviour
         isDead = false;
         anim.speed = 1;
         anim.SetTrigger("Flap");
-        //canPlayAudio = true;
         //upForce = 100f;
         //downForce = -200f; // the bird is a bit bouncy but it's fine
-        //rigidbod.transform.position.x;
+       
     }
 
     void OnGameOverConfirmed()
@@ -69,7 +63,6 @@ public class Tap : MonoBehaviour
         transform.localPosition = startLoc;
         anim.speed = 1;
         TouchController.OnJoystickTouch += OnJoystickTouch;
-        //anim.SetTrigger("Idle");
     }
 
     // Use this for initialization
@@ -81,7 +74,6 @@ public class Tap : MonoBehaviour
         game = GameManager.Instance;
         health = PlayerHealth.Instance;
         audioController = AudioController.Instance;
-        //joystick = JoystickController.Instance;
         InvokeRepeating("HealthDecay", 1f, 1f);
         //upForce = 20f;
         //downForce = -200f;
@@ -95,7 +87,7 @@ public class Tap : MonoBehaviour
         if (game.GameOver) { return; }
         if (!isDead)
         {
-            Debug.Log("Force: " + upForce);
+           
             rigidbod.velocity = Vector2.zero;
             switch (direction) {
                 case "Up":
