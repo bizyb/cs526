@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="false"
+        jar="/Users/biz/Documents/cs526/Coco/Temp/gradleOut/libs/unity-classes.jar"
+        jumboMode="false"
+        min-sdk-version="22"
+        optimize="true"
+        revision="28.0.3"
+        sha1="2567e6c17f522163d556902f6c8685eeb0837604">
+        <dex dex="/Users/biz/Documents/cs526/Coco/Temp/gradleOut/build/intermediates/transforms/preDex/release/1.jar" />
+    </item>
+
+</items>
