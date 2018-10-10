@@ -124,7 +124,7 @@ GameObject:
   - component: {fileID: 28012874}
   - component: {fileID: 28012873}
   m_Layer: 5
-  m_Name: HowToPlayText
+  m_Name: CreditsText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -180,12 +180,11 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "In order to play, tap on the control pad. The bird will fly up if the up
-    arrow is pressed. Likewise, it will fly down if the down arrow is pressed. \n\nWhile
-    tapping with one hand, you must try to kill the obstacles with your other hand.
-    In order to kill the obstacles, just tap them one at a time. Avoid getting killed
-    by making sure that the obstacles never reach bird. If you don't killl them, they
-    will follow the bird and kill it."
+  m_Text: "Design, Ideation, Art Work, Music, Game Logic, and Implementation by Suhas
+    Udeda and Bizuwork Melesse\n\nWe have used Flat Icon generously for initial prototyping
+    of the game and later inspirations. \n\nWe like to thank all friends and family
+    members who helped us with some Photoshopping techniques to bring our characters
+    alive. "
 --- !u!222 &28012874
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -498,7 +497,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &186879779
 RectTransform:
   m_ObjectHideFlags: 0
@@ -614,6 +613,107 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4583771013703390, guid: 5da81115de200480fa07b1d268a79ef2,
     type: 2}
   m_PrefabInternal: {fileID: 1812425558}
+--- !u!1 &323597950
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 323597951}
+  - component: {fileID: 323597953}
+  - component: {fileID: 323597952}
+  m_Layer: 0
+  m_Name: Center
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &323597951
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 323597950}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -196.7, y: -427.6, z: -11512.401}
+  m_LocalScale: {x: 22.021944, y: 22.021944, z: 22.021944}
+  m_Children: []
+  m_Father: {fileID: 1766302025}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &323597952
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 323597950}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 5.12, y: 4.34}
+    newSize: {x: 5.12, y: 5.12}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 5.12, y: 5.12}
+  m_EdgeRadius: 0
+--- !u!212 &323597953
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 323597950}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 21300000, guid: bf82712051684454bba6695a9bb6d1c4, type: 3}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 5.12, y: 5.12}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
 --- !u!1 &363984783
 GameObject:
   m_ObjectHideFlags: 0
@@ -2156,7 +2256,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 49567aff29490402f961743ddda6d08b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: bf82712051684454bba6695a9bb6d1c4, type: 3}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -2174,7 +2274,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 769738722}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -193.5071, y: -560.5174, z: -11512.401}
+  m_LocalPosition: {x: -197, y: -514, z: -11512.401}
   m_LocalScale: {x: 22.022047, y: 22.022047, z: 22.022047}
   m_Children: []
   m_Father: {fileID: 1766302025}
@@ -2196,7 +2296,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 5.12, y: 5.12}
+    oldSize: {x: 5.12, y: 4.34}
     newSize: {x: 5.12, y: 5.12}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -2972,7 +3072,7 @@ GameObject:
   - component: {fileID: 1226646700}
   - component: {fileID: 1226646699}
   m_Layer: 5
-  m_Name: HowToPlayText
+  m_Name: AboutText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2991,10 +3091,10 @@ RectTransform:
   m_Father: {fileID: 660315063}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.13900001}
-  m_AnchorMax: {x: 0.8265621, y: 0.96500003}
-  m_AnchoredPosition: {x: 53.07202, y: -49}
-  m_SizeDelta: {x: -25.7, y: -98}
+  m_AnchorMin: {x: 0, y: 0.10927053}
+  m_AnchorMax: {x: 0.88543785, y: 0.96500003}
+  m_AnchoredPosition: {x: 44.7, y: -49.05}
+  m_SizeDelta: {x: -42.5, y: -97.892}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1226646699
 MonoBehaviour:
@@ -3028,12 +3128,13 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "In order to play, tap on the control pad. The bird will fly up if the up
-    arrow is pressed. Likewise, it will fly down if the down arrow is pressed. \n\nWhile
-    tapping with one hand, you must try to kill the obstacles with your other hand.
-    In order to kill the obstacles, just tap them one at a time. Avoid getting killed
-    by making sure that the obstacles never reach bird. If you don't killl them, they
-    will follow the bird and kill it."
+  m_Text: "Coco's Odyssey is a game about a bird carrying coconuts from a tropical
+    region to a temperate zone. It's an allusion to Monty Python's Monty Python and
+    the Holy Grail, where a castle guard argues with King Arthur the practicality
+    of a swallow carrying coconuts, tropical fruits, to England, a temperate region.
+    \n\nIt's an odyssey because Coco has to overcome a lot of airborne obstacles while
+    keeping the coconuts intact on a very long journey, approximately 5000 miles.
+    \ "
 --- !u!222 &1226646700
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3849,7 +3950,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 6a9ccca13a22c4070a8b3142a2deb301, type: 3}
+  m_Sprite: {fileID: 21300000, guid: bf82712051684454bba6695a9bb6d1c4, type: 3}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -3867,7 +3968,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1446620090}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -309.01483, y: -437.84637, z: -11512.401}
+  m_LocalPosition: {x: -299.1, y: -426.6, z: -11512.401}
   m_LocalScale: {x: 22.022047, y: 22.022047, z: 22.022047}
   m_Children: []
   m_Father: {fileID: 1766302025}
@@ -3889,7 +3990,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 5.12, y: 5.12}
+    oldSize: {x: 5.12, y: 4.34}
     newSize: {x: 5.12, y: 5.12}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -4387,7 +4488,7 @@ MonoBehaviour:
     arrow is pressed. Likewise, it will fly down if the down arrow is pressed. \n\nWhile
     tapping with one hand, you must try to kill the obstacles with your other hand.
     In order to kill the obstacles, just tap them one at a time. Avoid getting killed
-    by making sure that the obstacles never reach bird. If you don't killl them, they
+    by making sure that the obstacles never reach Coco. If you don't killl them, they
     will follow the bird and kill it."
 --- !u!222 &1666100981
 CanvasRenderer:
@@ -4448,7 +4549,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: c6daf565d61584deb8b826fe5fb541f5, type: 3}
+  m_Sprite: {fileID: 21300000, guid: bf82712051684454bba6695a9bb6d1c4, type: 3}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -4466,7 +4567,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1723181206}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -196.0654, y: -322.2107, z: -11512.401}
+  m_LocalPosition: {x: -196.7, y: -341.6, z: -11512.401}
   m_LocalScale: {x: 22.022047, y: 22.022047, z: 22.022047}
   m_Children: []
   m_Father: {fileID: 1766302025}
@@ -4488,7 +4589,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 5.12, y: 5.12}
+    oldSize: {x: 5.12, y: 4.34}
     newSize: {x: 5.12, y: 5.12}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -4527,6 +4628,7 @@ RectTransform:
   - {fileID: 769738724}
   - {fileID: 1872793685}
   - {fileID: 1446620092}
+  - {fileID: 323597951}
   m_Father: {fileID: 602017255}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4821,7 +4923,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: e461adedeeeea45cfa321c36ba7a3677, type: 3}
+  m_Sprite: {fileID: 21300000, guid: bf82712051684454bba6695a9bb6d1c4, type: 3}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -4839,7 +4941,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1872793683}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -79.918076, y: -443.09088, z: -11512.401}
+  m_LocalPosition: {x: -94.1, y: -428.2, z: -11512.401}
   m_LocalScale: {x: 22.022045, y: 22.022045, z: 22.022045}
   m_Children: []
   m_Father: {fileID: 1766302025}
@@ -4861,7 +4963,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 5.12, y: 5.12}
+    oldSize: {x: 5.12, y: 4.34}
     newSize: {x: 5.12, y: 5.12}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
