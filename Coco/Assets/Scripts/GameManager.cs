@@ -182,6 +182,7 @@ public class GameManager : MonoBehaviour
         score++;
         scoreText.text = score.ToString();
         audioController.AudioOnScore();
+        health.UpdateHealth(5f, null);
         //Debug.Log("Exiting OnPlayerScored");
 
     }
