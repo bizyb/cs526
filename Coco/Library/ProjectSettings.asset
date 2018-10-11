@@ -13,7 +13,7 @@ PlayerSettings:
   useOnDemandResources: 0
   accelerometerFrequency: 60
   companyName: Coco Puffs
-  productName: Coco's Odyssey
+  productName: Coco
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 0.13725491, g: 0.12156863, b: 0.1254902, a: 1}
@@ -261,7 +261,7 @@ PlayerSettings:
   - m_BuildTarget: 
     m_Icons:
     - serializedVersion: 2
-      m_Icon: {fileID: 2800000, guid: 216df85b1710f4cdca49dbe4dedf466c, type: 3}
+      m_Icon: {fileID: 2800000, guid: bf92ab7cf9d9a423393f44cbf08f1752, type: 3}
       m_Width: 128
       m_Height: 128
       m_Kind: 0
