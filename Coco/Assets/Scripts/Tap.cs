@@ -52,7 +52,7 @@ public class Tap : MonoBehaviour
         rigidbod.simulated = true;
         isDead = false;
         anim.speed = 1;
-        anim.SetTrigger("Flap");
+        anim.SetTrigger("FlapCoco");
         //upForce = 100f;
         //downForce = -200f; // the bird is a bit bouncy but it's fine
        
@@ -106,7 +106,7 @@ public class Tap : MonoBehaviour
                     rigidbod.velocity = new Vector2(upForce, 0);
                     break;
             }
-            anim.SetTrigger("Flap");
+            anim.SetTrigger("FlapCoco");
         }
 
     } 
