@@ -108,7 +108,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45ddc182fec8c475d9ffcf8a94c9c178, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  upForce: 200
   isDead: 0
   startLoc: {x: 0, y: 0}
 --- !u!212 &212628569705968986
