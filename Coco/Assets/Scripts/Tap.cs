@@ -15,7 +15,7 @@ public class Tap : MonoBehaviour
     //readonly float downForce = -20f;
     public bool isDead = false;
     float reward = 20f;
-    float decay = -3.0666f; // player health decay rate per second
+    float decay = -1.0666f; // player health decay rate per second
     public Vector2 startLoc;
     private Animator anim;
 
