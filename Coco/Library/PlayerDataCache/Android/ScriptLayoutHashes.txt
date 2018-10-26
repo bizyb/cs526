@@ -201,3 +201,5 @@ e04611b8715e6833d2bd7010fc6be10b Unity.TextMeshPro.dll:TMPro.TMP_StyleSheet
 e6838bc6d791348a73d0267f86f5d7af Assembly-CSharp-firstpass.dll:.SimpleController
 971a636f1c87325d0312fdbd335e1e99 Assembly-CSharp.dll:.PlayerHealth
 04cd321e37abf52fa1c2913a3e5d427e Assembly-CSharp.dll:.livingBirdsDemoScript
+486cd95c82d8305219c352c06b776e1f UnityStore.dll:UnityEngine.Store.MainThreadDispatcher
+7410d44997c0b1ca947fd4a8af5fe9da XiaomiSupport.dll:AppStoresSupport.AppStoreSettings
