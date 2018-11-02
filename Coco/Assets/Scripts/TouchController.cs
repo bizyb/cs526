@@ -31,6 +31,7 @@ public class TouchController : MonoBehaviour
         
             return;
         }
+
         if (Input.GetMouseButtonDown(0))
         {
            

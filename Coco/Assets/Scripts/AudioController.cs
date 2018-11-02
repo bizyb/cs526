@@ -15,10 +15,9 @@ public class AudioController : MonoBehaviour {
     public AudioClip rewardClip;
     public AudioClip deathClip;
     public AudioClip wingFlapClip;
-    //public AudioClip joystickClip;
     public AudioClip backgroundClip;
     GameManager game;
-    Tap tapController;
+    //Tap tapController;
 
     private void Awake()
     {
@@ -51,7 +50,7 @@ public class AudioController : MonoBehaviour {
     private void Start()
     {
         game = GameManager.Instance;
-        tapController = Tap.Instance;
+        //tapController = Tap.Instance;
     }
    
     public void AudioOnScore() {

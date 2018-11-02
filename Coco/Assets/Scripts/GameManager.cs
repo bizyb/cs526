@@ -39,13 +39,10 @@ public class GameManager : MonoBehaviour
 
     AudioController audioController;
 
-    // scale the game time by this much for debugging purpose
-    public readonly float scaleFactor = 0.97f;
+   
     public readonly float gameDuration = 1800f; // 30 minutes
     readonly float maxHealth = 100f;
     readonly int obstacleBonus = 1;
-    //readonly int rewardBonus = 25;
-    //readonly float healthBonusKill = 5f;
     readonly float healthBonusOnCoin = 25f;
 
     [System.Serializable]
@@ -234,7 +231,7 @@ public class GameManager : MonoBehaviour
 
     void SpawnRewardAnim(GameObject prefab, Vector3 pos) {
 
-        GameObject healthSpawn = Instantiate(prefab, pos, Quaternion.Euler(0, 0, 0)) as GameObject;
+        Instantiate(prefab, pos, Quaternion.Euler(0, 0, 0));
 
     }
 
@@ -387,11 +384,8 @@ public class GameManager : MonoBehaviour
 
     IEnumerator RewardSpawnTimer()
     {
-        // Wait for a bit before the initial spawn.
-        //yield return new WaitForSeconds(1f);
-        SpawnReward();
 
-        // While spawning is true...
+        SpawnReward();
         while (spawning)
         {
             // Wait for a range of seconds determined my the min and max variables.

@@ -23,19 +23,13 @@ public class RandomPath : MonoBehaviour
     {
        
         if (game.GameOver) {
-            // prefab only applies to rewards, i.e. coins
-            //if (rewardPrefab == null)
-            //{
-            //    anim.SetTrigger("Idle");
-            //}
             anim.speed = 0;
             return; 
         }
 
-        // All non
+       
         if (rewardPrefab == null && game.GameStarted) { anim.SetTrigger("Flap"); }
-        //else { anim.SetTrigger("RotateCoin"); }
-
+       
         target = game.bird.transform;
         // The step size is equal to speed times frame time.
         if (target != null)

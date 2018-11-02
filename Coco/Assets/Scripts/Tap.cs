@@ -15,7 +15,7 @@ public class Tap : MonoBehaviour
     //readonly float downForce = -20f;
     public bool isDead = false;
     float reward = 20f;
-    float decay = -1.0666f; // player health decay rate per second
+    float decay = -2.0f; // player health decay rate per second
     public Vector2 startLoc;
     private Animator anim;
 
@@ -65,7 +65,6 @@ public class Tap : MonoBehaviour
         TouchController.OnJoystickTouch += OnJoystickTouch;
     }
 
-    // Use this for initialization
     void Start()
     {
 
@@ -78,8 +77,6 @@ public class Tap : MonoBehaviour
         anim.speed = 0;
         //upForce = 20f;
         //downForce = -200f;
-
-
 
     }
 
@@ -144,17 +141,10 @@ public class Tap : MonoBehaviour
 
     public void Dead()
     {
-        // TODO: make sure the bird is restored to its idle state when the start 
-        // page loads
 
-        // play sound, update score, etc
-        //canPlayAudio = false;
         isDead = true;
         rigidbod.simulated = false;
         rigidbod.velocity = Vector2.zero;
-        //anim.SetTrigger("Idle");
-        //anim.speed = 0;
-        //health.UpdateHealth(100f, this); //restore the health for next time
         audioController.AudioOnDeath();
 
         OnPlayerDied(null, Vector3.zero);
