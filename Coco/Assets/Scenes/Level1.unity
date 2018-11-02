@@ -1273,7 +1273,7 @@ Prefab:
     - target: {fileID: 58018565145198974, guid: b3da629128a004143ac2dffb94e07fef,
         type: 2}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1727207803954452, guid: b3da629128a004143ac2dffb94e07fef, type: 2}
       propertyPath: m_IsActive
@@ -3760,13 +3760,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Coco's Odyssey is a game about a bird carrying coconuts from a tropical
-    region to a temperate zone. It's an allusion to Monty Python's Monty Python and
-    the Holy Grail, where a castle guard argues with King Arthur the practicality
-    of a swallow carrying coconuts, tropical fruits, to England, a temperate region.
-    \n\nIt's an odyssey because Coco has to overcome a lot of airborne obstacles while
-    keeping the coconuts intact on a very long journey, approximately 5000 miles.
-    \ "
+  m_Text: "Coco\u2019s is carrying coconuts across a vast distance, from the tropical
+    forests of West Africa to a castle in Europe. Along the way, he encounters some
+    unfriendly companions. Help him deliver the coconuts without getting killed."
 --- !u!222 &1226646700
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5165,12 +5161,10 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "In order to play, tap on the control pad. The bird will fly up if the up
-    arrow is pressed. Likewise, it will fly down if the down arrow is pressed. \n\nWhile
-    tapping with one hand, you must try to kill the obstacles with your other hand.
-    In order to kill the obstacles, just tap them one at a time. Avoid getting killed
-    by making sure that the obstacles never reach Coco. If you don't killl them, they
-    will follow the bird and kill it."
+  m_Text: In order to play the game, tap on the control pad. Coco will fly in whichever
+    direction the control is tapped. While tapping with one hand, tap on the obstacles
+    with your other hand to kill them. Otherwise, the obstacles will come find Coco
+    and kill him.
 --- !u!222 &1666100981
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5629,7 +5623,7 @@ CircleCollider2D:
     type: 2}
   m_PrefabInternal: {fileID: 479463922}
   m_GameObject: {fileID: 1892697264}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
