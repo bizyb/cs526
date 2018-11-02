@@ -391,7 +391,7 @@ public class GameManager : MonoBehaviour
     IEnumerator Difficulty() {
 
         while (true) {
-            yield return new WaitForSeconds(30);
+            yield return new WaitForSeconds(60);
             startingObstacles++;
             //Debug.Log("startingObstacles: " + startingObstacles);
 
