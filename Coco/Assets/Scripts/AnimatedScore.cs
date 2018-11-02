@@ -6,7 +6,7 @@ public class AnimatedScore : MonoBehaviour {
 
     public GameObject destPreFab;
     private Transform target;
-    private float speed = 16f;
+    public float speed;
 
     // Update is called once per frame
     void Update () {

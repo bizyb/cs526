@@ -9,12 +9,28 @@ public class TouchController : MonoBehaviour
     public static event PlayerDelegate OnJoystickTouch;
     public static event PlayerDelegate OnPlayerScored;
 
-   
+    public GameManager game;
+    private Animator anim;
+
+    private void Start()
+    {
+        game = GameManager.Instance;
+        anim = GetComponent<Animator>();
+    }
+
+
     void Update()
     {
         //TODO: if the bird touches the joystick while falling, it will slow down
         // this shouldn't happen; its velocity should stay the same
 
+        if (game.GameOver) {
+            // not all objects have an animator component, e.g. joystick 
+            // controls have none
+            if (anim != null) { anim.speed = 0; }
+        
+            return;
+        }
         if (Input.GetMouseButtonDown(0))
         {
            

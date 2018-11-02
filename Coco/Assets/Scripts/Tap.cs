@@ -61,7 +61,7 @@ public class Tap : MonoBehaviour
     void OnGameOverConfirmed()
     {
         transform.localPosition = startLoc;
-        anim.speed = 1;
+        anim.speed = 0;
         TouchController.OnJoystickTouch += OnJoystickTouch;
     }
 
@@ -75,6 +75,7 @@ public class Tap : MonoBehaviour
         health = PlayerHealth.Instance;
         audioController = AudioController.Instance;
         InvokeRepeating("HealthDecay", 1f, 1f);
+        anim.speed = 0;
         //upForce = 20f;
         //downForce = -200f;
 
@@ -119,6 +120,7 @@ public class Tap : MonoBehaviour
         {
 
             Dead();
+            anim.speed = 0;
         }
         else {
             rigidbod.velocity = Vector2.zero;
