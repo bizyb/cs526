@@ -1622,11 +1622,13 @@ MonoBehaviour:
     maxX: 6
   gameOverScreen: {fileID: 1291140243}
   gameOverText: {fileID: 376169337}
-  obstacleA: {fileID: 736980245}
-  obstacleB: {fileID: 736980245}
-  obstacleC: {fileID: 736980245}
+  eagle: {fileID: 159453142}
+  goose: {fileID: 1070591120}
+  dragonOne: {fileID: 8953616}
+  dragonTwo: {fileID: 736980245}
+  jellyfish: {fileID: 867522713}
   rewardPrefab: {fileID: 1542689818}
-  startingObstacles: 3
+  startingObstacles: 5
   spawnTimeMin: 5
   spawnTimeMax: 10
   rewardSpawnTimeMin: 10

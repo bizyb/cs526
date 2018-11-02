@@ -1,9 +1,9 @@
 ﻿<Properties StartupConfiguration="{DEC9D723-7386-76F2-7997-CDF01FCA234B}|">
   <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="Unity.Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/RandomPath.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/GameManager.cs">
     <Files>
       <File FileName="Assets/Scripts/Tap.cs" Line="55" Column="37" />
-      <File FileName="Assets/Scripts/RandomPath.cs" Line="31" Column="58" />
+      <File FileName="Assets/Scripts/GameManager.cs" Line="71" Column="32" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />

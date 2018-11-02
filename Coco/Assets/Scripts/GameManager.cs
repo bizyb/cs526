@@ -68,9 +68,11 @@ public class GameManager : MonoBehaviour
 
     // Prefabs //
     [Header("Prefabs")]
-    public GameObject obstacleA;
-    public GameObject obstacleB;
-    public GameObject obstacleC;
+    public GameObject eagle;
+    public GameObject goose;
+    public GameObject dragonOne;
+    public GameObject dragonTwo;
+    public GameObject jellyfish;
     public GameObject rewardPrefab;
     public int startingObstacles = 5;
 
@@ -333,7 +335,10 @@ public class GameManager : MonoBehaviour
 
         // Each level has at most three different types of obstacles
         // Randomly select which one to spawn
-        GameObject[] prefabs = { obstacleA, obstacleB, obstacleC };
+        // Spawn proportionality: Eagle 30%; Goose 30%, Jellyfish 20%, DragonOne 10%, 
+        // DragonTwo, 10% 
+
+        GameObject[] prefabs = { eagle, eagle, eagle, goose, goose, goose, dragonOne, dragonTwo, jellyfish, jellyfish };
         GameObject obstaclePrefab = prefabs.RandomItem();
 
         Vector2 dir = Vector2.zero;
