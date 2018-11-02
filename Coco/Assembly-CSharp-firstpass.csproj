@@ -98,11 +98,6 @@
     <Compile Include="Assets\Plugins\LeoLuz\Virtual Plug and Play Joystick\Utilities\RootMotionController.cs" />
     <Compile Include="Assets\Plugins\LeoLuz\Virtual Plug and Play Joystick\Utilities\stringUtility.cs" />
     <Compile Include="Assets\Plugins\LeoLuz\Virtual Plug and Play Joystick\Utilities\TextureUtility.cs" />
-    <Compile Include="Assets\Plugins\Pixelplacement\iTween\iTween.cs" />
-    <Compile Include="Assets\Plugins\Pixelplacement\iTween\Sample\MoveSample.cs" />
-    <Compile Include="Assets\Plugins\Pixelplacement\iTween\Sample\RotateSample.cs" />
-    <Compile Include="Assets\Plugins\Pixelplacement\iTween\Sample\SampleInfo.cs" />
-    <None Include="Assets\Plugins\Pixelplacement\iTween\ReadMe!\ReadMe!.txt" />
     <Reference Include="UnityEditor.StandardEvents">
       <HintPath>/Users/biz/Documents/cs526/Coco/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
     </Reference>
