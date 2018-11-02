@@ -1,11 +1,13 @@
 ﻿<Properties StartupConfiguration="{DEC9D723-7386-76F2-7997-CDF01FCA234B}|">
   <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="Unity.Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Tap.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/AudioController.cs">
     <Files>
-      <File FileName="Assets/Scripts/GameManager.cs" Line="185" Column="39" />
-      <File FileName="Assets/Scripts/PlayerHealth.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/GameManager.cs" Line="193" Column="43" />
       <File FileName="Assets/Scripts/Tap.cs" Line="36" Column="51" />
-      <File FileName="Assets/Scripts/RandomPath.cs" Line="11" Column="5" />
+      <File FileName="Assets/Scripts/RandomPath.cs" Line="24" Column="8" />
+      <File FileName="Assets/Scripts/TouchController.cs" Line="50" Column="21" />
+      <File FileName="Assets/Scripts/PlayerHealth.cs" Line="9" Column="69" />
+      <File FileName="Assets/Scripts/AudioController.cs" Line="64" Column="30" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />

@@ -8,9 +8,11 @@ public class AudioController : MonoBehaviour {
     public static AudioController Instance {get { return audioController;} }
 
     public AudioSource mainAudioSrc;
+    public AudioSource rewardAudioSrc;
     public AudioSource backgroundAudioSrc;
     public AudioSource wingAudioSrc;
     public AudioClip scoreClip;
+    public AudioClip rewardClip;
     public AudioClip deathClip;
     public AudioClip wingFlapClip;
     //public AudioClip joystickClip;
@@ -62,7 +64,7 @@ public class AudioController : MonoBehaviour {
     }
 
     public void AudioOnReward() {
-
+        rewardAudioSrc.PlayOneShot(rewardClip);
     }
 
     public void AudioOnJoystick() {

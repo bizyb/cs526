@@ -42,10 +42,14 @@ public class TouchController : MonoBehaviour
                 }
                 else
                 {
+                    string optional = null;
+                    if (hit.collider.gameObject.name == "Coin") {
+                        optional = "Coin";
+                    }
                     Destroy(hit.collider.gameObject);
 
                     // update the health as well
-                    OnPlayerScored(null);
+                    OnPlayerScored(optional);
                 }
                
             }

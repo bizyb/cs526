@@ -66,6 +66,7 @@
     <Compile Include="Assets\Scripts\CountdownText.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\Parallaxer.cs" />
+    <Compile Include="Assets\Scripts\Parameters.cs" />
     <Compile Include="Assets\Scripts\PlayerHealth.cs" />
     <Compile Include="Assets\Scripts\RandomPath.cs" />
     <Compile Include="Assets\Scripts\Score.cs" />
@@ -73,6 +74,7 @@
     <Compile Include="Assets\Scripts\TouchController.cs" />
     <Compile Include="Assets\Simple Health Bar\Scripts\SimpleHealthBar.cs" />
     <None Include="Assets\Simple Health Bar\README.txt" />
+    <None Include="Assets\BayatGames\Free Platform Game Assets\Readme.txt" />
     <Reference Include="UnityEditor.StandardEvents">
       <HintPath>/Users/biz/Documents/cs526/Coco/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
     </Reference>

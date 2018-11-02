@@ -65,14 +65,19 @@ public class GameManager : MonoBehaviour
 
     // Prefabs //
     [Header("Prefabs")]
-    public GameObject obstaclePrefab;
+    public GameObject obstacleA;
+    public GameObject obstacleB;
+    public GameObject obstacleC;
+    public GameObject rewardPrefab;
     public int startingObstacles = 5;
 
     // Spawning Info //
     bool spawning = true;
     [Header("Spawning")]
-    public float spawnTimeMin = 1.0f;
-    public float spawnTimeMax = 3.0f;
+    public float spawnTimeMin;
+    public float spawnTimeMax;
+    public float rewardSpawnTimeMin;
+    public float rewardSpawnTimeMax;
 
     // Score //
     int score = 0;
@@ -101,6 +106,7 @@ public class GameManager : MonoBehaviour
     public bool FinalLeg { get { return finalLeg; } set { finalLeg = value; }}
 
     LinkedList<GameObject> obstacles;
+    LinkedList<GameObject> rewards;
 
     void Awake()
     {
@@ -122,6 +128,7 @@ public class GameManager : MonoBehaviour
        
         health = PlayerHealth.Instance;
         obstacles = new LinkedList<GameObject>();
+        rewards = new LinkedList<GameObject>();
         audioController = AudioController.Instance;
     }
     void OnEnable()
@@ -162,7 +169,8 @@ public class GameManager : MonoBehaviour
         health.UpdateHealth(maxHealth, null);
         joystickPage.SetActive(true);
         healthBar.SetActive(true);
-        StartCoroutine("SpawnTimer");
+        StartCoroutine("ObstacleSpawnTimer");
+        StartCoroutine("RewardSpawnTimer");
         //Debug.Log("Exiting OnCountdownFinished");
 
 
@@ -181,8 +189,15 @@ public class GameManager : MonoBehaviour
 
         score++;
         scoreText.text = score.ToString();
-        audioController.AudioOnScore();
-        health.UpdateHealth(5f, null);
+        if (optional == "Coin") {
+            audioController.AudioOnReward();
+            health.UpdateHealth(25f, null);
+        }
+        else {
+            audioController.AudioOnScore();
+            health.UpdateHealth(5f, null);
+        }
+       
         //Debug.Log("Exiting OnPlayerScored");
 
     }
@@ -286,13 +301,27 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        //Debug.Log("Exiting ResetObject...");
+        foreach (GameObject reward in rewards)
+        {
+            if (reward != null)
+            {
+                Destroy(reward);
+            }
+        }
+
+       
 
     }
 
     void SpawnObstacle()
     {
         if (gameOver) { return; }
+
+        // Each level has at most three different types of obstacles
+        // Randomly select which one to spawn
+        GameObject[] prefabs = { obstacleA, obstacleB, obstacleC };
+        GameObject obstaclePrefab = prefabs.RandomItem();
+
         Vector2 dir = Vector2.zero;
         dir.x = Random.Range(xSpawnRange.minX, xSpawnRange.maxX);
         dir.y = Random.Range(ySpawnRange.minY, ySpawnRange.maxY);
@@ -309,7 +338,21 @@ public class GameManager : MonoBehaviour
 
     }
 
-    IEnumerator SpawnTimer()
+    void SpawnReward()
+    {
+        if (gameOver) { return; }
+        Vector2 dir = Vector2.zero;
+        dir.x = Random.Range(xSpawnRange.minX, xSpawnRange.maxX);
+        dir.y = Random.Range(ySpawnRange.minY, ySpawnRange.maxY);
+        Vector3 pos = new Vector3(dir.x, dir.y, 0);
+
+
+        GameObject reward = Instantiate(rewardPrefab, pos, Quaternion.Euler(0, 0, 0)) as GameObject;
+        rewards.AddLast(reward);
+
+    }
+
+    IEnumerator ObstacleSpawnTimer()
     {
         // Wait for a bit before the initial spawn.
         yield return new WaitForSeconds(0.5f);
@@ -321,9 +364,22 @@ public class GameManager : MonoBehaviour
         {
             // Wait for a range of seconds determined my the min and max variables.
             yield return new WaitForSeconds(Random.Range(spawnTimeMin, spawnTimeMax));
-
-            // Spawn an asteroid.
             SpawnObstacle();
+        }
+    }
+
+    IEnumerator RewardSpawnTimer()
+    {
+        // Wait for a bit before the initial spawn.
+        //yield return new WaitForSeconds(1f);
+        SpawnReward();
+
+        // While spawning is true...
+        while (spawning)
+        {
+            // Wait for a range of seconds determined my the min and max variables.
+            yield return new WaitForSeconds(Random.Range(rewardSpawnTimeMin, rewardSpawnTimeMax));
+            SpawnReward();
         }
     }
 
@@ -350,5 +406,13 @@ public class GameManager : MonoBehaviour
     public void OpenCredits()
     {
         creditsPage.SetActive(true);
+    }
+}
+public static class ArrayExtensions
+{
+    // This is an extension method. RandomItem() will now exist on all arrays.
+    public static T RandomItem<T>(this T[] array)
+    {
+        return array[Random.Range(0, array.Length)];
     }
 }
