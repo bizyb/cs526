@@ -15,7 +15,6 @@ public class TouchController : MonoBehaviour
         //TODO: if the bird touches the joystick while falling, it will slow down
         // this shouldn't happen; its velocity should stay the same
 
-        //Debug.Log("entered update in TouchController");
         if (Input.GetMouseButtonDown(0))
         {
            
@@ -40,16 +39,16 @@ public class TouchController : MonoBehaviour
                 {
                     OnJoystickTouch("Right");
                 }
-                else
-                {
-                    string optional = null;
-                    if (hit.collider.gameObject.name == "Coin") {
-                        optional = "Coin";
-                    }
+                else if (hit.collider.gameObject.tag == "RewardZone") {
+                    OnPlayerScored("Coin");
                     Destroy(hit.collider.gameObject);
-
+                }
+                else 
+                {
+            
+                    Destroy(hit.collider.gameObject);
                     // update the health as well
-                    OnPlayerScored(optional);
+                    OnPlayerScored(null);
                 }
                
             }
