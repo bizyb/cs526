@@ -31,14 +31,6 @@ public class RandomPath : MonoBehaviour
         if (rewardPrefab == null && game.GameStarted)
         {
             anim.SetTrigger("Flap");
-            //if (this.gameObject.name == "Eagle")
-            //{
-            //    anim.SetTrigger("FlapEagle");
-            //}
-            //else if (this.gameObject.name == "Goose")
-            //{
-            //    anim.SetTrigger("FlapGoose");
-            //}
         }
        
         target = game.bird.transform;
