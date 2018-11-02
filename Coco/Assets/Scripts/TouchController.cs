@@ -75,9 +75,9 @@ public class TouchController : MonoBehaviour
         }
     }
 
-    void StopAudio(GameObject gameObject) {
+    void StopAudio(GameObject obj) {
 
-        if (gameObject.name == "Helicopter" || gameObject.name == "Helicopter(Clone)"){
+        if (obj.name == "Helicopter" || obj.name == "Helicopter(Clone)"){
             // Stop the audio only if there are no more helicopters on the screen
             game.HeliCount--;
             if (game.HeliCount == 0) {

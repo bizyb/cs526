@@ -72,7 +72,7 @@ public class GameManager : MonoBehaviour
     public GameObject jellyfish;
     public GameObject helicopter;
     public GameObject rewardPrefab;
-    public int startingObstacles = 5;
+    int startingObstacles = 1;
 
     // Spawning Info //
     bool spawning = true;
@@ -174,6 +174,9 @@ public class GameManager : MonoBehaviour
         healthBar.SetActive(true);
         StartCoroutine("ObstacleSpawnTimer");
         StartCoroutine("RewardSpawnTimer");
+        StartCoroutine("Difficulty");
+        heliCount = 0;
+        startingObstacles = 1;
     }
 
 
@@ -321,7 +324,7 @@ public class GameManager : MonoBehaviour
         // Randomly select which one to spawn
        
         GameObject[] prefabs = { eagle, goose, dragonOne, dragonTwo, jellyfish, helicopter };
-        GameObject obstaclePrefab = helicopter; //prefabs.RandomItem();
+        GameObject obstaclePrefab = prefabs.RandomItem();
 
         Vector2 dir = Vector2.zero;
         dir.x = Random.Range(xSpawnRange.minX, xSpawnRange.maxX);
@@ -359,17 +362,17 @@ public class GameManager : MonoBehaviour
 
     IEnumerator ObstacleSpawnTimer()
     {
-        // Wait for a bit before the initial spawn.
-        yield return new WaitForSeconds(0.5f);
-        for (int i = 0; i < startingObstacles; i++)
-            SpawnObstacle();
 
         // While spawning is true...
-        while (spawning)
+        while (true)
         {
             // Wait for a range of seconds determined my the min and max variables.
             yield return new WaitForSeconds(Random.Range(spawnTimeMin, spawnTimeMax));
-            SpawnObstacle();
+
+            for (int i = 0; i < startingObstacles; i++)
+            {
+                SpawnObstacle();
+            }
         }
     }
 
@@ -383,6 +386,23 @@ public class GameManager : MonoBehaviour
             yield return new WaitForSeconds(Random.Range(rewardSpawnTimeMin, rewardSpawnTimeMax));
             SpawnReward();
         }
+    }
+
+    IEnumerator Difficulty() {
+
+        while (true) {
+            yield return new WaitForSeconds(30);
+            startingObstacles++;
+            //Debug.Log("startingObstacles: " + startingObstacles);
+
+            //if (spawnTimeMin > 1 && spawnTimeMax > 2) {
+            //    spawnTimeMin--;
+            //    spawnTimeMax--;
+            //}
+
+
+        }
+
     }
 
     // TODO: there's gotta be a better way to do this
