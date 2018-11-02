@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public class TouchController : MonoBehaviour
 {
 
-    public delegate void PlayerDelegate(string direction);
+    public delegate void PlayerDelegate(string direction, Vector3 pos);
     public static event PlayerDelegate OnJoystickTouch;
     public static event PlayerDelegate OnPlayerScored;
 
@@ -25,22 +25,22 @@ public class TouchController : MonoBehaviour
             if (hit.collider != null)
             {
                 if (hit.collider.gameObject.name == "UpArrow") {
-                    OnJoystickTouch("Up");
+                    OnJoystickTouch("Up", Vector3.zero);
                 }
                 else if (hit.collider.gameObject.name == "DownArrow")
                 {
-                    OnJoystickTouch("Down");
+                    OnJoystickTouch("Down", Vector3.zero);
                 }
                 else if (hit.collider.gameObject.name == "LeftArrow")
                 {
-                    OnJoystickTouch("Left");
+                    OnJoystickTouch("Left", Vector3.zero);
                 }
                 else if (hit.collider.gameObject.name == "RightArrow")
                 {
-                    OnJoystickTouch("Right");
+                    OnJoystickTouch("Right", Vector3.zero);
                 }
                 else if (hit.collider.gameObject.tag == "RewardZone") {
-                    OnPlayerScored("Coin");
+                    OnPlayerScored("Coin", Vector3.zero);
                     Destroy(hit.collider.gameObject);
                 }
                 else 
@@ -48,7 +48,7 @@ public class TouchController : MonoBehaviour
             
                     Destroy(hit.collider.gameObject);
                     // update the health as well
-                    OnPlayerScored(null);
+                    OnPlayerScored(null, Vector3.zero);
                 }
                
             }

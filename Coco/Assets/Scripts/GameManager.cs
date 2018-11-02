@@ -179,7 +179,7 @@ public class GameManager : MonoBehaviour
     }
    
 
-    void OnPlayerScored(string optional)
+    void OnPlayerScored(string optional, Vector3 pos)
     {
         //Debug.Log("Entering OnPlayerScored");
 
@@ -203,7 +203,7 @@ public class GameManager : MonoBehaviour
     }
 
 
-    void OnPlayerDied(string optional)
+    void OnPlayerDied(string optional, Vector3 pos)
     {
         //Debug.Log("Entering OnPlayerDied");
         gameStarted = false;

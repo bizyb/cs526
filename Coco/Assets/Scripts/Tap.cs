@@ -6,7 +6,7 @@ using UnityEngine;
 public class Tap : MonoBehaviour
 {
 
-    public delegate void PlayerDelegate(string optional);
+    public delegate void PlayerDelegate(string optional, Vector3 pos);
     public static event PlayerDelegate OnPlayerDied;
     static Tap instance;
     public static Tap Instance { get { return instance; } }
@@ -82,7 +82,7 @@ public class Tap : MonoBehaviour
 
     }
 
-    public void OnJoystickTouch(string direction) {
+    public void OnJoystickTouch(string direction, Vector3 pos) {
 
         if (game.GameOver) { return; }
         if (!isDead)
@@ -155,7 +155,7 @@ public class Tap : MonoBehaviour
         //health.UpdateHealth(100f, this); //restore the health for next time
         audioController.AudioOnDeath();
 
-        OnPlayerDied("");
+        OnPlayerDied(null, Vector3.zero);
 
     }
 
