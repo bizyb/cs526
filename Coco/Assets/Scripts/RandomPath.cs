@@ -27,8 +27,19 @@ public class RandomPath : MonoBehaviour
             return; 
         }
 
-       
-        if (rewardPrefab == null && game.GameStarted) { anim.SetTrigger("Flap"); }
+
+        if (rewardPrefab == null && game.GameStarted)
+        {
+            anim.SetTrigger("Flap");
+            //if (this.gameObject.name == "Eagle")
+            //{
+            //    anim.SetTrigger("FlapEagle");
+            //}
+            //else if (this.gameObject.name == "Goose")
+            //{
+            //    anim.SetTrigger("FlapGoose");
+            //}
+        }
        
         target = game.bird.transform;
         // The step size is equal to speed times frame time.
