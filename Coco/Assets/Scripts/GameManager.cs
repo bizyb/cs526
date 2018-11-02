@@ -1,10 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-//using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine.SceneManagement;
-
 
 public class GameManager : MonoBehaviour
 {
@@ -40,7 +37,6 @@ public class GameManager : MonoBehaviour
     AudioController audioController;
 
    
-    public readonly float gameDuration = 1800f; // 30 minutes
     readonly float maxHealth = 100f;
     readonly int obstacleBonus = 1;
     readonly float healthBonusOnCoin = 25f;
@@ -98,7 +94,6 @@ public class GameManager : MonoBehaviour
     }
 
 
-    //int score = 0;
     bool gameOver;
     bool finalLeg;
     bool gameStarted;
@@ -142,7 +137,7 @@ public class GameManager : MonoBehaviour
         bird.SetActive(false);
         joystickPage.SetActive(false);
         healthBar.SetActive(false);
-        startTime = 0; //(Int32)(DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
+        startTime = 0; 
         Tap.OnPlayerDied += OnPlayerDied;
         TouchController.OnPlayerScored += OnPlayerScored;
         CountdownText.OnCountdownFinished += OnCountdownFinished;
@@ -163,36 +158,25 @@ public class GameManager : MonoBehaviour
 
     void OnCountdownFinished()
     {
-
-        //Debug.Log("Entering OnCountdownFinished");
+    
         SetPageState(PageState.None);
         OnGameStarted();
         score = 0;
         gameOver = false;
         gameStarted = true;
-        startTime = 0; //(Int32)(DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
+        startTime = 0; 
         health.UpdateHealth(maxHealth, null);
         joystickPage.SetActive(true);
         healthBar.SetActive(true);
         StartCoroutine("ObstacleSpawnTimer");
         StartCoroutine("RewardSpawnTimer");
-        //Debug.Log("Exiting OnCountdownFinished");
-
-
-        //startTime = (Int32)(DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
-
     }
 
 
     void OnPlayerScored(string optional, Vector3 pos)
     {
-        //Debug.Log("Entering OnPlayerScored");
-
+      
         if (gameOver) { return; }
-        //int timeNow = (Int32)(DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
-        //int elapsed = timeNow - startTime;
-
-
         if (optional == "Coin")
         {
             SpawnRewardAnim(heartPrefab, pos);
@@ -204,17 +188,16 @@ public class GameManager : MonoBehaviour
             score += obstacleBonus;
             SpawnRewardAnim(plusPrefab, pos);
             audioController.AudioOnScore();
-            //health.UpdateHealth(healthBonusKill, null);
         }
         scoreText.text = score.ToString();
 
-        //Debug.Log("Exiting OnPlayerScored")
+       
     }
 
 
     void OnPlayerDied(string optional, Vector3 pos)
     {
-        //Debug.Log("Entering OnPlayerDied");
+
         gameStarted = false;
         gameOver = true;
         int savedScore = PlayerPrefs.GetInt("HighScore");
@@ -227,7 +210,6 @@ public class GameManager : MonoBehaviour
         healthBar.SetActive(false);
         gameOverScreen.gameObject.SetActive(true);
         gameScore.text = score.ToString();
-        //Debug.Log("Exiting OnPlayerDied");
 
     }
 
@@ -267,7 +249,7 @@ public class GameManager : MonoBehaviour
                 gameOverSuccessPage.SetActive(false);
                 break;
             case PageState.GameOver:
-                //Debug.Log("Setting page state to GAME OVER");
+
                 startPage.SetActive(false);
                 gameOverPage.SetActive(true);
                 countdownPage.SetActive(false);
@@ -284,7 +266,7 @@ public class GameManager : MonoBehaviour
 
     public void ConfirmGameOver()
     {
-        //Debug.Log("confirming game over state: replay button clicked");
+       
         ResetObjects();
         SetPageState(PageState.Start);
         scoreText.text = "0";
@@ -296,20 +278,18 @@ public class GameManager : MonoBehaviour
 
     public void StartGame()
     {
-        //Debug.Log("Entering StartGame...")
+       
         bird.SetActive(true);
         birdRigidBody.simulated = false;
         joystickPage.SetActive(true);
         SetBackground();
         SetPageState(PageState.Countdown);
-        //Debug.Log("Exiting StartGame...");
     }
 
     void ResetObjects()
     {
       
-        //Debug.Log("Entering ResetObject...");
-
+       
         foreach (GameObject obstacle in obstacles)
         {
             if (obstacle != null) {

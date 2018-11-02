@@ -12,9 +12,7 @@ public class Tap : MonoBehaviour
     public static Tap Instance { get { return instance; } }
 
     readonly float upForce = 4f;
-    //readonly float downForce = -20f;
     public bool isDead = false;
-    //float reward = 20f;
     float decay = -2.0f; // player health decay rate per second
     public Vector2 startLoc;
     private Animator anim;
@@ -53,8 +51,6 @@ public class Tap : MonoBehaviour
         isDead = false;
         anim.speed = 1;
         anim.SetTrigger("FlapCoco");
-        //upForce = 100f;
-        //downForce = -200f; // the bird is a bit bouncy but it's fine
        
     }
 
@@ -75,8 +71,6 @@ public class Tap : MonoBehaviour
         audioController = AudioController.Instance;
         InvokeRepeating("HealthDecay", 1f, 1f);
         anim.speed = 0;
-        //upForce = 20f;
-        //downForce = -200f;
 
     }
 
