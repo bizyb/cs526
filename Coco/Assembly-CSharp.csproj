@@ -61,12 +61,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\AnimatedScore.cs" />
     <Compile Include="Assets\Scripts\AudioController.cs" />
     <Compile Include="Assets\Scripts\BackgroundScroll.cs" />
     <Compile Include="Assets\Scripts\CountdownText.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\Parallaxer.cs" />
-    <Compile Include="Assets\Scripts\Parameters.cs" />
     <Compile Include="Assets\Scripts\PlayerHealth.cs" />
     <Compile Include="Assets\Scripts\RandomPath.cs" />
     <Compile Include="Assets\Scripts\Score.cs" />

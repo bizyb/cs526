@@ -24,6 +24,7 @@ public class TouchController : MonoBehaviour
             RaycastHit2D hit = Physics2D.Raycast(mousePos2D, Vector2.zero);
             if (hit.collider != null)
             {
+                Vector3 pos = hit.collider.gameObject.transform.position;
                 if (hit.collider.gameObject.name == "UpArrow") {
                     OnJoystickTouch("Up", Vector3.zero);
                 }
@@ -40,7 +41,7 @@ public class TouchController : MonoBehaviour
                     OnJoystickTouch("Right", Vector3.zero);
                 }
                 else if (hit.collider.gameObject.tag == "RewardZone") {
-                    OnPlayerScored("Coin", Vector3.zero);
+                    OnPlayerScored("Coin", pos);
                     Destroy(hit.collider.gameObject);
                 }
                 else 
@@ -48,7 +49,7 @@ public class TouchController : MonoBehaviour
             
                     Destroy(hit.collider.gameObject);
                     // update the health as well
-                    OnPlayerScored(null, Vector3.zero);
+                    OnPlayerScored(null, pos);
                 }
                
             }

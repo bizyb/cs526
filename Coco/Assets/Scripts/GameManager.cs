@@ -31,6 +31,8 @@ public class GameManager : MonoBehaviour
     public GameObject ground;
     public int startTime;
     public Text scoreText;
+    public GameObject plusPrefab;
+    public GameObject heartPrefab;
     public Text gameScore;
     public Rigidbody2D birdRigidBody;
 
@@ -41,7 +43,11 @@ public class GameManager : MonoBehaviour
     public readonly float scaleFactor = 0.97f;
     public readonly float gameDuration = 1800f; // 30 minutes
     readonly float maxHealth = 100f;
-  
+    readonly int obstacleBonus = 1;
+    //readonly int rewardBonus = 25;
+    //readonly float healthBonusKill = 5f;
+    readonly float healthBonusOnCoin = 25f;
+
     [System.Serializable]
     public struct YSpawnRange
     {
@@ -98,12 +104,12 @@ public class GameManager : MonoBehaviour
     bool finalLeg;
     bool gameStarted;
     //bool stopAllAudio;
-    public bool GameStarted { get { return gameStarted; }}
+    public bool GameStarted { get { return gameStarted; } }
     public bool GameOver { get { return gameOver; } }
     //public bool StopAllAudio { get { return stopAllAudio; }}
-    public int Score { get { return score; }}
+    public int Score { get { return score; } }
 
-    public bool FinalLeg { get { return finalLeg; } set { finalLeg = value; }}
+    public bool FinalLeg { get { return finalLeg; } set { finalLeg = value; } }
 
     LinkedList<GameObject> obstacles;
     LinkedList<GameObject> rewards;
@@ -125,7 +131,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         // TODO: store the obstacles in a hash table; 
-       
+
         health = PlayerHealth.Instance;
         obstacles = new LinkedList<GameObject>();
         rewards = new LinkedList<GameObject>();
@@ -158,7 +164,7 @@ public class GameManager : MonoBehaviour
 
     void OnCountdownFinished()
     {
-       
+
         //Debug.Log("Entering OnCountdownFinished");
         SetPageState(PageState.None);
         OnGameStarted();
@@ -177,7 +183,7 @@ public class GameManager : MonoBehaviour
         //startTime = (Int32)(DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
 
     }
-   
+
 
     void OnPlayerScored(string optional, Vector3 pos)
     {
@@ -187,19 +193,23 @@ public class GameManager : MonoBehaviour
         //int timeNow = (Int32)(DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
         //int elapsed = timeNow - startTime;
 
-        score++;
-        scoreText.text = score.ToString();
-        if (optional == "Coin") {
-            audioController.AudioOnReward();
-            health.UpdateHealth(25f, null);
-        }
-        else {
-            audioController.AudioOnScore();
-            health.UpdateHealth(5f, null);
-        }
-       
-        //Debug.Log("Exiting OnPlayerScored");
 
+        if (optional == "Coin")
+        {
+            SpawnRewardAnim(heartPrefab, pos);
+            audioController.AudioOnReward();
+            health.UpdateHealth(healthBonusOnCoin, null);
+        }
+        else
+        {
+            score += obstacleBonus;
+            SpawnRewardAnim(plusPrefab, pos);
+            audioController.AudioOnScore();
+            //health.UpdateHealth(healthBonusKill, null);
+        }
+        scoreText.text = score.ToString();
+
+        //Debug.Log("Exiting OnPlayerScored")
     }
 
 
@@ -213,7 +223,7 @@ public class GameManager : MonoBehaviour
         {
             PlayerPrefs.SetInt("HighScore", score);
         }
-      
+
         joystickPage.SetActive(false);
         healthBar.SetActive(false);
         gameOverScreen.gameObject.SetActive(true);
@@ -221,7 +231,14 @@ public class GameManager : MonoBehaviour
         //Debug.Log("Exiting OnPlayerDied");
 
     }
- 
+
+    void SpawnRewardAnim(GameObject prefab, Vector3 pos) {
+
+        GameObject healthSpawn = Instantiate(prefab, pos, Quaternion.Euler(0, 0, 0)) as GameObject;
+
+    }
+
+
     void SetBackground() {
 
         background.SetActive(true);
