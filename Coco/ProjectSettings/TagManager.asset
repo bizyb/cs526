@@ -17,6 +17,7 @@ TagManager:
   - Airplane
   - Drone
   - TopPerimeter
+  - Helicopter
   layers:
   - Default
   - TransparentFX

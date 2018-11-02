@@ -11,11 +11,13 @@ public class TouchController : MonoBehaviour
 
     public GameManager game;
     private Animator anim;
+    AudioController audioController;
 
     private void Start()
     {
         game = GameManager.Instance;
         anim = GetComponent<Animator>();
+        audioController = AudioController.Instance;
     }
 
 
@@ -63,13 +65,25 @@ public class TouchController : MonoBehaviour
                 }
                 else 
                 {
-            
+                    StopAudio(hit.collider.gameObject);
                     Destroy(hit.collider.gameObject);
                     // update the health as well
                     OnPlayerScored(null, pos);
                 }
                
             }
+        }
+    }
+
+    void StopAudio(GameObject gameObject) {
+
+        if (gameObject.name == "Helicopter" || gameObject.name == "Helicopter(Clone)"){
+            // Stop the audio only if there are no more helicopters on the screen
+            game.HeliCount--;
+            if (game.HeliCount == 0) {
+                audioController.AudioOnHelicopterStop();
+            }
+           
         }
     }
 

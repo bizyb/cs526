@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Coco</string>
+    <string name="button_text_login">Login</string>
+    <string name="button_text_purchase">Buy</string>
+    <string name="cancel">Cancel</string>
+    <string name="check_value">Check Value</string>
+    <string name="demo_btn_ok">Confirm</string>
+    <string name="demo_choess_money">Please select the amount of recharge</string>
+    <string name="demo_input_amount">Please enter the amount of recharge</string>
+    <string name="demo_islogin">Executing, do not repeat operation</string>
+    <string name="demo_mibi_to_rmb">1米币=1元（1 Mi Credit=RMB 1yuan）</string>
+    <string name="demo_pay_amount_100yuan">100yuan(100Mi Credits)</string>
+    <string name="demo_pay_amount_10yuan">10yuan(10Mi Credits)</string>
+    <string name="demo_pay_amount_1yuan">1yuan(1Mi Credit)</string>
+    <string name="demo_pay_amount_500yuan">500yuan(500Mi Credits)</string>
+    <string name="demo_pay_amount_50yuan">50yuan(50Mi Credits)</string>
+    <string name="demo_pay_amount_5yuan">5yuan(5Mi Credits)</string>
+    <string name="demo_payment_cancel">Purchase cancel</string>
+    <string name="demo_payment_failde">Purchase failure</string>
+    <string name="demo_payment_please_login">You are not logged in, please login first</string>
+    <string name="demo_payment_success">Purchase success</string>
+    <string name="demo_tip"><Data>&lt;font>Now is&lt;/font>&lt;font color="#FF0000">%s&lt;/font>&lt;font>mode&lt;/font></Data></string>
+    <string name="demo_tip1"><Data>&lt;font>Now：&lt;/font>&lt;font color="#FF0000">%s&lt;/font></Data></string>
+    <string name="demo_tip_text">In the formal environment must indicate the relationship between Mi Credit(米币) and RMB（人民币）</string>
+    <string name="hello_world">This application for In-App Purchase process demo</string>
+    <string name="in_app_friends">Friends are playing games</string>
+    <string name="ok">OK</string>
+    <string name="out_app_friends">friend not using this app</string>
+    <string name="should_send_message">Send message like below?</string>
+    <string name="update_me">UPDATE ME</string>
+    <string name="useheart">USEHEART</string>
+    <style name="BaseUnityTheme" parent="android:Theme.Holo.Light.NoActionBar.Fullscreen">
+</style>
+    <style name="UnityThemeSelector" parent="BaseUnityTheme">
+	<item name="android:windowBackground">@android:color/black</item>
+</style>
+    <style name="UnityThemeSelector.Translucent" parent="@style/UnityThemeSelector">
+    <item name="android:windowIsTranslucent">true</item>
+    <item name="android:windowBackground">@android:color/transparent</item>
+</style>
+</resources>

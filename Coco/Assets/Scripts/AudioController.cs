@@ -8,9 +8,11 @@ public class AudioController : MonoBehaviour {
     public static AudioController Instance {get { return audioController;} }
 
     public AudioSource mainAudioSrc;
+    public AudioSource helicopterSrc;
     public AudioSource rewardAudioSrc;
     public AudioSource backgroundAudioSrc;
     public AudioSource wingAudioSrc;
+    public AudioClip helicopterClip;
     public AudioClip scoreClip;
     public AudioClip rewardClip;
     public AudioClip deathClip;
@@ -36,6 +38,7 @@ public class AudioController : MonoBehaviour {
         {
             wingAudioSrc.Stop();
             backgroundAudioSrc.Stop();
+            helicopterSrc.Stop();
             return;
         }
         if (!wingAudioSrc.isPlaying) {
@@ -66,7 +69,10 @@ public class AudioController : MonoBehaviour {
         rewardAudioSrc.PlayOneShot(rewardClip);
     }
 
-    public void AudioOnJoystick() {
-
+    public void AudioOnHelicopter() {
+        helicopterSrc.PlayOneShot(helicopterClip);
+    }
+    public void AudioOnHelicopterStop() {
+        helicopterSrc.Stop();
     }
 }

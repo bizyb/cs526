@@ -34,6 +34,7 @@ public class GameManager : MonoBehaviour
     public Rigidbody2D birdRigidBody;
 
 
+
     AudioController audioController;
 
    
@@ -69,6 +70,7 @@ public class GameManager : MonoBehaviour
     public GameObject dragonOne;
     public GameObject dragonTwo;
     public GameObject jellyfish;
+    public GameObject helicopter;
     public GameObject rewardPrefab;
     public int startingObstacles = 5;
 
@@ -97,10 +99,12 @@ public class GameManager : MonoBehaviour
     bool gameOver;
     bool finalLeg;
     bool gameStarted;
+    int heliCount = 0;
     //bool stopAllAudio;
     public bool GameStarted { get { return gameStarted; } }
     public bool GameOver { get { return gameOver; } }
     //public bool StopAllAudio { get { return stopAllAudio; }}
+    public int HeliCount { get { return heliCount; } set { heliCount = value; } }
     public int Score { get { return score; } }
 
     public bool FinalLeg { get { return finalLeg; } set { finalLeg = value; } }
@@ -315,11 +319,9 @@ public class GameManager : MonoBehaviour
 
         // Each level has at most three different types of obstacles
         // Randomly select which one to spawn
-        // Spawn proportionality: Eagle 30%; Goose 30%, Jellyfish 20%, DragonOne 10%, 
-        // DragonTwo, 10% 
-
-        GameObject[] prefabs = { eagle, eagle, eagle, goose, goose, goose, dragonOne, dragonTwo, jellyfish, jellyfish };
-        GameObject obstaclePrefab = prefabs.RandomItem();
+       
+        GameObject[] prefabs = { eagle, goose, dragonOne, dragonTwo, jellyfish, helicopter };
+        GameObject obstaclePrefab = helicopter; //prefabs.RandomItem();
 
         Vector2 dir = Vector2.zero;
         dir.x = Random.Range(xSpawnRange.minX, xSpawnRange.maxX);
@@ -334,6 +336,10 @@ public class GameManager : MonoBehaviour
 
         GameObject obst = Instantiate(obstaclePrefab, pos, Quaternion.Euler(0, 0, 0)) as GameObject;
         obstacles.AddLast(obst);
+        if (obstaclePrefab == helicopter) {
+            heliCount++;
+            audioController.AudioOnHelicopter();
+        }
 
     }
 

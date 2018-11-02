@@ -86,15 +86,12 @@ public class Tap : MonoBehaviour
                     rigidbod.velocity = new Vector2(0, upForce);
                     break;
                 case "Down":
-                    Debug.Log("Down button pressed");
                     rigidbod.velocity = new Vector2(0, -upForce);
                     break;
                 case "Left":
-                    Debug.Log("Left button pressed");
                     rigidbod.velocity = new Vector2(-upForce, 0);
                     break;
                 case "Right":
-                    Debug.Log("Right button pressed");
                     rigidbod.velocity = new Vector2(upForce, 0);
                     break;
             }
@@ -117,15 +114,12 @@ public class Tap : MonoBehaviour
             rigidbod.velocity = Vector2.zero;
             switch (col.gameObject.name) {
                 case "TopPerimeter":
-                    Debug.Log("Top perimeter breached!!!");
                     rigidbod.velocity = new Vector2(0, -upForce);
                     break;
                 case "LeftPerimeter":
-                    Debug.Log("Left perimeter breached!!!");
                     rigidbod.velocity = new Vector2(upForce, 0);
                     break;
                 case "RightPerimeter":
-                    Debug.Log("Right perimeter breached!!!");
                     rigidbod.velocity = new Vector2(-upForce, 0);
                     break;
             }
