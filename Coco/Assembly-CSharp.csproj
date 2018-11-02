@@ -61,12 +61,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\_Gloomy_Animal\Script\CharacterSelect.cs" />
-    <Compile Include="Assets\_Gloomy_Animal\Script\MouseOrbitImproved.cs" />
-    <Compile Include="Assets\living birds\demo\livingBirdsDemoScript.cs" />
-    <Compile Include="Assets\living birds\scripts\lb_Bird.cs" />
-    <Compile Include="Assets\living birds\scripts\lb_BirdController.cs" />
-    <Compile Include="Assets\living birds\scripts\lb_CrowProximity.cs" />
     <Compile Include="Assets\Scripts\AudioController.cs" />
     <Compile Include="Assets\Scripts\BackgroundScroll.cs" />
     <Compile Include="Assets\Scripts\CountdownText.cs" />
