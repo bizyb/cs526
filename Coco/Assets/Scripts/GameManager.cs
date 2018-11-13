@@ -26,7 +26,6 @@ public class GameManager : MonoBehaviour
     public GameObject currentScore;
     public GameObject background;
     public GameObject ground;
-    public int startTime;
     public Text scoreText;
     public GameObject plusPrefab;
     public GameObject heartPrefab;
@@ -41,6 +40,7 @@ public class GameManager : MonoBehaviour
     readonly float maxHealth = 100f;
     readonly int obstacleBonus = 1;
     readonly float healthBonusOnCoin = 25f;
+    float timeSince = 0;
 
     [System.Serializable]
     public struct YSpawnRange
@@ -84,7 +84,7 @@ public class GameManager : MonoBehaviour
 
     // Score //
     int score = 0;
-
+    readonly float difficultyInterval = 30f;
 
     enum PageState
     {
@@ -141,7 +141,6 @@ public class GameManager : MonoBehaviour
         bird.SetActive(false);
         joystickPage.SetActive(false);
         healthBar.SetActive(false);
-        startTime = 0; 
         Tap.OnPlayerDied += OnPlayerDied;
         TouchController.OnPlayerScored += OnPlayerScored;
         CountdownText.OnCountdownFinished += OnCountdownFinished;
@@ -168,7 +167,6 @@ public class GameManager : MonoBehaviour
         score = 0;
         gameOver = false;
         gameStarted = true;
-        startTime = 0; 
         health.UpdateHealth(maxHealth, null);
         joystickPage.SetActive(true);
         healthBar.SetActive(true);
@@ -318,6 +316,8 @@ public class GameManager : MonoBehaviour
 
     void SpawnObstacle()
     {
+        //Debug.Log("Spawning obstcles: " + startingObstacles);
+        //Debug.Log("=====================================");
         if (gameOver) { return; }
 
         // Each level has at most three different types of obstacles
@@ -364,6 +364,11 @@ public class GameManager : MonoBehaviour
     {
 
         // While spawning is true...
+        // Spawn obstacles when the game starts
+        SpawnObstacle();
+
+        // Spawn obstacles at a set interval, where the number of starting obstacles
+        // increases every x seconds, where x is defined 
         while (true)
         {
             // Wait for a range of seconds determined my the min and max variables.
@@ -391,14 +396,12 @@ public class GameManager : MonoBehaviour
     IEnumerator Difficulty() {
 
         while (true) {
-            yield return new WaitForSeconds(60);
+            yield return new WaitForSeconds(difficultyInterval);
             startingObstacles++;
-            //Debug.Log("startingObstacles: " + startingObstacles);
-
-            //if (spawnTimeMin > 1 && spawnTimeMax > 2) {
-            //    spawnTimeMin--;
-            //    spawnTimeMax--;
-            //}
+            //timeSince += difficultyInterval;
+            //Debug.Log("obstacle count: " + startingObstacles);
+            //Debug.Log("Time since beginning: " + timeSince);
+            //Debug.Log("=====================================");
 
 
         }

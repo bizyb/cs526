@@ -47,7 +47,7 @@ public class Tap : MonoBehaviour
 
 
         rigidbod.velocity = Vector2.zero;
-        rigidbod.simulated = true;
+        //rigidbod.simulated = true;
         isDead = false;
         anim.speed = 1;
         anim.SetTrigger("FlapCoco");
