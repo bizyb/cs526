@@ -1273,7 +1273,7 @@ Prefab:
     - target: {fileID: 58018565145198974, guid: b3da629128a004143ac2dffb94e07fef,
         type: 2}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1727207803954452, guid: b3da629128a004143ac2dffb94e07fef, type: 2}
       propertyPath: m_IsActive
@@ -1613,7 +1613,6 @@ MonoBehaviour:
   currentScore: {fileID: 1267450687}
   background: {fileID: 1287884286}
   ground: {fileID: 1938054088}
-  startTime: 0
   scoreText: {fileID: 1267450690}
   plusPrefab: {fileID: 1546022025}
   heartPrefab: {fileID: 1763533436}
@@ -5713,7 +5712,7 @@ CircleCollider2D:
     type: 2}
   m_PrefabInternal: {fileID: 479463922}
   m_GameObject: {fileID: 1892697264}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1

@@ -84,7 +84,7 @@ public class GameManager : MonoBehaviour
 
     // Score //
     int score = 0;
-    readonly float difficultyInterval = 30f;
+    readonly float spawnWaitTime = 5f;
 
     enum PageState
     {
@@ -171,8 +171,8 @@ public class GameManager : MonoBehaviour
         joystickPage.SetActive(true);
         healthBar.SetActive(true);
         StartCoroutine("ObstacleSpawnTimer");
-        StartCoroutine("RewardSpawnTimer");
-        StartCoroutine("Difficulty");
+        //StartCoroutine("RewardSpawnTimer");
+        //StartCoroutine("Difficulty");
         heliCount = 0;
         startingObstacles = 1;
     }
@@ -316,8 +316,6 @@ public class GameManager : MonoBehaviour
 
     void SpawnObstacle()
     {
-        //Debug.Log("Spawning obstcles: " + startingObstacles);
-        //Debug.Log("=====================================");
         if (gameOver) { return; }
 
         // Each level has at most three different types of obstacles
@@ -363,50 +361,41 @@ public class GameManager : MonoBehaviour
     IEnumerator ObstacleSpawnTimer()
     {
 
-        // While spawning is true...
-        // Spawn obstacles when the game starts
-        SpawnObstacle();
-
+       
         // Spawn obstacles at a set interval, where the number of starting obstacles
         // increases every x seconds, where x is defined 
         while (true)
         {
             // Wait for a range of seconds determined my the min and max variables.
-            yield return new WaitForSeconds(Random.Range(spawnTimeMin, spawnTimeMax));
+            yield return new WaitForSeconds(spawnWaitTime);
 
-            for (int i = 0; i < startingObstacles; i++)
-            {
-                SpawnObstacle();
-            }
-        }
-    }
-
-    IEnumerator RewardSpawnTimer()
-    {
-
-        SpawnReward();
-        while (spawning)
-        {
-            // Wait for a range of seconds determined my the min and max variables.
-            yield return new WaitForSeconds(Random.Range(rewardSpawnTimeMin, rewardSpawnTimeMax));
+            SpawnObstacle();
             SpawnReward();
         }
     }
 
-    IEnumerator Difficulty() {
+    //IEnumerator RewardSpawnTimer()
+    //{
 
-        while (true) {
-            yield return new WaitForSeconds(difficultyInterval);
-            startingObstacles++;
-            //timeSince += difficultyInterval;
-            //Debug.Log("obstacle count: " + startingObstacles);
-            //Debug.Log("Time since beginning: " + timeSince);
-            //Debug.Log("=====================================");
+       
+    //    while (true)
+    //    {
+    //        // Wait for a range of seconds determined my the min and max variables.
+    //        yield return new WaitForSeconds(spawnWaitTime);
+    //        SpawnReward();
+    //    }
+    //}
+
+    //IEnumerator Difficulty() {
+
+    //    while (true) {
+    //        yield return new WaitForSeconds(difficultyInterval);
+    //        startingObstacles++;
 
 
-        }
+    //    }
 
-    }
+    //}
 
     // TODO: there's gotta be a better way to do this
     public void CloseHowTo() {
